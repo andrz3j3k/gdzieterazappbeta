@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/View/CarouselView.dart';
+import 'package:travelon/View/CityMap.dart';
+import 'package:travelon/View/OtherOptions.dart';
+import 'MiniGame.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -8,27 +12,37 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  void _onItemTapped(int index) {
+    setState(() {
+      _switchPage = index;
+    });
+  }
+
+  var _switchPage = 0;
+
+  _switchPageFunction() {
+    switch (_switchPage) {
+      case 0:
+        return const _MainPageApp();
+      case 1:
+        return const MiniGame();
+      case 2:
+        return const CarouselView();
+      case 3:
+        return const CityMap();
+      case 4:
+        return const OtherOptions();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200,
-              child: ListView(
-                children: const [
-                  Text('witam'),
-                  Text('witam'),
-                  Text('witam'),
-                  Text('witam'),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+      body: _switchPageFunction(),
       bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: false,
+        currentIndex: _switchPage,
+        onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.redAccent,
         selectedItemColor: Colors.black,
@@ -54,6 +68,31 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.settings),
             label: 'search',
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MainPageApp extends StatelessWidget {
+  const _MainPageApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 200,
+            child: ListView(
+              children: const [
+                Text('witam'),
+                Text('witam'),
+                Text('witam'),
+                Text('witam'),
+              ],
+            ),
+          )
         ],
       ),
     );
