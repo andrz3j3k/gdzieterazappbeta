@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/View/CarouselView.dart';
-import 'package:travelon/View/CityMap.dart';
-import 'package:travelon/View/OtherOptions.dart';
-import 'MiniGame.dart';
+import 'package:travelon/View/CarouselView/CarouselView.dart';
+import 'package:travelon/View/CityMap/CityMap.dart';
+import 'package:travelon/View/OtherOptions/OtherOptions.dart';
+import '../MiniGame/MiniGame.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
