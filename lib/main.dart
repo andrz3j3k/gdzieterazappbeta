@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:travelon/View/MainPage/Providers.dart';
 import 'View/MainPage/MainPage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => ChangeText(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          bodyText2: GoogleFonts.roboto(fontWeight: FontWeight.w500),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }

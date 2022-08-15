@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/View/CarouselView/CarouselView.dart';
 import 'package:travelon/View/CityMap/CityMap.dart';
+import 'package:travelon/View/MainPage/FavouritePlace.dart';
 import 'package:travelon/View/OtherOptions/OtherOptions.dart';
 import '../MiniGame/MiniGame.dart';
+import 'ListAttraction.dart';
+import 'ButtonSearch.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -23,7 +26,7 @@ class _MainPageState extends State<MainPage> {
   _switchPageFunction() {
     switch (_switchPage) {
       case 0:
-        return const _MainPageApp();
+        return const MainPageApp();
       case 1:
         return const MiniGame();
       case 2:
@@ -39,62 +42,108 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _switchPageFunction(),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: false,
-        currentIndex: _switchPage,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.redAccent,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Main',
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Container(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+          child: BottomNavigationBar(
+            currentIndex: _switchPage,
+            onTap: _onItemTapped,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: const Color.fromARGB(255, 232, 171, 66),
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white,
+            selectedFontSize: 12,
+            showUnselectedLabels: false,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home_outlined,
+                  size: 30,
+                ),
+                label: "Menu",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.sports_esports_outlined,
+                  size: 30,
+                ),
+                label: "Nagrody",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.search_outlined,
+                  size: 30,
+                ),
+                label: "Szukaj",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.map_outlined,
+                  size: 30,
+                ),
+                label: "Mapa",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings_outlined,
+                  size: 30,
+                ),
+                label: "Ustawienia",
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gamepad),
-            label: 'search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'search',
-          ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class _MainPageApp extends StatelessWidget {
-  const _MainPageApp({Key? key}) : super(key: key);
+class MainPageApp extends StatefulWidget {
+  const MainPageApp({Key? key}) : super(key: key);
 
+  static final List<String> kOptions = <String>[
+    'Restauracje',
+    'Zabytki',
+    'Atrakcje',
+  ];
+
+  static const topMargin = EdgeInsets.only(top: 20);
+  @override
+  State<MainPageApp> createState() => _MainPageAppState();
+}
+
+class _MainPageAppState extends State<MainPageApp> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 200,
-            child: ListView(
-              children: const [
-                Text('witam'),
-                Text('witam'),
-                Text('witam'),
-                Text('witam'),
-              ],
-            ),
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        Center(
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 20, bottom: 20),
+                child: const Text(
+                  'Witaj w Travelon',
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: Color.fromARGB(255, 232, 171, 66),
+                  ),
+                ),
+              ),
+              const ButtonSearch(),
+              const FavouritePlace(),
+              Container(
+                margin: MainPageApp.topMargin,
+                color: const Color.fromARGB(255, 232, 171, 66),
+                height: 150,
+                child: const ListAttraction(),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
