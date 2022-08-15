@@ -10,6 +10,9 @@ void main() {
       ChangeNotifierProvider(
         create: (_) => ChangeText(),
       ),
+      ChangeNotifierProvider(
+        create: (_) => RefreshList(),
+      )
     ],
     child: const MyApp(),
   ));

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:travelon/View/MainPage/ButtonSearch.dart';
 
 var listRestaurant = {

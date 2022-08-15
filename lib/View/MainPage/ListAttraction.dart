@@ -1,18 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
 import 'package:travelon/View/MainPage/Providers.dart';
 
-class ListAttraction extends StatefulWidget {
+class ListAttraction extends StatelessWidget {
   const ListAttraction({Key? key}) : super(key: key);
 
-  @override
-  State<ListAttraction> createState() => _ListAttractionState();
-}
-
-class _ListAttractionState extends State<ListAttraction> {
   @override
   Widget build(BuildContext context) {
     if (context.watch<ChangeText>().text == "Restauracje") {
