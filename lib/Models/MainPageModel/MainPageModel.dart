@@ -25,4 +25,4 @@ var listMonuments = {
   7: "Selfier",
   8: "Cuda Wianki",
 };
-var list = Map();
+Map<int, String> list = listRestaurant;

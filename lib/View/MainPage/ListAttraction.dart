@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
+import 'package:provider/provider.dart';
+import 'package:travelon/View/MainPage/Providers.dart';
 
 class ListAttraction extends StatefulWidget {
   const ListAttraction({Key? key}) : super(key: key);
@@ -9,6 +13,23 @@ class ListAttraction extends StatefulWidget {
 }
 
 class _ListAttractionState extends State<ListAttraction> {
+  @override
+  Widget build(BuildContext context) {
+    if (context.watch<ChangeText>().text == "Restauracje") {
+      list = listRestaurant;
+      return const ListElements();
+    } else if (context.watch<ChangeText>().text == "Zabytki") {
+      list = listMonuments;
+      return const ListElements();
+    } else {
+      return const ListElements();
+    }
+  }
+}
+
+class ListElements extends StatelessWidget {
+  const ListElements({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

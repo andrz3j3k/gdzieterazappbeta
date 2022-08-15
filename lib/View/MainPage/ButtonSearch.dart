@@ -49,16 +49,18 @@ class _ButtonSearchState extends State<ButtonSearch> {
               );
             },
             onSelected: (String selection) {
-              setState(() {
-                context.read<ChangeText>().changeTexted(selection);
+              setState(
                 () {
-                  if (context.watch<ChangeText>().text == "Restauracje") {
-                    list = listRestaurant;
-                  } else if (context.watch<ChangeText>().text == "Zabytki") {
-                    list = listMonuments;
-                  }
-                };
-              });
+                  () {
+                    if (context.watch<ChangeText>().text == "Restauracje") {
+                      list = listRestaurant;
+                    } else if (context.watch<ChangeText>().text == "Zabytki") {
+                      list = listMonuments;
+                    }
+                  };
+                  context.read<ChangeText>().changeTexted(selection);
+                },
+              );
             },
           ),
         ),

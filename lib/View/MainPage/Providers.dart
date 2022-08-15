@@ -10,3 +10,10 @@ class ChangeText extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class RefreshList extends ChangeNotifier {
+  refreshlist(list) {
+    notifyListeners();
+    return list;
+  }
+}
