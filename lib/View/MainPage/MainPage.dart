@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelon/View/CarouselView/CarouselView.dart';
 import 'package:travelon/View/CityMap/CityMap.dart';
 import 'package:travelon/View/MainPage/FavouritePlace.dart';
+import 'package:travelon/View/MainPage/ListEvents.dart';
 import 'package:travelon/View/OtherOptions/OtherOptions.dart';
 import '../MiniGame/MiniGame.dart';
 import 'ListAttraction.dart';
@@ -44,7 +45,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: Container(
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
           child: BottomNavigationBar(
             currentIndex: switchPage,
             onTap: _onItemTapped,
@@ -115,31 +116,46 @@ class MainPageApp extends StatefulWidget {
 class _MainPageAppState extends State<MainPageApp> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Center(
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 20, bottom: 20),
-              child: const Text(
-                'Witaj w Travelon',
-                style: TextStyle(
-                  fontSize: 40,
-                  color: Color.fromARGB(255, 232, 171, 66),
-                ),
+    return Center(
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 20, bottom: 20),
+            child: const Text(
+              'Witaj w Travelon',
+              style: TextStyle(
+                fontSize: 40,
+                color: Color.fromARGB(255, 232, 171, 66),
               ),
             ),
-            const ButtonSearch(),
-            const FavouritePlace(),
-            Container(
-              margin: MainPageApp.topMargin,
-              color: const Color.fromARGB(255, 232, 171, 66),
-              height: 150,
-              child: const ListAttraction(),
+          ),
+          const ButtonSearch(),
+          const FavouritePlace(),
+          Container(
+            margin: MainPageApp.topMargin,
+            color: const Color.fromARGB(255, 232, 171, 66),
+            height: 150,
+            child: const ListAttraction(),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Text(
+              'Wydarzenia z: Przemyśl',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black54,
+              ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 228,
+            child: Container(
+              margin: const EdgeInsets.only(left: 10, right: 10),
+              child: const ListEvents(),
+            ),
+          ),
+        ],
       ),
-    ]);
+    );
   }
 }
