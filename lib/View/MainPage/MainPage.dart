@@ -42,57 +42,55 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: widget._switchPageFunction(),
       backgroundColor: Colors.white,
-      bottomNavigationBar: Container(
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-          child: BottomNavigationBar(
-            currentIndex: switchPage,
-            onTap: _onItemTapped,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: const Color.fromARGB(255, 232, 171, 66),
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white,
-            selectedFontSize: 12,
-            showUnselectedLabels: false,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_outlined,
-                  size: 30,
-                ),
-                label: "Menu",
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+        child: BottomNavigationBar(
+          currentIndex: switchPage,
+          onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: const Color.fromARGB(255, 232, 171, 66),
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
+          selectedFontSize: 12,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                size: 30,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.sports_esports_outlined,
-                  size: 30,
-                ),
-                label: "Nagrody",
+              label: "Menu",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.sports_esports_outlined,
+                size: 30,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.search_outlined,
-                  size: 30,
-                ),
-                label: "Szukaj",
+              label: "Nagrody",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search_outlined,
+                size: 30,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.map_outlined,
-                  size: 30,
-                ),
-                label: "Mapa",
+              label: "Szukaj",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.map_outlined,
+                size: 30,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.settings_outlined,
-                  size: 30,
-                ),
-                label: "Ustawienia",
+              label: "Mapa",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings_outlined,
+                size: 30,
               ),
-            ],
-          ),
+              label: "Ustawienia",
+            ),
+          ],
         ),
       ),
     );
