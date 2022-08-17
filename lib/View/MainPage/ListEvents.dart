@@ -10,6 +10,7 @@ class ListEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.only(top: 10),
       shrinkWrap: true,
       itemCount: 10,
       itemBuilder: (context, index) {
@@ -26,14 +27,15 @@ class MyEvents extends StatelessWidget {
   final trailingstyle = const TextStyle(fontSize: 12);
   @override
   Widget build(BuildContext context) {
+    var screenheight = MediaQuery.of(context).size.height;
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: SizedBox(
-        height: 200,
         child: Card(
           elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
           color: Colors.black,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
@@ -49,7 +51,7 @@ class MyEvents extends StatelessWidget {
                   color: Colors.black54,
                   child: ListTile(
                     visualDensity: VisualDensity.comfortable,
-                    contentPadding: const EdgeInsets.only(left: 20),
+                    contentPadding: const EdgeInsets.only(left: 25),
                     minLeadingWidth: 10,
                     textColor: Colors.white,
                     title: Text(
@@ -69,7 +71,7 @@ class MyEvents extends StatelessWidget {
                       ),
                     ),
                     trailing: Container(
-                      margin: const EdgeInsets.only(right: 20, top: 30),
+                      margin: const EdgeInsets.only(right: 25, top: 20),
                       child: Text(
                         "08.08.2022, 16:00",
                         style: trailingstyle,

@@ -27,53 +27,45 @@ class WidgetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    var topPadding = MediaQuery.of(context).viewPadding;
+    return Column(
       children: [
-        Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 40),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
-                child: SizedBox(
-                  width: 332,
-                  height: 470,
-                  child: Container(
-                    color: Colors.red,
-                    child: GestureDetector(
-                      child: Image.network(
-                        MyCard.listCard[MyCard.indexAmount],
-                        fit: BoxFit.cover,
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ObjectAfterClick(
-                              name: MyCard.listName[MyCard.indexAmount],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          padding:
+              topPadding + const EdgeInsets.only(top: 30, left: 10, right: 10),
+          child: GestureDetector(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(40)),
+              child: Image.network(
+                MyCard.listCard[MyCard.indexAmount],
+                fit: BoxFit.fill,
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ObjectAfterClick(
+                    name: MyCard.listName[MyCard.indexAmount],
                   ),
                 ),
-              ),
+              );
+            },
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 10, left: 10),
+          child: const ListTile(
+            title: Text(
+              'Cuda Wianki',
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 10, right: 20, left: 20),
-              child: const ListTile(
-                title: Text(
-                  'Cuda Wianki',
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87),
-                ),
-                subtitle: Text("Przemyśl, ul. Rynek 5"),
-              ),
-            ),
-          ],
+            subtitle: Text("Przemyśl, ul. Rynek 5"),
+          ),
         ),
       ],
     );

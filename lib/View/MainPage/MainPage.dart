@@ -114,46 +114,51 @@ class MainPageApp extends StatefulWidget {
 class _MainPageAppState extends State<MainPageApp> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 20, bottom: 20),
-            child: const Text(
-              'Witaj w Travelon',
-              style: TextStyle(
-                fontSize: 40,
-                color: Color.fromARGB(255, 232, 171, 66),
-              ),
+    var topPadding = MediaQuery.of(context).viewPadding;
+
+    return Column(
+      children: [
+        Container(
+          padding: topPadding,
+          child: const Text(
+            'Witaj w Travelon',
+            style: TextStyle(
+              fontSize: 40,
+              color: Color.fromARGB(255, 232, 171, 66),
             ),
           ),
-          const ButtonSearch(),
-          const FavouritePlace(),
-          Container(
-            margin: MainPageApp.topMargin,
-            color: const Color.fromARGB(255, 232, 171, 66),
-            height: 150,
-            child: const ListAttraction(),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, bottom: 10),
-            child: const Text(
-              'Wydarzenia z: Przemyśl',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black54,
-              ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 15),
+          child: const ButtonSearch(),
+        ),
+        Container(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: const FavouritePlace(),
+        ),
+        Container(
+          height: 150,
+          color: const Color.fromARGB(255, 232, 171, 66),
+          child: const ListAttraction(),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 10),
+          child: const Text(
+            'Wydarzenia z: Przemyśl',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black54,
             ),
           ),
-          SizedBox(
-            height: 228,
-            child: Container(
-              margin: const EdgeInsets.only(left: 10, right: 10),
-              child: const ListEvents(),
-            ),
+        ),
+        Expanded(
+          child: Container(
+            // height: screenheight / 2.288, //253 0.379
+            padding: const EdgeInsets.only(left: 12, right: 12),
+            child: const ListEvents(),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

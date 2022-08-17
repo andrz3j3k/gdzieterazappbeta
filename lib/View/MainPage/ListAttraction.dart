@@ -46,7 +46,9 @@ class ListElements extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(
+                    top: 10,
+                  ),
                   child: Text(
                     list[index].toString(),
                     style: const TextStyle(color: Colors.white),
