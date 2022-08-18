@@ -14,47 +14,52 @@ class ButtonSearch extends StatefulWidget {
 }
 
 class _ButtonSearchState extends State<ButtonSearch> {
+  String dropdownValue = MainPageApp.kOptions[0];
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           height: 40,
-          margin: const EdgeInsets.symmetric(horizontal: 40),
-          child: Autocomplete<String>(
-            optionsBuilder: (TextEditingValue textEditingValue) {
-              if (textEditingValue.text == '') {
-                return const Iterable<String>.empty();
-              }
-              return MainPageApp.kOptions.where((String option) {
-                return option.contains(textEditingValue.text.toLowerCase());
-              });
-            },
-            fieldViewBuilder:
-                (context, textEditingController, focusNode, onFieldSubmitted) {
-              return TextField(
-                focusNode: focusNode,
-                controller: textEditingController,
-                onEditingComplete: onFieldSubmitted,
-                decoration: InputDecoration(
-                  hintText: context.read<ChangeText>().text,
-                  hintStyle: const TextStyle(height: 2.8),
-                  prefixIcon: const Icon(Icons.search_outlined),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          width: 300,
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                color: const Color.fromARGB(255, 232, 171, 66),
+                padding: const EdgeInsets.only(left: 10),
+                width: 250,
+                child: DropdownButton<String>(
+                  dropdownColor: const Color.fromARGB(255, 232, 171, 66),
+                  borderRadius: BorderRadius.circular(10),
+                  value: dropdownValue,
+                  iconSize: 0,
+                  elevation: 16,
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  underline: Container(
+                    height: 0,
+                    color: const Color.fromARGB(255, 232, 171, 66),
                   ),
+                  onChanged: (String? newValue) {
+                    setState(
+                      () {
+                        dropdownValue = newValue!;
+                        context.read<ChangeText>().changeTexted(newValue);
+                      },
+                    );
+                  },
+                  items: MainPageApp.kOptions.map<DropdownMenuItem<String>>(
+                    (String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    },
+                  ).toList(),
                 ),
-              );
-            },
-            onSelected: (String selection) {
-              setState(
-                () {
-                  context.read<ChangeText>().changeTexted(selection);
-                },
-              );
-            },
+              ),
+            ),
           ),
         ),
       ],
