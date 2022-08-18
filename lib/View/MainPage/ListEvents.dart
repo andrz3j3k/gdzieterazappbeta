@@ -1,8 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ListEvents extends StatelessWidget {
   const ListEvents({Key? key}) : super(key: key);
@@ -10,7 +6,7 @@ class ListEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       shrinkWrap: true,
       itemCount: 10,
       itemBuilder: (context, index) {
@@ -27,7 +23,6 @@ class MyEvents extends StatelessWidget {
   final trailingstyle = const TextStyle(fontSize: 12);
   @override
   Widget build(BuildContext context) {
-    var screenheight = MediaQuery.of(context).size.height;
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: SizedBox(

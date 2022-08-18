@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/View/MainPage/ListAttraction.dart';
-import 'package:travelon/main.dart';
+
 import 'MainPage.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'Providers.dart';
@@ -14,7 +13,7 @@ class ButtonSearch extends StatefulWidget {
 }
 
 class _ButtonSearchState extends State<ButtonSearch> {
-  String dropdownValue = MainPageApp.kOptions[0];
+  String dropdownValue = kOptions[0];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,10 +36,6 @@ class _ButtonSearchState extends State<ButtonSearch> {
                   iconSize: 0,
                   elevation: 16,
                   style: const TextStyle(fontSize: 16, color: Colors.white),
-                  underline: Container(
-                    height: 0,
-                    color: const Color.fromARGB(255, 232, 171, 66),
-                  ),
                   onChanged: (String? newValue) {
                     setState(
                       () {
@@ -49,7 +44,7 @@ class _ButtonSearchState extends State<ButtonSearch> {
                       },
                     );
                   },
-                  items: MainPageApp.kOptions.map<DropdownMenuItem<String>>(
+                  items: kOptions.map<DropdownMenuItem<String>>(
                     (String value) {
                       return DropdownMenuItem<String>(
                         value: value,

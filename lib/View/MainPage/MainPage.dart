@@ -100,12 +100,6 @@ class _MainPageState extends State<MainPage> {
 class MainPageApp extends StatefulWidget {
   const MainPageApp({Key? key}) : super(key: key);
 
-  static final List<String> kOptions = <String>[
-    'Restauracje',
-    'Zabytki',
-    'Atrakcje',
-  ];
-
   static const topMargin = EdgeInsets.only(top: 20);
   @override
   State<MainPageApp> createState() => _MainPageAppState();

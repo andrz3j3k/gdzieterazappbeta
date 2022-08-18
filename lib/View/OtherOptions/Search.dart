@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../Models/OtherOptionsModel/SearchModel.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  String dropdownValue = "Przemyśl";
+  String dropdownValue = listCity[0];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,8 +30,7 @@ class _SearchState extends State<Search> {
             dropdownValue = newValue!;
           });
         },
-        items: <String>['Przemyśl', 'Jarosław', 'Łańcut', 'Rzeszów']
-            .map<DropdownMenuItem<String>>((String value) {
+        items: listCity.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),

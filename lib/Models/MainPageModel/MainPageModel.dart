@@ -24,3 +24,9 @@ var listMonuments = {
   8: "Cuda Wianki",
 };
 Map<int, String> list = listRestaurant;
+
+List<String> kOptions = <String>[
+  'Restauracje',
+  'Zabytki',
+  'Atrakcje',
+];
