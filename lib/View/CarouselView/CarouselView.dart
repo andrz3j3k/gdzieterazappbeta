@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ObjectAfterClick.dart';
 import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
+import '../CityMap/Button.dart';
 
 class CarouselView extends StatefulWidget {
   const CarouselView({Key? key}) : super(key: key);
@@ -54,18 +55,31 @@ class WidgetCard extends StatelessWidget {
             },
           ),
         ),
-        Container(
-          padding: const EdgeInsets.only(top: 10, left: 10),
-          child: const ListTile(
-            title: Text(
-              'Cuda Wianki',
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87),
+        Stack(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 10, left: 10),
+              child: const ListTile(
+                title: Text(
+                  'Cuda Wianki',
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87),
+                ),
+                subtitle: Text(
+                  "Przemyśl, ul. Rynek 5",
+                ),
+              ),
             ),
-            subtitle: Text("Przemyśl, ul. Rynek 5"),
-          ),
+            Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.only(top: 15, right: 20),
+              child: ButtonFilter(
+                icon: "favourite",
+              ),
+            ),
+          ],
         ),
       ],
     );
