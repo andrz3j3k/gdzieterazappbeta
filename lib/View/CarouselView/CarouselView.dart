@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/Models/CarouselViewModel/Attraction.dart';
 import 'ObjectAfterClick.dart';
 import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
 import '../CityMap/Button.dart';
+import '../../Services/AttractionService.dart';
 
 class CarouselView extends StatefulWidget {
   const CarouselView({Key? key}) : super(key: key);
@@ -13,18 +15,49 @@ class CarouselView extends StatefulWidget {
 class _CarouselView extends State<CarouselView> {
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Attraction>>(
+      future: fetchPhotos(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Center(
+            child: Text('An error has occurred!'),
+          );
+        } else if (snapshot.hasData) {
+          return PageViewBuilder(list: snapshot.data!);
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+}
+
+class PageViewBuilder extends StatelessWidget {
+  const PageViewBuilder({Key? key, required this.list}) : super(key: key);
+  final List<Attraction> list;
+  @override
+  Widget build(BuildContext context) {
     return PageView.builder(
-      itemCount: MyCard.listCard.length,
+      itemCount: list.length,
       itemBuilder: (context, index) {
         MyCard.indexAmount = index;
-        return const WidgetCard();
+        return WidgetCard(
+          list: list,
+          index: index,
+        );
       },
     );
   }
 }
 
 class WidgetCard extends StatelessWidget {
-  const WidgetCard({Key? key}) : super(key: key);
+  const WidgetCard({Key? key, required this.list, required this.index})
+      : super(key: key);
+
+  final int index;
+  final List<Attraction> list;
 
   @override
   Widget build(BuildContext context) {
@@ -59,22 +92,20 @@ class WidgetCard extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.only(top: 10, left: 10),
-              child: const ListTile(
+              child: ListTile(
                 title: Text(
-                  'Cuda Wianki',
-                  style: TextStyle(
+                  list[index].name,
+                  style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87),
                 ),
-                subtitle: Text(
-                  "Przemyśl, ul. Rynek 5",
-                ),
+                subtitle: Text(list[index].street),
               ),
             ),
             Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(top: 15, right: 20),
+              padding: const EdgeInsets.only(top: 15, right: 20),
               child: ButtonFilter(
                 icon: "favourite",
               ),
