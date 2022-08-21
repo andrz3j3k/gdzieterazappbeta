@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'MainPage.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
-import 'Providers.dart';
+import '../../Providers/ChangeText.dart';
 import 'package:provider/provider.dart';
 
 class ButtonSearch extends StatefulWidget {
@@ -12,8 +11,8 @@ class ButtonSearch extends StatefulWidget {
   State<ButtonSearch> createState() => _ButtonSearchState();
 }
 
-ChangeText ct = ChangeText();
-String dropdownValue = ct.text;
+ChangeText changeText = ChangeText();
+String? dropdownValue = changeText.text;
 
 class _ButtonSearchState extends State<ButtonSearch> {
   @override

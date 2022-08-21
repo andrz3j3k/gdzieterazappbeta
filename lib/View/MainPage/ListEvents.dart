@@ -12,7 +12,7 @@ class ListEvents extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
-            child: Text('An error has occurred!'),
+            child: Text('Błąd w trakcie wczytywania wydarzeń!'),
           );
         } else if (snapshot.hasData) {
           return MyEventsBuilder(list: snapshot.data!);

@@ -8,7 +8,7 @@ class FavouriteButton extends StatefulWidget {
       : super(key: key);
 
   final String icon;
-  final List<Attraction> list;
+  final List<dynamic> list;
   final int index;
 
   @override
@@ -18,9 +18,6 @@ class FavouriteButton extends StatefulWidget {
 class _FavouriteButtonState extends State<FavouriteButton> {
   final Map<String, IconData> icons = {
     'favourite': Icons.grade,
-    'restaurant': Icons.restaurant,
-    'coffee': Icons.local_cafe,
-    'ancient': Icons.museum,
   };
 
   Color color = Colors.white;
@@ -31,21 +28,16 @@ class _FavouriteButtonState extends State<FavouriteButton> {
     return MaterialButton(
       onPressed: () {
         setState(() {
-          if (favouriteListRestaurant
-              .contains(widget.list[widget.index].name)) {
+          if (list.contains(widget.list[widget.index].name)) {
             favouriteListRestaurant.remove(widget.list[widget.index].name);
           } else {
-            favouriteListRestaurant.add(widget.list[widget.index].name);
+            list.add(widget.list[widget.index].name);
           }
         });
       },
-      color: favouriteListRestaurant.contains(widget.list[widget.index].name)
-          ? textColor
-          : color,
+      color: list.contains(widget.list[widget.index].name) ? textColor : color,
       textColor:
-          favouriteListRestaurant.contains(widget.list[widget.index].name)
-              ? color
-              : textColor,
+          list.contains(widget.list[widget.index].name) ? color : textColor,
       padding: const EdgeInsets.all(10),
       shape: const CircleBorder(),
       minWidth: 1,

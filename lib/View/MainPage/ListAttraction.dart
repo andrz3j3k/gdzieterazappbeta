@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
-import 'package:travelon/View/MainPage/Providers.dart';
+import '../../Providers/ChangeText.dart';
 
 class ListAttraction extends StatelessWidget {
   const ListAttraction({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Providers.dart';
+import '../../Providers/ChangeText.dart';
 import 'package:provider/provider.dart';
 
 class FavouritePlace extends StatelessWidget {

@@ -8,5 +8,5 @@ Future<List<Attraction>> fetchAttraction() async {
   final response = await http.get(Uri.parse('http://localhost/restaurant.php'));
 
   // Use the compute function to run parsePhotos in a separate isolate.
-  return compute(parsePhotos, response.body);
+  return compute(parseAttraction, response.body);
 }

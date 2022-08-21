@@ -1,36 +1,33 @@
 import 'dart:convert';
 
 //wykonywane najpierw
-class Attraction {
+class Monuments {
   final String id;
   final String name;
   final String description;
   final String street;
-  final String numberPhone;
 
-  const Attraction({
+  const Monuments({
     required this.id,
     required this.name,
     required this.description,
     required this.street,
-    required this.numberPhone,
   });
 
-  factory Attraction.fromJson(Map<String, dynamic> json) {
-    return Attraction(
+  factory Monuments.fromJson(Map<String, dynamic> json) {
+    return Monuments(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
       street: json['street'] as String,
-      numberPhone: json['numberPhone'] as String,
     );
   }
 }
 
 //to jest wykonywane po classie
 // A function that converts a response body into a List<Photo>.
-List<Attraction> parseAttraction(String responseBody) {
+List<Monuments> parseMonuments(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
-  return parsed.map<Attraction>((json) => Attraction.fromJson(json)).toList();
+  return parsed.map<Monuments>((json) => Monuments.fromJson(json)).toList();
 }

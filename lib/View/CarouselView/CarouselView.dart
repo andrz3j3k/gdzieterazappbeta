@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/Models/CarouselViewModel/Attraction.dart';
+import 'package:travelon/Providers/ChangeObject.dart';
 import 'ObjectAfterClick.dart';
 import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
-import '../../Services/AttractionService.dart';
 import 'ButtonFavourite.dart';
+import 'package:provider/provider.dart';
 
 class CarouselView extends StatefulWidget {
   const CarouselView({Key? key}) : super(key: key);
@@ -15,8 +15,20 @@ class CarouselView extends StatefulWidget {
 class _CarouselView extends State<CarouselView> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Attraction>>(
-      future: fetchAttraction(),
+    return FutureBuilderView(
+      function: context.watch<ChangeObject>().result(),
+    );
+  }
+}
+
+class FutureBuilderView extends StatelessWidget {
+  const FutureBuilderView({Key? key, required this.function}) : super(key: key);
+
+  final function;
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: function,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
@@ -36,7 +48,7 @@ class _CarouselView extends State<CarouselView> {
 
 class PageViewBuilder extends StatelessWidget {
   const PageViewBuilder({Key? key, required this.list}) : super(key: key);
-  final List<Attraction> list;
+  final list;
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
@@ -57,7 +69,7 @@ class WidgetCard extends StatelessWidget {
       : super(key: key);
 
   final int index;
-  final List<Attraction> list;
+  final list;
 
   @override
   Widget build(BuildContext context) {

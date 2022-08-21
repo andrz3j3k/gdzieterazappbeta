@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:travelon/ScaffoldStyle.dart';
-import 'package:travelon/View/MainPage/Providers.dart';
 import 'View/MainPage/MainPage.dart';
 import 'package:provider/provider.dart';
+import 'Providers/ChangeObject.dart';
+import 'Providers/ChangeText.dart';
+import 'Providers/RefreshList.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +25,10 @@ Future main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => RefreshList(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ChangeObject(),
+        ),
       ],
       child: const MyApp(),
     ),
