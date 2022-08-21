@@ -1,19 +1,8 @@
 import 'package:travelon/View/MainPage/ButtonSearch.dart';
 
-Set favouriteListRestaurant = {
-  "Bosko",
-  "Selfier",
-  "Cuda Wianki",
-};
+Set favouriteListRestaurant = {};
 
-Set favouriteListMonuments = {
-  "Rynek",
-  "Szkoła",
-  "Galeria",
-  "Selfier",
-  "Cuda Wianki",
-  "Bosko",
-};
+Set favouriteListMonuments = {};
 Set list = favouriteListRestaurant;
 
 List<String> kOptions = <String>[

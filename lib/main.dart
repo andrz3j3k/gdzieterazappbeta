@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/View/MainPage/Providers.dart';
 import 'View/MainPage/MainPage.dart';
 import 'package:provider/provider.dart';
@@ -36,11 +36,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        textTheme: TextTheme(
-          bodyText2: GoogleFonts.roboto(fontWeight: FontWeight.w500),
-        ),
-      ),
+      theme: themeLight,
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(),
     );

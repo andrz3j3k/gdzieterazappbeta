@@ -27,7 +27,7 @@ class ListElements extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: list.length,
+      itemCount: list.isEmpty ? 10 : list.length,
       itemBuilder: (context, index) {
         return Card(
           color: const Color.fromARGB(255, 232, 171, 66),
@@ -40,9 +40,13 @@ class ListElements extends StatelessWidget {
                   child: SizedBox(
                     width: 100,
                     height: 100,
-                    child: Image.network(
-                        "https://www.polska.travel/images/pl-PL/glowne-miasta/przemysl/przemysl_rynek_1170.jpg",
-                        fit: BoxFit.cover),
+                    child: list.isEmpty
+                        ? Container(
+                            color: Colors.black54,
+                          )
+                        : Image.network(
+                            "https://www.polska.travel/images/pl-PL/glowne-miasta/przemysl/przemysl_rynek_1170.jpg",
+                            fit: BoxFit.cover),
                   ),
                 ),
                 Container(
@@ -50,7 +54,9 @@ class ListElements extends StatelessWidget {
                     top: 10,
                   ),
                   child: Text(
-                    list.elementAt(index),
+                    list.isEmpty
+                        ? (index + 1).toString()
+                        : list.elementAt(index),
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),

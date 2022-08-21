@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Option extends StatelessWidget {
-  const Option({
+class Option extends StatefulWidget {
+  Option({
     Key? key,
     required this.title,
     required this.subtitle,
@@ -11,26 +11,29 @@ class Option extends StatelessWidget {
   final String? subtitle;
 
   @override
+  State<Option> createState() => _OptionState();
+}
+
+class _OptionState extends State<Option> {
+  @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        '$title',
+        '${widget.title}',
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
       ),
       subtitle: Text(
-        '$subtitle',
+        '${widget.subtitle}',
         style: const TextStyle(
           fontSize: 10,
         ),
       ),
       trailing: Switch(
         value: false,
-        onChanged: (value) {
-          value = true;
-        },
+        onChanged: (value) {},
       ),
     );
   }

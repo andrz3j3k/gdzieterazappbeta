@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/View/CarouselView/CarouselView.dart';
 import 'package:travelon/View/CityMap/CityMap.dart';
 import 'package:travelon/View/MainPage/FavouritePlace.dart';
@@ -41,7 +42,6 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget._switchPageFunction(),
-      backgroundColor: Colors.white,
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
             topRight: Radius.circular(20), topLeft: Radius.circular(20)),
@@ -49,9 +49,9 @@ class _MainPageState extends State<MainPage> {
           currentIndex: switchPage,
           onTap: _onItemTapped,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: const Color.fromARGB(255, 232, 171, 66),
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white,
+          // backgroundColor: const Color.fromARGB(255, 232, 171, 66),
+          // selectedItemColor: Colors.white,
+          // unselectedItemColor: Colors.white,
           selectedFontSize: 12,
           showUnselectedLabels: false,
           items: const [
@@ -114,11 +114,11 @@ class _MainPageAppState extends State<MainPageApp> {
       children: [
         Container(
           padding: topPadding,
-          child: const Text(
+          child: Text(
             'Witaj w Travelon',
             style: TextStyle(
               fontSize: 40,
-              color: Color.fromARGB(255, 232, 171, 66),
+              color: colorStylingApplication,
             ),
           ),
         ),

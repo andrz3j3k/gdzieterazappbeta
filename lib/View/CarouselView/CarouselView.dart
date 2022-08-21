@@ -20,7 +20,7 @@ class _CarouselView extends State<CarouselView> {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
-            child: Text('An error has occurred!'),
+            child: Text('Błąd w trakcie wczytywania danych!'),
           );
         } else if (snapshot.hasData) {
           return PageViewBuilder(list: snapshot.data!);
