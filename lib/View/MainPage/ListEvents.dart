@@ -1,23 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/Models/MainPageModel/Events.dart';
+import 'package:travelon/Services/EventsService.dart';
 
 class ListEvents extends StatelessWidget {
   const ListEvents({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Events>>(
+      future: fetchEvents(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Center(
+            child: Text('An error has occurred!'),
+          );
+        } else if (snapshot.hasData) {
+          return MyEventsBuilder(list: snapshot.data!);
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+}
+
+class MyEventsBuilder extends StatelessWidget {
+  const MyEventsBuilder({Key? key, required this.list}) : super(key: key);
+  final List<Events> list;
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.only(top: 10),
       shrinkWrap: true,
-      itemCount: 10,
+      itemCount: list.length,
       itemBuilder: (context, index) {
-        return const MyEvents();
+        return MyEvents(list: list, index: index);
       },
     );
   }
 }
 
 class MyEvents extends StatelessWidget {
-  const MyEvents({Key? key}) : super(key: key);
+  const MyEvents({Key? key, required this.list, required this.index})
+      : super(key: key);
+  final List<Events> list;
+  final int index;
   final stylingtext = const TextStyle(fontSize: 20);
   final subtitlestyle = const TextStyle(fontSize: 10);
   final trailingstyle = const TextStyle(fontSize: 12);
@@ -50,11 +79,11 @@ class MyEvents extends StatelessWidget {
                     minLeadingWidth: 10,
                     textColor: Colors.white,
                     title: Text(
-                      "Święto Fajek",
+                      list[index].name,
                       style: stylingtext,
                     ),
                     subtitle: Text(
-                      "ul. Jagiellońska 21",
+                      "ul. ${list[index].street}",
                       style: subtitlestyle,
                     ),
                     leading: Container(
@@ -68,7 +97,7 @@ class MyEvents extends StatelessWidget {
                     trailing: Container(
                       margin: const EdgeInsets.only(right: 25, top: 20),
                       child: Text(
-                        "08.08.2022, 16:00",
+                        "${list[index].date}, ${list[index].time}",
                         style: trailingstyle,
                       ),
                     ),
