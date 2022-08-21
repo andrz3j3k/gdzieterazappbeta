@@ -100,7 +100,7 @@ class WidgetCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.black87),
                 ),
-                subtitle: Text(list[index].street),
+                subtitle: Text('ul. ${list[index].street}'),
               ),
             ),
             Container(

@@ -12,8 +12,10 @@ class ButtonSearch extends StatefulWidget {
   State<ButtonSearch> createState() => _ButtonSearchState();
 }
 
+ChangeText ct = ChangeText();
+String dropdownValue = ct.text;
+
 class _ButtonSearchState extends State<ButtonSearch> {
-  String dropdownValue = kOptions[0];
   @override
   Widget build(BuildContext context) {
     return Column(
