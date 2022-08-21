@@ -3,7 +3,7 @@ import '../Models/CarouselViewModel/Attraction.dart';
 //to jest wykonywane na samym koncu
 import 'package:flutter/foundation.dart';
 
-Future<List<Attraction>> fetchPhotos() async {
+Future<List<Attraction>> fetchAttraction() async {
   //pobranie strony WWW
   final response = await http.get(Uri.parse('http://localhost/restaurant.php'));
 

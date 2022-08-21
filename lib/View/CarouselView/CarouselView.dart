@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:travelon/Models/CarouselViewModel/Attraction.dart';
 import 'ObjectAfterClick.dart';
 import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
-import '../CityMap/Button.dart';
 import '../../Services/AttractionService.dart';
+import 'ButtonFavourite.dart';
 
 class CarouselView extends StatefulWidget {
   const CarouselView({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _CarouselView extends State<CarouselView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Attraction>>(
-      future: fetchPhotos(),
+      future: fetchAttraction(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
@@ -106,8 +106,10 @@ class WidgetCard extends StatelessWidget {
             Container(
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.only(top: 15, right: 20),
-              child: ButtonFilter(
+              child: FavouriteButton(
                 icon: "favourite",
+                list: list,
+                index: index,
               ),
             ),
           ],

@@ -9,10 +9,10 @@ class ListAttraction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (context.watch<ChangeText>().text == "Restauracje") {
-      list = listRestaurant;
+      list = favouriteListRestaurant;
       return const ListElements();
     } else if (context.watch<ChangeText>().text == "Zabytki") {
-      list = listMonuments;
+      list = favouriteListMonuments;
       return const ListElements();
     } else {
       return const ListElements();
@@ -50,7 +50,7 @@ class ListElements extends StatelessWidget {
                     top: 10,
                   ),
                   child: Text(
-                    list[index].toString(),
+                    list.elementAt(index),
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
