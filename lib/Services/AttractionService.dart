@@ -5,7 +5,8 @@ import 'package:flutter/foundation.dart';
 
 Future<List<Attraction>> fetchAttraction() async {
   //pobranie strony WWW
-  final response = await http.get(Uri.parse('http://localhost/restaurant.php'));
+  final response =
+      await http.get(Uri.parse('http://192.168.192.7/restaurant.php'));
 
   // Use the compute function to run parsePhotos in a separate isolate.
   return compute(parseAttraction, response.body);

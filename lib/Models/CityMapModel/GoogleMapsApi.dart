@@ -26,7 +26,8 @@ getMarker() {
 }
 
 getData() async {
-  var response = await http.get(Uri.parse('http://localhost/restaurant.php'));
+  var response =
+      await http.get(Uri.parse('http://192.168.192.7/restaurant.php'));
   var jsondecode = jsonDecode(response.body);
   return jsondecode;
 }

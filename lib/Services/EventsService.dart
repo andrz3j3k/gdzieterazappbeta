@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 
 Future<List<Events>> fetchEvents() async {
   //pobranie strony WWW
-  final response = await http.get(Uri.parse('http://localhost/events.php'));
+  final response = await http.get(Uri.parse('http://192.168.192.7/events.php'));
 
   // Use the compute function to run parsePhotos in a separate isolate.
   return compute(parsePhotos, response.body);
