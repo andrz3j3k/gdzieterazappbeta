@@ -52,33 +52,35 @@ class ListElements extends StatelessWidget {
             width: double.infinity,
             child: Center(
               child: ListTile(
-                  title: Text('Nie masz ulubionych $text1',
-                      style: const TextStyle(color: Colors.white)),
-                  subtitle: RichText(
-                    text: TextSpan(
-                      text: "Przejdź do ",
-                      children: <TextSpan>[
-                        const TextSpan(
-                          text: 'Szukaj',
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                          ),
+                title: Text('Nie masz ulubionych $text1!',
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
+                subtitle: RichText(
+                  text: TextSpan(
+                    text: "Przejdź do ",
+                    children: <TextSpan>[
+                      const TextSpan(
+                        text: 'Szukaj',
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
                         ),
-                        const TextSpan(
-                          text: ' i kliknij ikonę',
+                      ),
+                      const TextSpan(
+                        text: ' i kliknij ikonę',
+                      ),
+                      const TextSpan(
+                        text: ' gwiazdki',
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
                         ),
-                        const TextSpan(
-                          text: ' gwiazdki',
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                        TextSpan(
-                            text:
-                                ', aby dodać $text2 do Twojej listy ulubionych'),
-                      ],
-                    ),
-                  )),
+                      ),
+                      TextSpan(
+                          text:
+                              ', aby dodać $text2 do Twojej listy ulubionych'),
+                    ],
+                  ),
+                ),
+              ),
             ),
           )
         : ListView.builder(
