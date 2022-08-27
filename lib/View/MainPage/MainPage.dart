@@ -6,7 +6,7 @@ import 'package:travelon/View/MainPage/FavouritePlace.dart';
 import 'package:travelon/View/MainPage/ListEvents.dart';
 import 'package:travelon/View/OtherOptions/OtherOptions.dart';
 import '../MiniGame/MiniGame.dart';
-import 'ListAttraction.dart';
+import 'ListAttractionFavourite.dart';
 import 'ButtonSearch.dart';
 import 'package:travelon/Models/MainModel.dart';
 
@@ -115,7 +115,7 @@ class _MainPageAppState extends State<MainPageApp> {
         Container(
           padding: topPadding,
           child: Text(
-            'Witaj w Travelon',
+            'Witaj w Trip & Travel',
             style: TextStyle(
               fontSize: 40,
               color: colorStylingApplication,
