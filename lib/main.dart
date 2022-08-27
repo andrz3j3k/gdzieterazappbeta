@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:travelon/ScaffoldStyle.dart';
+import 'Models/CityMapModel/GoogleMapsApi.dart';
 import 'View/MainPage/MainPage.dart';
 import 'package:provider/provider.dart';
 import 'Providers/ChangeObject.dart';
@@ -59,6 +63,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const MainPage();
+    return FutureBuilder(
+      future: getData(),
+      builder: (context, snapshot) {
+        listLocation = snapshot.data;
+        Timer(
+          Duration(seconds: 3),
+          () => getMarker(),
+        );
+        return const MainPage();
+      },
+    );
   }
 }

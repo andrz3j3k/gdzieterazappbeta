@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
+import 'package:travelon/View/CityMap/GoogleMaps.dart';
 import 'Button.dart';
 
 class CityMap extends StatefulWidget {
@@ -14,38 +14,35 @@ class _CityMap extends State<CityMap> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          padding: const EdgeInsets.only(bottom: 60),
-          child: Image.network(
-              'https://www.kawaselfier.pl/userdata/public/assets//184205844_317035316480682_671758859148729909_n.jpg'),
-        ),
-        Container(
-          child: Row(
+        Expanded(
+          child: Stack(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 30),
-                child: Text(
-                  'Filtruj: ',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+              Container(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: const GoogleMaps(),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 690, left: 70),
+                child: Row(
+                  children: [
+                    ButtonFilter(
+                      icon: "favourite",
+                    ),
+                    ButtonFilter(
+                      icon: 'restaurant',
+                    ),
+                    ButtonFilter(
+                      icon: 'coffee',
+                    ),
+                    ButtonFilter(
+                      icon: 'ancient',
+                    ),
+                  ],
                 ),
-              ),
-              ButtonFilter(
-                icon: "favourite",
-              ),
-              ButtonFilter(
-                icon: 'restaurant',
-              ),
-              ButtonFilter(
-                icon: 'coffee',
-              ),
-              ButtonFilter(
-                icon: 'ancient',
               ),
             ],
           ),
-        ),
+        )
       ],
     );
   }
