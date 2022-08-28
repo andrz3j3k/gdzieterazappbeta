@@ -63,16 +63,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getData(),
-      builder: (context, snapshot) {
-        listLocation = snapshot.data;
-        Timer(
-          Duration(seconds: 3),
-          () => getMarker(),
-        );
-        return const MainPage();
-      },
-    );
+    return const MainPage();
   }
 }

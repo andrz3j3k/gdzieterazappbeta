@@ -13,6 +13,7 @@ class ChangeObject extends ChangeNotifier {
 
       case 'Zabytki':
         return fetchMonuments();
+      case 'Kawiarnie':
     }
     notifyListeners();
   }

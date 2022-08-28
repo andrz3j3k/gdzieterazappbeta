@@ -1,1 +1,1 @@
-List<String> listCity = ['Przemyśl', 'Jarosław', 'Łańcut', 'Rzeszów'];
+List<String> listCity = ['Przemyśl'];

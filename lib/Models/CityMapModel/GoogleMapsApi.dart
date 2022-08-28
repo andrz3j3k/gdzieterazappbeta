@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -11,23 +12,23 @@ getMarker() {
   for (int i = 0; i < listLocation.length; i++) {
     markers.add(
       Marker(
-        markerId: MarkerId('restaurant'),
+        markerId: const MarkerId('object'),
         position: LatLng(double.parse(listLocation[i]['x']),
             double.parse(listLocation[i]['y'])),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+        icon: BitmapDescriptor.defaultMarkerWithHue(10),
         infoWindow: InfoWindow(
-            title: listLocation[i]['name'],
-            snippet: listLocation[i]['description']),
+          title: listLocation[i]['name'],
+          snippet: listLocation[i]['description'],
+        ),
       ),
     );
   }
-
   return markers;
 }
 
 getData() async {
   var response =
-      await http.get(Uri.parse('http://192.168.192.7/restaurant.php'));
+      await http.get(Uri.parse('http://192.168.192.7/allAttraction.php'));
   var jsondecode = jsonDecode(response.body);
   return jsondecode;
 }

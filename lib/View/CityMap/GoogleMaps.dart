@@ -5,7 +5,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:travelon/Models/CityMapModel/CurrentLocation.dart';
 import 'package:travelon/Models/CityMapModel/GoogleMapsApi.dart';
-import 'package:travelon/View/CityMap/Button.dart';
 
 class GoogleMaps extends StatefulWidget {
   const GoogleMaps({Key? key}) : super(key: key);
@@ -51,22 +50,23 @@ class _GoogleMapsState extends State<GoogleMaps> {
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(top: 10, left: 70),
+          margin: const EdgeInsets.only(top: 10, right: 10, bottom: 10),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ButtonFilter(
-                icon: "favourite",
-              ),
-              ButtonFilter(
-                icon: 'restaurant',
-              ),
-              ButtonFilter(
-                icon: 'coffee',
-              ),
-              ButtonFilter(
-                icon: 'ancient',
-              ),
-              FloatingActionButton(
+              // ButtonFilter(
+              //   icon: "favourite",
+              // ),
+              // ButtonFilter(
+              //   icon: 'restaurant',
+              // ),
+              // ButtonFilter(
+              //   icon: 'coffee',
+              // ),
+              // ButtonFilter(
+              //   icon: 'ancient',
+              // ),
+              MaterialButton(
                 onPressed: () async {
                   Position position = await currentPosition();
                   _googleMapController.animateCamera(
@@ -81,11 +81,16 @@ class _GoogleMapsState extends State<GoogleMaps> {
                     Marker(
                       markerId: const MarkerId('current location'),
                       position: LatLng(position.latitude, position.longitude),
-                      icon: BitmapDescriptor.defaultMarkerWithHue(2),
+                      icon: BitmapDescriptor.defaultMarkerWithHue(100),
                     ),
                   );
                   setState(() {});
                 },
+                color: Colors.white,
+                textColor: const Color.fromARGB(255, 232, 171, 66),
+                padding: const EdgeInsets.all(10),
+                shape: const CircleBorder(),
+                minWidth: 1,
                 child: const Icon(
                   Icons.explore,
                 ),

@@ -40,6 +40,12 @@ class ListElements extends StatelessWidget {
           text2 = 'zabytki';
           break;
         }
+      case 'Kawiarnie':
+        {
+          text1 = 'kawiarni';
+          text2 = 'kawiarnie';
+          break;
+        }
     }
   }
 
