@@ -39,6 +39,7 @@ dependencies:
   google_maps_flutter: ^2.1.12
   permission_handler: ^10.0.0
   geolocator: ^9.0.1
+  hexcolor: ^2.0.7
   
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/style/googleMapsStyle.txt
+    - assets/style/googleMapsStyleDark.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

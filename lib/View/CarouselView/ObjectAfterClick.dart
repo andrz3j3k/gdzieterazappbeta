@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 
 class ObjectAfterClick extends StatelessWidget {
   const ObjectAfterClick(
@@ -42,14 +43,17 @@ class ObjectAfterClick extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        color: Colors.white,
-                        textColor: const Color.fromARGB(255, 232, 171, 66),
+                        color: whatIsDarkMode
+                            ? backgroundColorButtonDark
+                            : Colors.white,
                         padding: const EdgeInsets.all(8),
                         shape: const CircleBorder(),
                         minWidth: 1,
-                        child: const Icon(
+                        child: Icon(
                           Icons.arrow_back_rounded,
-                          color: Color.fromARGB(255, 232, 171, 66),
+                          color: whatIsDarkMode
+                              ? universalColor
+                              : themeLight.primaryColor,
                         ),
                       ),
                     ),
@@ -62,28 +66,34 @@ class ObjectAfterClick extends StatelessWidget {
                       height: 150,
                       width: double.infinity,
                       margin: const EdgeInsets.only(top: 50),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              stops: [
-                            0.25,
-                            0.5,
-                            0.75,
-                            1
-                          ],
-                              colors: [
-                            Color.fromARGB(250, 232, 171, 66),
-                            Color.fromARGB(180, 232, 171, 66),
-                            Color.fromARGB(50, 232, 171, 66),
-                            Colors.transparent
-                          ])),
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        stops: const [0.25, 0.5, 0.75, 1],
+                        colors: whatIsDarkMode
+                            ? [
+                                themeDark.primaryColor.withAlpha(250),
+                                themeDark.primaryColor.withAlpha(180),
+                                themeDark.primaryColor.withAlpha(50),
+                                Colors.transparent
+                              ]
+                            : [
+                                themeLight.primaryColor.withAlpha(250),
+                                themeLight.primaryColor.withAlpha(180),
+                                themeLight.primaryColor.withAlpha(50),
+                                Colors.transparent
+                              ],
+                      )),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 35, top: 105),
                         child: Text(
                           name,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 26),
+                          style: TextStyle(
+                              color: whatIsDarkMode
+                                  ? universalColor
+                                  : Colors.white,
+                              fontSize: 26),
                         ),
                       ),
                     ),

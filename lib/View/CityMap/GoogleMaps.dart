@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:travelon/Models/CityMapModel/CurrentLocation.dart';
 import 'package:travelon/Models/CityMapModel/GoogleMapsApi.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 
 class GoogleMaps extends StatefulWidget {
   const GoogleMaps({Key? key}) : super(key: key);
@@ -18,11 +19,19 @@ class _GoogleMapsState extends State<GoogleMaps> {
   late String mt;
   @override
   void initState() {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      rootBundle.loadString('assets/style/googleMapsStyle.txt').then((string) {
-        mt = string;
-      });
-    });
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) {
+        rootBundle
+            .loadString(whatIsDarkMode
+                ? 'assets/style/googleMapsStyleDark.txt'
+                : 'assets/style/googleMapsStyle.txt')
+            .then(
+          (string) {
+            mt = string;
+          },
+        );
+      },
+    );
     super.initState();
   }
 
@@ -86,8 +95,10 @@ class _GoogleMapsState extends State<GoogleMaps> {
                   );
                   setState(() {});
                 },
-                color: Colors.white,
-                textColor: const Color.fromARGB(255, 232, 171, 66),
+                color:
+                    whatIsDarkMode ? backgroundColorButtonDark : Colors.white,
+                textColor:
+                    whatIsDarkMode ? Colors.white : themeLight.primaryColor,
                 padding: const EdgeInsets.all(10),
                 shape: const CircleBorder(),
                 minWidth: 1,

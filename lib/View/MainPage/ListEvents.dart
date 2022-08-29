@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/Events.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/EventsService.dart';
 import 'package:travelon/View/MainPage/PageEvents.dart';
 
@@ -88,7 +89,7 @@ class MyEvents extends StatelessWidget {
                             visualDensity: VisualDensity.comfortable,
                             contentPadding: const EdgeInsets.only(left: 25),
                             minLeadingWidth: 10,
-                            textColor: Colors.white,
+                            textColor: universalColor,
                             title: Text(
                               list[index].name,
                               style: stylingtext,
@@ -99,9 +100,9 @@ class MyEvents extends StatelessWidget {
                             ),
                             leading: Container(
                               margin: const EdgeInsets.only(top: 10),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.explore_outlined,
-                                color: Colors.white,
+                                color: universalColor,
                                 size: 25,
                               ),
                             ),
@@ -117,7 +118,9 @@ class MyEvents extends StatelessWidget {
                       ]
                     : [
                         Container(
-                          color: Colors.white,
+                          color: whatIsDarkMode
+                              ? themeDark.primaryColor
+                              : themeLight.primaryColor,
                           child: const Center(
                               child: Text("Aktualnie brak wydarzeń!")),
                         )

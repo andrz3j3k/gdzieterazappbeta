@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import '../../Providers/ChangeText.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +12,9 @@ class FavouritePlace extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20),
       child: Text(
         'Twoje ulubione ${context.watch<ChangeText>().text}',
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 20,
-          color: Colors.black54,
+          color: whatIsDarkMode ? darkColorText : lightColorTextGrey,
         ),
       ),
     );

@@ -1,7 +1,5 @@
-import 'package:travelon/ScaffoldStyle.dart';
-
 import 'OptionOnClick.dart';
-import 'Option.dart';
+import 'OptionThemeMode.dart';
 import 'Search.dart';
 import 'package:flutter/material.dart';
 
@@ -19,26 +17,20 @@ class _OtherOptions extends State<OtherOptions> {
     return Container(
       padding: topPadding + const EdgeInsets.only(left: 25, top: 25),
       child: Column(
-        children: [
-          const Categories(categorie: 'Wybierz miasto'),
-          const Search(),
-          const Categories(categorie: 'Wygląd'),
-          Option(
+        children: const [
+          Categories(categorie: 'Wybierz miasto'),
+          Search(),
+          Categories(categorie: 'Wygląd'),
+          OptionThemeMode(
             title: 'Tryb ciemny',
             subtitle: 'Switch',
           ),
-          const Categories(categorie: 'Lokalizacja'),
-          Option(
-            title: 'Lokalizacja domyślna',
-            subtitle:
-                'Aplikacja automatycznie dostosowuje się do miasta w którym jesteś!',
-          ),
-          const Categories(categorie: 'Informacje prawne'),
-          const OptionOnClick(
+          Categories(categorie: 'Informacje prawne'),
+          OptionOnClick(
             title: 'Regulamin',
           ),
-          const Categories(categorie: 'Kontakt'),
-          const OptionOnClick(
+          Categories(categorie: 'Kontakt'),
+          OptionOnClick(
             title: 'Kontakt',
           ),
         ],

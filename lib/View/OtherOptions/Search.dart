@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/Providers/ChangeTheme.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import '../../Models/OtherOptionsModel/SearchModel.dart';
+import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -12,6 +15,9 @@ class _SearchState extends State<Search> {
   String dropdownValue = listCity[0];
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      context.watch<ChangeTheme>().themeMode;
+    });
     return Container(
       width: 200,
       margin: const EdgeInsets.symmetric(horizontal: 1),
@@ -19,11 +25,15 @@ class _SearchState extends State<Search> {
         value: dropdownValue,
         iconSize: 0,
         elevation: 16,
-        style: const TextStyle(
-            color: Color.fromARGB(255, 232, 171, 66), fontSize: 16),
+        style: TextStyle(
+          color: whatIsDarkMode ? darkColorText : themeLight.primaryColor,
+          fontSize: 16,
+        ),
+        dropdownColor:
+            whatIsDarkMode ? themeDark.scaffoldBackgroundColor : Colors.white,
         underline: Container(
           height: 1,
-          color: const Color.fromARGB(255, 232, 171, 66),
+          color: whatIsDarkMode ? darkColorText : themeLight.primaryColor,
         ),
         onChanged: (String? newValue) {
           setState(() {

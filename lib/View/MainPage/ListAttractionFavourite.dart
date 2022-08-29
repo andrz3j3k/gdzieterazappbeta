@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 
 import '../../Providers/ChangeObject.dart';
 import '../../Providers/ChangeText.dart';
@@ -61,10 +62,17 @@ class ListElements extends StatelessWidget {
             child: Center(
               child: ListTile(
                 title: Text('Nie masz ulubionych $text1!',
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold)),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: universalColor,
+                      fontWeight: FontWeight.bold,
+                    )),
                 subtitle: RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(
+                    style: const TextStyle(
+                      color: Colors.white60,
+                    ),
                     text: "Przejdź do ",
                     children: <TextSpan>[
                       const TextSpan(
@@ -106,7 +114,9 @@ class ListElements extends StatelessWidget {
                   } else if (snapshot.hasData) {
                     listPage = snapshot.data;
                     return Card(
-                      color: const Color.fromARGB(255, 232, 171, 66),
+                      color: whatIsDarkMode
+                          ? themeDark.primaryColor
+                          : themeLight.primaryColor,
                       elevation: 0,
                       child: GestureDetector(
                         onTap: () {
@@ -139,7 +149,7 @@ class ListElements extends StatelessWidget {
                                 ),
                                 child: Text(
                                   list.elementAt(index),
-                                  style: const TextStyle(color: Colors.white),
+                                  style: TextStyle(color: universalColor),
                                 ),
                               ),
                             ],

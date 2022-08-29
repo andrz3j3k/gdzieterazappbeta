@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:travelon/Providers/ChangeTheme.dart';
 import 'package:travelon/ScaffoldStyle.dart';
-import 'Models/CityMapModel/GoogleMapsApi.dart';
 import 'View/MainPage/MainPage.dart';
 import 'package:provider/provider.dart';
 import 'Providers/ChangeObject.dart';
@@ -33,20 +31,47 @@ Future main() async {
         ChangeNotifierProvider(
           create: (_) => ChangeObject(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => ChangeTheme(),
+        ),
       ],
       child: const MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void dispose() {
+    ChangeTheme().removeListener(themeListener);
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    ChangeTheme().addListener(themeListener);
+    super.initState();
+  }
+
+  themeListener() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: themeDark,
       theme: themeLight,
-      themeMode: ThemeMode.light,
+      themeMode: context.watch<ChangeTheme>().themeMode,
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(),
     );

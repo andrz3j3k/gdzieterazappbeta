@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/Models/CarouselViewModel/Attraction.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeText.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 
 class FavouriteButton extends StatefulWidget {
   const FavouriteButton(
@@ -21,8 +21,6 @@ class _FavouriteButtonState extends State<FavouriteButton> {
     'favourite': Icons.grade,
   };
 
-  Color color = Colors.white;
-  Color textColor = Color.fromARGB(255, 232, 171, 66);
   ChangeText ct = ChangeText();
   @override
   Widget build(BuildContext context) {
@@ -48,9 +46,20 @@ class _FavouriteButtonState extends State<FavouriteButton> {
           }
         });
       },
-      color: list.contains(widget.list[widget.index].name) ? textColor : color,
-      textColor:
-          list.contains(widget.list[widget.index].name) ? color : textColor,
+      color: list.contains(widget.list[widget.index].name)
+          ? whatIsDarkMode
+              ? themeDark.primaryColor
+              : themeLight.primaryColor
+          : whatIsDarkMode
+              ? backgroundColorButtonDark
+              : Colors.white,
+      textColor: list.contains(widget.list[widget.index].name)
+          ? whatIsDarkMode
+              ? universalColor
+              : Colors.white
+          : whatIsDarkMode
+              ? universalColor
+              : themeLight.primaryColor,
       padding: const EdgeInsets.all(10),
       shape: const CircleBorder(),
       minWidth: 1,

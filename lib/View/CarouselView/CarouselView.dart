@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Providers/ChangeObject.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import 'ObjectAfterClick.dart';
 import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
 import 'ButtonFavourite.dart';
@@ -108,12 +109,15 @@ class WidgetCard extends StatelessWidget {
               child: ListTile(
                 title: Text(
                   list[index].name,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87),
+                      color: whatIsDarkMode ? universalColor : textBlack),
                 ),
-                subtitle: Text('ul. ${list[index].street}'),
+                subtitle: Text(
+                  'ul. ${list[index].street}',
+                  style: TextStyle(color: textBlack2),
+                ),
               ),
             ),
             Container(

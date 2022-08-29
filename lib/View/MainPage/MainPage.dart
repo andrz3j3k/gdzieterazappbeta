@@ -118,7 +118,7 @@ class _MainPageAppState extends State<MainPageApp> {
             'Witaj w Trip & Travel',
             style: TextStyle(
               fontSize: 40,
-              color: colorStylingApplication,
+              color: whatIsDarkMode ? titleTextColor : themeLight.primaryColor,
             ),
           ),
         ),
@@ -132,16 +132,17 @@ class _MainPageAppState extends State<MainPageApp> {
         ),
         Container(
           height: 150,
-          color: const Color.fromARGB(255, 232, 171, 66),
+          color:
+              whatIsDarkMode ? themeDark.primaryColor : themeLight.primaryColor,
           child: const ListAttraction(),
         ),
         Container(
           padding: const EdgeInsets.only(top: 10),
-          child: const Text(
+          child: Text(
             'Wydarzenia z: Przemyśl',
             style: TextStyle(
               fontSize: 20,
-              color: Colors.black54,
+              color: whatIsDarkMode ? darkColorText : lightColorTextGrey,
             ),
           ),
         ),

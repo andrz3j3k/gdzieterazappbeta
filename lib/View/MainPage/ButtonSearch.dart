@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import '../../Providers/ChangeText.dart';
 import 'package:provider/provider.dart';
 
@@ -27,16 +27,23 @@ class _ButtonSearchState extends State<ButtonSearch> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                color: const Color.fromARGB(255, 232, 171, 66),
+                color: whatIsDarkMode
+                    ? darkColorDropDownButton
+                    : themeLight.primaryColor,
                 padding: const EdgeInsets.only(left: 10),
                 width: 250,
                 child: DropdownButton<String>(
-                  dropdownColor: const Color.fromARGB(255, 232, 171, 66),
+                  dropdownColor: whatIsDarkMode
+                      ? darkColorDropDownButton
+                      : themeLight.primaryColor,
                   borderRadius: BorderRadius.circular(10),
+                  underline: const SizedBox(),
                   value: dropdownValue,
                   iconSize: 0,
                   elevation: 16,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: whatIsDarkMode ? darkColorText : lightColorText),
                   onChanged: (String? newValue) {
                     setState(
                       () {
