@@ -5,6 +5,7 @@ class Events {
   final String id;
   final String name;
   final String description;
+  final String long_description;
   final String street;
   final String date;
   final String time;
@@ -13,6 +14,7 @@ class Events {
     required this.id,
     required this.name,
     required this.description,
+    required this.long_description,
     required this.street,
     required this.date,
     required this.time,
@@ -23,6 +25,7 @@ class Events {
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
+      long_description: json['long_description'] as String,
       street: json['street'] as String,
       date: json['date'] as String,
       time: json['time'] as String,

@@ -5,6 +5,7 @@ class Attraction {
   final String id;
   final String name;
   final String description;
+  final String long_description;
   final String street;
   final String numberPhone;
 
@@ -12,6 +13,7 @@ class Attraction {
     required this.id,
     required this.name,
     required this.description,
+    required this.long_description,
     required this.street,
     required this.numberPhone,
   });
@@ -21,6 +23,7 @@ class Attraction {
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
+      long_description: json['long_description'] as String,
       street: json['street'] as String,
       numberPhone: json['numberPhone'] as String,
     );

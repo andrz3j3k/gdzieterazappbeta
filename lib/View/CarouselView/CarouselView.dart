@@ -93,7 +93,8 @@ class WidgetCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ObjectAfterClick(
-                    name: MyCard.listName[MyCard.indexAmount],
+                    name: list[index].name,
+                    description: list[index].long_description,
                   ),
                 ),
               );

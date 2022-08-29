@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ObjectAfterClick extends StatelessWidget {
-  const ObjectAfterClick(
-      {Key? key, required this.name, required this.description})
-      : super(key: key);
+import '../../Models/MainPageModel/Events.dart';
 
-  final String name;
-  final String description;
+class PageEvents extends StatelessWidget {
+  const PageEvents({Key? key, required this.list, required this.index})
+      : super(key: key);
+  final List<Events> list;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +28,12 @@ class ObjectAfterClick extends StatelessWidget {
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(40),
                           bottomRight: Radius.circular(40)),
-                      child: Image.network(
-                        'https://www.alejahandlowa.pl/wp-content/uploads/wloskie-jedzenie-847x570.jpg',
-                        fit: BoxFit.cover,
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Image.network(
+                          'https://raciborz.com.pl/wp-content/uploads/2021/10/bmate.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -81,7 +84,7 @@ class ObjectAfterClick extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 35, top: 105),
                         child: Text(
-                          name,
+                          list[index].name,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 26),
                         ),
@@ -100,17 +103,7 @@ class ObjectAfterClick extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
-                    child: Text(description),
-                  ),
-                  InteractiveViewer(
-                    panEnabled: false,
-                    boundaryMargin: const EdgeInsets.all(100),
-                    minScale: 1,
-                    maxScale: 2,
-                    child: Image.network(
-                      'https://www.farfalla.com.pl/_Resources/Persistent/014012658de4a690fd5f81ce364481a4f59596ed/karta%20lipiec%202021%20str%201.jpg',
-                      fit: BoxFit.cover,
-                    ),
+                    child: Text(list[index].long_description),
                   ),
                 ],
               ),
