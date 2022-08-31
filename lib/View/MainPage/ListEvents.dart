@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/Events.dart';
 import 'package:travelon/ScaffoldStyle.dart';
@@ -81,36 +82,41 @@ class MyEvents extends StatelessWidget {
                         Image.network(
                             "https://e-turysta.pl/zdjecia/galeria-glowna/max/129/Pokoje-Goscinne-Jantar-W-Przemyslu-Przemysl-1297418.jpg",
                             fit: BoxFit.fill),
-                        Container(
-                          margin: const EdgeInsets.only(top: 130),
+                        Align(
                           alignment: Alignment.bottomCenter,
-                          color: Colors.black54,
-                          child: ListTile(
-                            visualDensity: VisualDensity.comfortable,
-                            contentPadding: const EdgeInsets.only(left: 25),
-                            minLeadingWidth: 10,
-                            textColor: universalColor,
-                            title: Text(
-                              list[index].name,
-                              style: stylingtext,
-                            ),
-                            subtitle: Text(
-                              "ul. ${list[index].street}",
-                              style: subtitlestyle,
-                            ),
-                            leading: Container(
-                              margin: const EdgeInsets.only(top: 10),
-                              child: Icon(
-                                Icons.explore_outlined,
-                                color: universalColor,
-                                size: 25,
+                          child: Container(
+                            color: Colors.black54,
+                            child: ListTile(
+                              visualDensity: VisualDensity.comfortable,
+                              contentPadding: const EdgeInsets.only(left: 25),
+                              minLeadingWidth: 10,
+                              textColor: universalColor,
+                              title: AutoSizeText(
+                                list[index].name,
+                                style: stylingtext,
+                                maxLines: 1,
                               ),
-                            ),
-                            trailing: Container(
-                              margin: const EdgeInsets.only(right: 25, top: 20),
-                              child: Text(
-                                "${list[index].date}, ${list[index].time}",
-                                style: trailingstyle,
+                              subtitle: AutoSizeText(
+                                "ul. ${list[index].street}",
+                                style: subtitlestyle,
+                                maxLines: 1,
+                              ),
+                              leading: Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                child: Icon(
+                                  Icons.explore_outlined,
+                                  color: universalColor,
+                                  size: 25,
+                                ),
+                              ),
+                              trailing: Container(
+                                margin:
+                                    const EdgeInsets.only(right: 25, top: 20),
+                                child: AutoSizeText(
+                                  "${list[index].date}, ${list[index].time}",
+                                  style: trailingstyle,
+                                  maxLines: 1,
+                                ),
                               ),
                             ),
                           ),

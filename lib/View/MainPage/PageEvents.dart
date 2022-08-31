@@ -29,19 +29,16 @@ class PageEvents extends StatelessWidget {
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(40),
                           bottomRight: Radius.circular(40)),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Image.network(
-                          'https://raciborz.com.pl/wp-content/uploads/2021/10/bmate.jpg',
-                          fit: BoxFit.cover,
-                        ),
+                      child: Image.network(
+                        'https://raciborz.com.pl/wp-content/uploads/2021/10/bmate.jpg',
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 30, left: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 15),
                       child: MaterialButton(
                         onPressed: () {
                           Navigator.pop(context);

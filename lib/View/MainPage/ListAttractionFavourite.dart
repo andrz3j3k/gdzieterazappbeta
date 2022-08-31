@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
@@ -61,12 +62,15 @@ class ListElements extends StatelessWidget {
             width: double.infinity,
             child: Center(
               child: ListTile(
-                title: Text('Nie masz ulubionych $text1!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: universalColor,
-                      fontWeight: FontWeight.bold,
-                    )),
+                title: AutoSizeText(
+                  maxLines: 1,
+                  'Nie masz ulubionych $text1!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: universalColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 subtitle: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(

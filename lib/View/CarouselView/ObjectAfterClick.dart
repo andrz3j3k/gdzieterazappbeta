@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 
 class ObjectAfterClick extends StatelessWidget {
@@ -37,8 +38,8 @@ class ObjectAfterClick extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 30, left: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 15),
                       child: MaterialButton(
                         onPressed: () {
                           Navigator.pop(context);
@@ -109,17 +110,25 @@ class ObjectAfterClick extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 30, left: 30, right: 30),
                     child: Text(description),
                   ),
-                  InteractiveViewer(
-                    panEnabled: false,
-                    boundaryMargin: const EdgeInsets.all(100),
-                    minScale: 1,
-                    maxScale: 2,
-                    child: Image.network(
-                      'https://www.farfalla.com.pl/_Resources/Persistent/014012658de4a690fd5f81ce364481a4f59596ed/karta%20lipiec%202021%20str%201.jpg',
-                      fit: BoxFit.cover,
+                  Container(
+                    margin: const EdgeInsets.only(top: 10, left: 30, right: 30),
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    alignment: Alignment.center,
+                    child: ClipRect(
+                      child: PhotoView(
+                        maxScale: 0.3,
+                        backgroundDecoration:
+                            const BoxDecoration(color: Colors.transparent),
+                        loadingBuilder: (context, event) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        imageProvider: const NetworkImage(
+                          'https://www.farfalla.com.pl/_Resources/Persistent/014012658de4a690fd5f81ce364481a4f59596ed/karta%20lipiec%202021%20str%201.jpg',
+                        ),
+                      ),
                     ),
                   ),
                 ],

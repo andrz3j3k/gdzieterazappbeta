@@ -9,6 +9,7 @@ import '../MiniGame/MiniGame.dart';
 import 'ListAttractionFavourite.dart';
 import 'ButtonSearch.dart';
 import 'package:travelon/Models/MainModel.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -114,12 +115,14 @@ class _MainPageAppState extends State<MainPageApp> {
       children: [
         Container(
           padding: topPadding,
-          child: Text(
+          child: AutoSizeText(
             'Witaj w Trip & Travel',
             style: TextStyle(
               fontSize: 40,
               color: whatIsDarkMode ? titleTextColor : themeLight.primaryColor,
             ),
+            minFontSize: 20,
+            maxLines: 1,
           ),
         ),
         Container(
