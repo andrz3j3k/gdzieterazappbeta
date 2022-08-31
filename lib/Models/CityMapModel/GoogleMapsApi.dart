@@ -27,8 +27,8 @@ getMarker() {
 }
 
 getData() async {
-  var response =
-      await http.get(Uri.parse('http://192.168.192.7/allAttraction.php'));
+  var response = await http
+      .get(Uri.parse('https://ajlrimlsmg.cfolks.pl/allAttraction.php'));
   var jsondecode = jsonDecode(response.body);
   return jsondecode;
 }

@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 Future<List<Monuments>> fetchMonuments() async {
   //pobranie strony WWW
   final response =
-      await http.get(Uri.parse('http://192.168.192.7/monuments.php'));
+      await http.get(Uri.parse('https://ajlrimlsmg.cfolks.pl/monuments.php'));
 
   // Use the compute function to run parsePhotos in a separate isolate.
   return compute(parseMonuments, response.body);
