@@ -21,10 +21,8 @@ class PageEvents extends StatelessWidget {
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40)),
               child: Stack(
-                alignment: Alignment.bottomCenter,
                 children: [
                   SizedBox(
-                    width: double.infinity,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(40),
@@ -32,6 +30,7 @@ class PageEvents extends StatelessWidget {
                       child: Image.network(
                         'https://raciborz.com.pl/wp-content/uploads/2021/10/bmate.jpg',
                         fit: BoxFit.cover,
+                        width: double.infinity,
                       ),
                     ),
                   ),
@@ -63,7 +62,7 @@ class PageEvents extends StatelessWidget {
                         bottomLeft: Radius.circular(40),
                         bottomRight: Radius.circular(40)),
                     child: Container(
-                      height: 150,
+                      height: double.infinity,
                       width: double.infinity,
                       margin: const EdgeInsets.only(top: 50),
                       decoration: BoxDecoration(
@@ -86,13 +85,16 @@ class PageEvents extends StatelessWidget {
                                 ],
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 35, top: 105),
-                        child: Text(
-                          list[index].name,
-                          style: TextStyle(
-                            color: universalColor,
-                            fontSize: 26,
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 45, bottom: 10),
+                          child: Text(
+                            list[index].name,
+                            style: TextStyle(
+                              color: universalColor,
+                              fontSize: 26,
+                            ),
                           ),
                         ),
                       ),

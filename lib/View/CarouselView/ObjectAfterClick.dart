@@ -114,12 +114,12 @@ class ObjectAfterClick extends StatelessWidget {
                     child: Text(description),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 10, left: 30, right: 30),
+                    margin: const EdgeInsets.only(top: 10),
                     height: MediaQuery.of(context).size.height * 0.7,
                     alignment: Alignment.center,
                     child: ClipRect(
                       child: PhotoView(
-                        maxScale: 0.3,
+                        maxScale: 0.25,
                         backgroundDecoration:
                             const BoxDecoration(color: Colors.transparent),
                         loadingBuilder: (context, event) => const Center(

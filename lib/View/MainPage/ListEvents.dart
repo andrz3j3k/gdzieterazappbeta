@@ -95,10 +95,12 @@ class MyEvents extends StatelessWidget {
                                 list[index].name,
                                 style: stylingtext,
                                 maxLines: 1,
+                                minFontSize: 10,
                               ),
                               subtitle: AutoSizeText(
                                 "ul. ${list[index].street}",
                                 style: subtitlestyle,
+                                minFontSize: 8,
                                 maxLines: 1,
                               ),
                               leading: Container(
@@ -116,6 +118,7 @@ class MyEvents extends StatelessWidget {
                                   "${list[index].date}, ${list[index].time}",
                                   style: trailingstyle,
                                   maxLines: 1,
+                                  minFontSize: 10,
                                 ),
                               ),
                             ),
