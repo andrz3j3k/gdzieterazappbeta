@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelon/Providers/ChangeTheme.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:provider/provider.dart';
@@ -49,8 +50,16 @@ class _OptionThemeModeState extends State<OptionThemeMode> {
         onChanged: (newValue) {
           whatIsDarkMode = newValue;
           context.read<ChangeTheme>().toggleTheme(newValue);
+          saveTheme(whatIsDarkMode);
+          setState(() {});
         },
       ),
     );
+  }
+
+  saveTheme(value) async {
+    final pref = await SharedPreferences.getInstance();
+
+    pref.setBool('theme', value);
   }
 }

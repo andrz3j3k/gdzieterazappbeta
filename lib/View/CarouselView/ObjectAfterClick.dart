@@ -39,7 +39,7 @@ class ObjectAfterClick extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 15),
+                      padding: const EdgeInsets.only(left: 20, top: 55),
                       child: MaterialButton(
                         onPressed: () {
                           Navigator.pop(context);

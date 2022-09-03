@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:travelon/Providers/ChangeTheme.dart';
 
 var themeLight = ThemeData(
   textTheme: TextTheme(
@@ -50,7 +51,8 @@ Color backgroundColorButtonDark = HexColor('555555');
 //dropDownButton dark mode
 Color darkColorDropDownButton = HexColor('414141');
 //switch between dark and light mode
-bool whatIsDarkMode = false;
+
+late bool whatIsDarkMode;
 
 //light mode or dark mode
 Color colorStylingApplication =

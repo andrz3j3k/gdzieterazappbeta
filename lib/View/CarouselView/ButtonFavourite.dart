@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeText.dart';
 import 'package:travelon/ScaffoldStyle.dart';
@@ -20,6 +21,16 @@ class _FavouriteButtonState extends State<FavouriteButton> {
   final Map<String, IconData> icons = {
     'favourite': Icons.grade,
   };
+  saveRestaurant(List<String> list) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setStringList('favouriteRestaurant', list);
+  }
+
+  saveMonuments(List<String> list) async {
+    final pref = await SharedPreferences.getInstance();
+
+    pref.setStringList('favouriteMonuments', list);
+  }
 
   ChangeText ct = ChangeText();
   @override
@@ -43,6 +54,16 @@ class _FavouriteButtonState extends State<FavouriteButton> {
             }
           } else {
             list.add(widget.list[widget.index].name);
+            switch (ct.text) {
+              case 'Restauracje':
+                saveRestaurant(list.toList().cast());
+                break;
+              case 'Zabytki':
+                saveMonuments(list.toList().cast());
+                break;
+            }
+
+            setState(() {});
           }
         });
       },

@@ -37,7 +37,7 @@ class PageEvents extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 15),
+                      padding: const EdgeInsets.only(left: 20, top: 55),
                       child: MaterialButton(
                         onPressed: () {
                           Navigator.pop(context);
@@ -64,7 +64,7 @@ class PageEvents extends StatelessWidget {
                     child: Container(
                       height: double.infinity,
                       width: double.infinity,
-                      margin: const EdgeInsets.only(top: 50),
+                      margin: const EdgeInsets.only(top: 100),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,

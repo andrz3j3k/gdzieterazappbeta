@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeTheme.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'View/MainPage/MainPage.dart';
@@ -11,6 +13,18 @@ import 'Providers/RefreshList.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final pref = await SharedPreferences.getInstance();
+
+  whatIsDarkMode = pref.getBool('theme') ?? false;
+
+  if (pref.getStringList('favouriteRestaurant') != null) {
+    favouriteListRestaurant =
+        pref.getStringList('favouriteRestaurant')!.toSet();
+  }
+  if (pref.getStringList('favouriteMonuments') != null) {
+    favouriteListMonuments = pref.getStringList('favouriteMonuments')!.toSet();
+  }
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -56,6 +70,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    getTheme();
     ChangeTheme().addListener(themeListener);
     super.initState();
   }
@@ -64,6 +79,21 @@ class _MyAppState extends State<MyApp> {
     if (mounted) {
       setState(() {});
     }
+  }
+
+  getTheme() async {
+    final pref = await SharedPreferences.getInstance();
+    bool value = pref.getBool('theme') ?? false;
+
+    if (value == false) {
+      whatIsDarkMode = false;
+      context.read<ChangeTheme>().themeMode = ThemeMode.light;
+    } else {
+      whatIsDarkMode = true;
+      context.read<ChangeTheme>().themeMode = ThemeMode.dark;
+    }
+
+    setState(() {});
   }
 
   @override
