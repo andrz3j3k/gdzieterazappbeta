@@ -32,7 +32,7 @@ class FutureBuilderView extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
-            child: Text('Błąd w trakcie wczytywania danych!'),
+            child: Text('Brak połączenia z internetem!'),
           );
         } else if (snapshot.hasData) {
           return PageViewBuilder(list: snapshot.data!);
@@ -84,7 +84,7 @@ class WidgetCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(40)),
               child: Image.network(
-                MyCard.listCard[MyCard.indexAmount],
+                "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                 fit: BoxFit.fill,
               ),
             ),

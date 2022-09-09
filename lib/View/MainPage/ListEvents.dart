@@ -16,8 +16,13 @@ class ListEvents extends StatelessWidget {
       future: fetchMainPageEvents(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Center(
-            child: Text('Błąd w trakcie wczytywania wydarzeń!'),
+          return Center(
+            child: Column(
+              children: const [
+                Icon(Icons.wifi_off),
+                Text('Brak połączenia z internetem'),
+              ],
+            ),
           );
         } else if (snapshot.hasData) {
           return MyEventsBuilder(list: snapshot.data!);
@@ -66,7 +71,7 @@ class MyEvents extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => PageEvents(
-                  id: int.parse(list[index].id),
+                  id: (list[index].id),
                 ),
               ),
             );
@@ -84,7 +89,7 @@ class MyEvents extends StatelessWidget {
                 children: list.isNotEmpty
                     ? [
                         Image.network(
-                            "https://e-turysta.pl/zdjecia/galeria-glowna/max/129/Pokoje-Goscinne-Jantar-W-Przemyslu-Przemysl-1297418.jpg",
+                            "https://ajlrimlsmg.cfolks.pl/Events/MainPhoto/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                             fit: BoxFit.fill),
                         Align(
                           alignment: Alignment.bottomCenter,

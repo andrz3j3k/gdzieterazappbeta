@@ -141,7 +141,7 @@ class ListElements extends StatelessWidget {
                                   width: 100,
                                   height: 100,
                                   child: Image.network(
-                                      "https://www.polska.travel/images/pl-PL/glowne-miasta/przemysl/przemysl_rynek_1170.jpg",
+                                      "https://ajlrimlsmg.cfolks.pl/Objects/Logo/${list.elementAt(index).toLowerCase().replaceAll(" ", "")}.jpeg",
                                       fit: BoxFit.cover),
                                 ),
                               ),
@@ -150,7 +150,8 @@ class ListElements extends StatelessWidget {
                                   top: 10,
                                 ),
                                 child: Text(
-                                  list.elementAt(index),
+                                  // list.elementAt(index),
+                                  listPage[index].name,
                                   style: TextStyle(color: universalColor),
                                 ),
                               ),

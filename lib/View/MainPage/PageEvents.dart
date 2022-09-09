@@ -7,7 +7,7 @@ import '../../Services/EventsService.dart';
 
 class PageEvents extends StatelessWidget {
   PageEvents({Key? key, required this.id}) : super(key: key);
-  final int id;
+  final String id;
   late var event;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class PageEvents extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
-            child: Text('Błąd w trakcie wczytywania wydarzeń!'),
+            child: Text('Brak połączenia z internetem!'),
           );
         } else if (snapshot.hasData) {
           event = snapshot.data;
@@ -38,9 +38,10 @@ class PageEvents extends StatelessWidget {
                               bottomLeft: Radius.circular(40),
                               bottomRight: Radius.circular(40)),
                           child: Image.network(
-                            'https://raciborz.com.pl/wp-content/uploads/2021/10/bmate.jpg',
+                            "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                             fit: BoxFit.cover,
                             width: double.infinity,
+                            height: double.infinity,
                           ),
                         ),
                       ),

@@ -16,7 +16,7 @@ class ObjectAfterClick extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
-              child: Text('Błąd w trakcie wczytywania wydarzeń!'),
+              child: Text('Brak połączenia z internetem!'),
             );
           } else if (snapshot.hasData) {
             var list = snapshot.data!;
@@ -30,17 +30,17 @@ class ObjectAfterClick extends StatelessWidget {
                         bottomLeft: Radius.circular(40),
                         bottomRight: Radius.circular(40)),
                     child: Stack(
-                      alignment: Alignment.bottomCenter,
                       children: [
                         SizedBox(
-                          width: double.infinity,
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(40),
                                 bottomRight: Radius.circular(40)),
                             child: Image.network(
-                              'https://www.alejahandlowa.pl/wp-content/uploads/wloskie-jedzenie-847x570.jpg',
+                              "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                               fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
                             ),
                           ),
                         ),
@@ -72,9 +72,9 @@ class ObjectAfterClick extends StatelessWidget {
                               bottomLeft: Radius.circular(40),
                               bottomRight: Radius.circular(40)),
                           child: Container(
-                            height: 150,
+                            height: double.infinity,
                             width: double.infinity,
-                            margin: const EdgeInsets.only(top: 50),
+                            margin: const EdgeInsets.only(top: 100),
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
                               begin: Alignment.bottomCenter,
@@ -94,16 +94,19 @@ class ObjectAfterClick extends StatelessWidget {
                                       Colors.transparent
                                     ],
                             )),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 35, top: 105),
-                              child: Text(
-                                list.name,
-                                style: TextStyle(
-                                    color: whatIsDarkMode
-                                        ? universalColor
-                                        : Colors.white,
-                                    fontSize: 26),
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 45, bottom: 10),
+                                child: Text(
+                                  list.name,
+                                  style: TextStyle(
+                                      color: whatIsDarkMode
+                                          ? universalColor
+                                          : Colors.white,
+                                      fontSize: 26),
+                                ),
                               ),
                             ),
                           ),
@@ -124,19 +127,18 @@ class ObjectAfterClick extends StatelessWidget {
                           child: Text(list.long_description),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(top: 10),
                           height: MediaQuery.of(context).size.height * 0.7,
                           alignment: Alignment.center,
                           child: ClipRect(
                             child: PhotoView(
-                              maxScale: 0.25,
+                              maxScale: 1.0,
                               backgroundDecoration: const BoxDecoration(
                                   color: Colors.transparent),
                               loadingBuilder: (context, event) => const Center(
                                 child: CircularProgressIndicator(),
                               ),
-                              imageProvider: const NetworkImage(
-                                'https://www.farfalla.com.pl/_Resources/Persistent/014012658de4a690fd5f81ce364481a4f59596ed/karta%20lipiec%202021%20str%201.jpg',
+                              imageProvider: NetworkImage(
+                                "https://ajlrimlsmg.cfolks.pl/Objects/Menu/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                               ),
                             ),
                           ),
