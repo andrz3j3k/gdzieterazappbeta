@@ -1,17 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:travelon/Models/MainPageModel/Events.dart';
+
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/EventsService.dart';
 import 'package:travelon/View/MainPage/PageEvents.dart';
+
+import '../../Models/MainPageModel/MainPageEvents.dart';
 
 class ListEvents extends StatelessWidget {
   const ListEvents({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Events>>(
-      future: fetchEvents(),
+    return FutureBuilder<List<MainPageEvents>>(
+      future: fetchMainPageEvents(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
@@ -31,7 +33,7 @@ class ListEvents extends StatelessWidget {
 
 class MyEventsBuilder extends StatelessWidget {
   const MyEventsBuilder({Key? key, required this.list}) : super(key: key);
-  final List<Events> list;
+  final List<MainPageEvents> list;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -48,7 +50,7 @@ class MyEventsBuilder extends StatelessWidget {
 class MyEvents extends StatelessWidget {
   const MyEvents({Key? key, required this.list, required this.index})
       : super(key: key);
-  final List<Events> list;
+  final List<MainPageEvents> list;
   final int index;
   final stylingtext = const TextStyle(fontSize: 20);
   final subtitlestyle = const TextStyle(fontSize: 10);
@@ -63,7 +65,9 @@ class MyEvents extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PageEvents(list: list, index: index),
+                builder: (context) => PageEvents(
+                  id: int.parse(list[index].id),
+                ),
               ),
             );
           },

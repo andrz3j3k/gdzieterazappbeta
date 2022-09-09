@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/Providers/ChangeObject.dart';
 import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Services/AttractionService.dart';
 import 'ObjectAfterClick.dart';
 import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
 import 'ButtonFavourite.dart';
-import 'package:provider/provider.dart';
 
 class CarouselView extends StatefulWidget {
   const CarouselView({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class _CarouselView extends State<CarouselView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilderView(
-      function: context.watch<ChangeObject>().result(),
+      function: fetchAttraction(),
     );
   }
 }
@@ -94,8 +93,7 @@ class WidgetCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ObjectAfterClick(
-                    name: list[index].name,
-                    description: list[index].long_description,
+                    id: list[index].id,
                   ),
                 ),
               );

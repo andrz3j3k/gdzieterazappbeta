@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
 import 'package:travelon/ScaffoldStyle.dart';
-
-import '../../Providers/ChangeObject.dart';
+import 'package:travelon/Services/AttractionService.dart';
 import '../../Providers/ChangeText.dart';
 import '../CarouselView/ObjectAfterClick.dart';
 
@@ -109,7 +108,7 @@ class ListElements extends StatelessWidget {
             itemBuilder: (context, index) {
               var listPage;
               return FutureBuilder(
-                future: context.watch<ChangeObject>().result(),
+                future: fetchAttraction(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Center(
@@ -128,8 +127,7 @@ class ListElements extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ObjectAfterClick(
-                                name: listPage[index].name,
-                                description: listPage[index].long_description,
+                                id: listPage[index].id,
                               ),
                             ),
                           );

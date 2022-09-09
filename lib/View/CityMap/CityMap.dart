@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:travelon/Services/MapDataService.dart';
 import 'package:travelon/View/CityMap/GoogleMaps.dart';
 
 import '../../Models/CityMapModel/GoogleMapsApi.dart';
@@ -16,7 +17,7 @@ class _CityMap extends State<CityMap> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getData(),
+      future: fetchMapaData(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(

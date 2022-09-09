@@ -1,31 +1,26 @@
 import 'dart:convert';
 
 //wykonywane najpierw
-class Events {
+class MainPageEvents {
   final String id;
   final String name;
-  final String description;
-  final String long_description;
+
   final String street;
   final String date;
   final String time;
 
-  const Events({
+  const MainPageEvents({
     required this.id,
     required this.name,
-    required this.description,
-    required this.long_description,
     required this.street,
     required this.date,
     required this.time,
   });
 
-  factory Events.fromJson(Map<String, dynamic> json) {
-    return Events(
+  factory MainPageEvents.fromJson(Map<String, dynamic> json) {
+    return MainPageEvents(
       id: json['id'] as String,
       name: json['name'] as String,
-      description: json['description'] as String,
-      long_description: json['long_description'] as String,
       street: json['street'] as String,
       date: json['date'] as String,
       time: json['time'] as String,
@@ -35,8 +30,10 @@ class Events {
 
 //to jest wykonywane po classie
 // A function that converts a response body into a List<Photo>.
-List<Events> parsePhotos(String responseBody) {
+List<MainPageEvents> parseMainPageEvents(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
-  return parsed.map<Events>((json) => Events.fromJson(json)).toList();
+  return parsed
+      .map<MainPageEvents>((json) => MainPageEvents.fromJson(json))
+      .toList();
 }

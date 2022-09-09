@@ -44,11 +44,13 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                 {
                   favouriteListRestaurant
                       .remove(widget.list[widget.index].name);
+                  saveRestaurant(list.toList().cast());
                   break;
                 }
               case 'Zabytki':
                 {
                   favouriteListMonuments.remove(widget.list[widget.index].name);
+                  saveMonuments(list.toList().cast());
                   break;
                 }
             }

@@ -1,14 +1,27 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:travelon/Models/MainPageModel/Events.dart';
-import '../Models/MainPageModel/Events.dart';
-//to jest wykonywane na samym koncu
+import 'package:travelon/Models/MainPageModel/MainPageEvents.dart';
 import 'package:flutter/foundation.dart';
+import '../Models/MainPageModel/PageEvent.dart';
 
-Future<List<Events>> fetchEvents() async {
+Future<List<MainPageEvents>> fetchMainPageEvents() async {
   //pobranie strony WWW
-  final response =
-      await http.get(Uri.parse('https://ajlrimlsmg.cfolks.pl/events.php'));
+  final response = await http
+      .get(Uri.parse('https://ajlrimlsmg.cfolks.pl/mainpageevents.php'));
 
   // Use the compute function to run parsePhotos in a separate isolate.
-  return compute(parsePhotos, response.body);
+  return compute(parseMainPageEvents, response.body);
+}
+
+Future<PageEvents> fetchPageEvents(id) async {
+  //pobranie strony WWW
+  final response = await http.post(
+    Uri.parse('https://ajlrimlsmg.cfolks.pl/pageevent.php'),
+    body: {
+      "idEvents": id.toString(),
+    },
+  );
+
+  // Use the compute function to run parsePhotos in a separate isolate.
+  return PageEvents.fromJson(jsonDecode(response.body));
 }

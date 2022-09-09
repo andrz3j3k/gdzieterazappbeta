@@ -9,26 +9,20 @@ const initialCameraPositionPrzemysl = CameraPosition(
 Set<Marker> markers = {};
 var listLocation;
 getMarker() {
+  markers.clear();
   for (int i = 0; i < listLocation.length; i++) {
     markers.add(
       Marker(
         markerId: const MarkerId('object'),
-        position: LatLng(double.parse(listLocation[i]['x']),
-            double.parse(listLocation[i]['y'])),
+        position: LatLng(
+            double.parse(listLocation[i].x), double.parse(listLocation[i].y)),
         icon: BitmapDescriptor.defaultMarkerWithHue(10),
         infoWindow: InfoWindow(
-          title: listLocation[i]['name'],
-          snippet: listLocation[i]['description'],
+          title: listLocation[i].name,
+          snippet: listLocation[i].description,
         ),
       ),
     );
   }
   return markers;
-}
-
-getData() async {
-  var response = await http
-      .get(Uri.parse('https://ajlrimlsmg.cfolks.pl/allAttraction.php'));
-  var jsondecode = jsonDecode(response.body);
-  return jsondecode;
 }
