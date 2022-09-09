@@ -127,7 +127,8 @@ class ListElements extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ObjectAfterClick(
-                                id: listPage[index].id,
+                                // id: listPage[index].id,
+                                id: returnId(list.elementAt(index), listPage),
                               ),
                             ),
                           );
@@ -150,8 +151,7 @@ class ListElements extends StatelessWidget {
                                   top: 10,
                                 ),
                                 child: Text(
-                                  // list.elementAt(index),
-                                  listPage[index].name,
+                                  list.elementAt(index),
                                   style: TextStyle(color: universalColor),
                                 ),
                               ),
@@ -170,4 +170,14 @@ class ListElements extends StatelessWidget {
             },
           );
   }
+}
+
+returnId(list, listPage) {
+  int value = 0;
+  for (int i = 0; i < listPage.length; i++) {
+    if (list == listPage[i].name) {
+      value = i;
+    }
+  }
+  return listPage[value].id;
 }
