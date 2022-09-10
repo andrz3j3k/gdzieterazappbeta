@@ -65,10 +65,11 @@ class _MainPageState extends State<MainPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.sports_esports_outlined,
+                // Icons.sports_esports_outlined,
+                Icons.loyalty_outlined,
                 size: 30,
               ),
-              label: "Nagrody",
+              label: "Promocje",
             ),
             BottomNavigationBarItem(
               icon: Icon(
