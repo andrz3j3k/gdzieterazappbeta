@@ -31,8 +31,17 @@ class FutureBuilderView extends StatelessWidget {
       future: function,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Center(
-            child: Text('Brak połączenia z internetem!'),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.wifi_off,
+                  size: 40,
+                ),
+                Text('Brak połączenia z internetem'),
+              ],
+            ),
           );
         } else if (snapshot.hasData) {
           return PageViewBuilder(list: snapshot.data!);
@@ -85,6 +94,8 @@ class WidgetCard extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(40)),
               child: Image.network(
                 "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.image_not_supported_outlined, size: 40),
                 fit: BoxFit.fill,
               ),
             ),

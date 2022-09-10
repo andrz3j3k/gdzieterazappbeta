@@ -20,8 +20,17 @@ class _CityMap extends State<CityMap> {
       future: fetchMapaData(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Center(
-            child: Text('Błąd w trakcie wczytywania danych!'),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.wifi_off,
+                  size: 40,
+                ),
+                Text('Brak połączenia z internetem'),
+              ],
+            ),
           );
         } else if (snapshot.hasData) {
           listLocation = snapshot.data;

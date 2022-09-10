@@ -18,8 +18,12 @@ class ListEvents extends StatelessWidget {
         if (snapshot.hasError) {
           return Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Icon(Icons.wifi_off),
+                Icon(
+                  Icons.wifi_off,
+                  size: 40,
+                ),
                 Text('Brak połączenia z internetem'),
               ],
             ),
@@ -90,6 +94,9 @@ class MyEvents extends StatelessWidget {
                     ? [
                         Image.network(
                             "https://ajlrimlsmg.cfolks.pl/Events/MainPhoto/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.image_not_supported_outlined,
+                                    size: 40),
                             fit: BoxFit.fill),
                         Align(
                           alignment: Alignment.bottomCenter,

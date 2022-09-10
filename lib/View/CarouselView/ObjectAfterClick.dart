@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:travelon/ScaffoldStyle.dart';
-import 'package:travelon/Services/AttractionService.dart';
 import 'package:travelon/Services/IndividualPageService.dart';
 
 class ObjectAfterClick extends StatelessWidget {
@@ -15,8 +15,35 @@ class ObjectAfterClick extends StatelessWidget {
         future: fetchIndividualPageData(id),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return const Center(
-              child: Text('Brak połączenia z internetem!'),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.wifi_off,
+                    size: 40,
+                  ),
+                  const Text('Brak połączenia z internetem'),
+                  Container(
+                    margin: const EdgeInsets.only(top: 25),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                          whatIsDarkMode
+                              ? HexColor('373590')
+                              : HexColor('E8AA42'),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.home,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           } else if (snapshot.hasData) {
             var list = snapshot.data!;
@@ -38,6 +65,9 @@ class ObjectAfterClick extends StatelessWidget {
                                 bottomRight: Radius.circular(40)),
                             child: Image.network(
                               "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const Icon(Icons.image_not_supported_outlined,
+                                      size: 40),
                               fit: BoxFit.cover,
                               width: double.infinity,
                               height: double.infinity,
@@ -137,6 +167,9 @@ class ObjectAfterClick extends StatelessWidget {
                               loadingBuilder: (context, event) => const Center(
                                 child: CircularProgressIndicator(),
                               ),
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const Icon(Icons.image_not_supported_outlined,
+                                      size: 40),
                               imageProvider: NetworkImage(
                                 "https://ajlrimlsmg.cfolks.pl/Objects/Menu/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                               ),

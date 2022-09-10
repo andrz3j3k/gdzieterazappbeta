@@ -111,8 +111,13 @@ class ListElements extends StatelessWidget {
                 future: fetchAttraction(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return const Center(
-                      child: Text('Błąd w trakcie wczytywania danych!'),
+                    return Center(
+                      child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 50),
+                          child: const Icon(
+                            Icons.wifi_off,
+                            size: 30,
+                          )),
                     );
                   } else if (snapshot.hasData) {
                     listPage = snapshot.data;
@@ -143,6 +148,12 @@ class ListElements extends StatelessWidget {
                                   height: 100,
                                   child: Image.network(
                                       "https://ajlrimlsmg.cfolks.pl/Objects/Logo/${list.elementAt(index).toLowerCase().replaceAll(" ", "")}.jpeg",
+                                      errorBuilder: (context, error,
+                                              stackTrace) =>
+                                          const Icon(
+                                              Icons
+                                                  .image_not_supported_outlined,
+                                              size: 40),
                                       fit: BoxFit.cover),
                                 ),
                               ),

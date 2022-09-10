@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 
 import '../../Services/EventsService.dart';
@@ -16,8 +17,35 @@ class PageEvents extends StatelessWidget {
       future: fetchPageEvents(id),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Center(
-            child: Text('Brak połączenia z internetem!'),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.wifi_off,
+                  size: 40,
+                ),
+                const Text('Brak połączenia z internetem'),
+                Container(
+                  margin: const EdgeInsets.only(top: 25),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        whatIsDarkMode
+                            ? HexColor('373590')
+                            : HexColor('E8AA42'),
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.home,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         } else if (snapshot.hasData) {
           event = snapshot.data;
@@ -39,6 +67,9 @@ class PageEvents extends StatelessWidget {
                               bottomRight: Radius.circular(40)),
                           child: Image.network(
                             "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.image_not_supported_outlined,
+                                    size: 40),
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: double.infinity,
