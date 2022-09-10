@@ -47,57 +47,74 @@ class MyAds extends StatelessWidget {
   final list;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.isEmpty ? 0 : list.length,
-      itemBuilder: (context, index) {
-        return Center(
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black,
-                      offset: Offset(0.0, 1.0),
-                      blurRadius: 6.0,
-                      spreadRadius: 0.5),
-                ],
-              ),
-              width: double.infinity,
-              height: 200,
-              margin: const EdgeInsets.only(
-                left: 20,
-                right: 20,
-                top: 20,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ObjectAfterClick(
-                          id: (list[index].id),
+    return list.isEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.sentiment_dissatisfied_outlined,
+                  size: 50,
+                ),
+                Text(
+                  'Aktualnie brak promocji! \n Zajrzyj wkrótce!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+          )
+        : ListView.builder(
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return Center(
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black,
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 6.0,
+                            spreadRadius: 0.5),
+                      ],
+                    ),
+                    width: double.infinity,
+                    height: 200,
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ObjectAfterClick(
+                                id: (list[index].id),
+                              ),
+                            ),
+                          );
+                        },
+                        child: Image.network(
+                          "https://ajlrimlsmg.cfolks.pl/Objects/Ads/${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg",
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.image_not_supported_outlined,
+                                  size: 40),
+                          fit: BoxFit.cover,
+                          width: double.infinity,
                         ),
                       ),
-                    );
-                  },
-                  child: Image.network(
-                    "https://ajlrimlsmg.cfolks.pl/Objects/Ads/${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg",
-                    errorBuilder: (context, error, stackTrace) => const Icon(
-                        Icons.image_not_supported_outlined,
-                        size: 40),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
+              );
+            },
+          );
   }
 }
