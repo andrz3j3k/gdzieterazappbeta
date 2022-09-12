@@ -25,8 +25,10 @@ Future main() async {
   }
 
   SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
+    SystemUiOverlayStyle(
+      statusBarColor: whatIsDarkMode
+          ? themeDark.scaffoldBackgroundColor
+          : themeLight.scaffoldBackgroundColor,
     ),
   );
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,

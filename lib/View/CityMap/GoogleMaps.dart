@@ -32,6 +32,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
         );
       },
     );
+    getMarker();
     super.initState();
   }
 
@@ -47,7 +48,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
       children: [
         Expanded(
           child: GoogleMap(
-            markers: getMarker(),
+            markers: markers,
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
             rotateGesturesEnabled: false,

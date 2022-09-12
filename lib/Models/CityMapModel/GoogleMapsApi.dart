@@ -19,7 +19,6 @@ getMarker() {
         icon: BitmapDescriptor.defaultMarkerWithHue(10),
         infoWindow: InfoWindow(
           title: listLocation[i].name,
-          snippet: listLocation[i].description,
         ),
       ),
     );

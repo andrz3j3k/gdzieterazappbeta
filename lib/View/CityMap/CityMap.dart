@@ -34,10 +34,7 @@ class _CityMap extends State<CityMap> {
           );
         } else if (snapshot.hasData) {
           listLocation = snapshot.data;
-          Timer(
-            const Duration(seconds: 1),
-            () => getMarker(),
-          );
+
           return const GoogleMaps();
         } else {
           return const Center(

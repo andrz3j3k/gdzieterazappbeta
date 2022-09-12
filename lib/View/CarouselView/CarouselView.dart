@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/AttractionService.dart';
@@ -63,7 +64,6 @@ class PageViewBuilder extends StatelessWidget {
     return PageView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
-        MyCard.indexAmount = index;
         return WidgetCard(
           list: list,
           index: index,
@@ -87,8 +87,9 @@ class WidgetCard extends StatelessWidget {
       children: [
         Container(
           height: MediaQuery.of(context).size.height * 0.7,
+          width: double.infinity,
           padding:
-              topPadding + const EdgeInsets.only(top: 30, left: 10, right: 10),
+              topPadding + const EdgeInsets.only(top: 30, left: 20, right: 20),
           child: GestureDetector(
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(40)),
@@ -116,16 +117,18 @@ class WidgetCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(top: 10, left: 10),
               child: ListTile(
-                title: Text(
+                title: AutoSizeText(
                   list[index].name,
+                  minFontSize: 20.0,
                   style: TextStyle(
-                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: whatIsDarkMode ? universalColor : textBlack),
                 ),
                 subtitle: Text(
                   'ul. ${list[index].street}',
-                  style: TextStyle(color: textBlack2),
+                  style: TextStyle(
+                    color: textBlack2,
+                  ),
                 ),
               ),
             ),

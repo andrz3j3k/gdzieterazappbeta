@@ -84,10 +84,7 @@ class MyAds extends StatelessWidget {
                     width: double.infinity,
                     height: 200,
                     margin: const EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 20,
-                    ),
+                        left: 20, right: 20, top: 20, bottom: 10),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: GestureDetector(

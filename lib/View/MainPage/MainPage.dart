@@ -116,10 +116,11 @@ class _MainPageAppState extends State<MainPageApp> {
       children: [
         Container(
           padding: topPadding,
+          margin: EdgeInsets.only(top: 20),
           child: AutoSizeText(
             'Witaj w Trip & Travel',
             style: TextStyle(
-              fontSize: 40,
+              fontSize: 35,
               color: whatIsDarkMode ? titleTextColor : themeLight.primaryColor,
             ),
             minFontSize: 20,

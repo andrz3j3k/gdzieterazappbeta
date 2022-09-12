@@ -1,18 +1,16 @@
 //wykonywane najpierw
 import 'dart:convert';
-import 'dart:ffi';
 
 class MapData {
   final String id;
   final String name;
-  final String description;
+
   final String x;
   final String y;
 
   const MapData({
     required this.id,
     required this.name,
-    required this.description,
     required this.x,
     required this.y,
   });
@@ -21,7 +19,6 @@ class MapData {
     return MapData(
       id: json['id'] as String,
       name: json['name'] as String,
-      description: json['description'] as String,
       x: json['x'] as String,
       y: json['y'] as String,
     );
