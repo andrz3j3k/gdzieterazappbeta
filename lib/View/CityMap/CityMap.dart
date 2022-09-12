@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:travelon/Services/MapDataService.dart';
 import 'package:travelon/View/CityMap/GoogleMaps.dart';

@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 const initialCameraPositionPrzemysl = CameraPosition(
     target: LatLng(49.78399107263073, 22.76809200528949), zoom: 13);

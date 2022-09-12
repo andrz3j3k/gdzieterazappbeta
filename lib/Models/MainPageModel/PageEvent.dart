@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 //wykonywane najpierw
 class PageEvents {
   final String id;

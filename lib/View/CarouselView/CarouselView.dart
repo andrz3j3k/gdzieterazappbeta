@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/AttractionService.dart';
 import 'ObjectAfterClick.dart';
-import 'package:travelon/Models/CarouselViewModel/CarouselViewModel.dart';
 import 'ButtonFavourite.dart';
 
 class CarouselView extends StatefulWidget {
