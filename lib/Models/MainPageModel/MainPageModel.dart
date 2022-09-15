@@ -5,6 +5,8 @@ Set list = favouriteListRestaurant;
 
 List<String> kOptions = <String>[
   'Restauracje',
-  'Zabytki',
+  'Atrakcje',
+  'Bary',
   'Kawiarnie',
+  'Produkty lokalne',
 ];

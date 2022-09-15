@@ -26,7 +26,25 @@ class _FavouriteButtonState extends State<FavouriteButton> {
     pref.setStringList('favouriteRestaurant', list);
   }
 
-  saveMonuments(List<String> list) async {
+  saveCafe(List<String> list) async {
+    final pref = await SharedPreferences.getInstance();
+
+    pref.setStringList('favouriteMonuments', list);
+  }
+
+  saveBar(List<String> list) async {
+    final pref = await SharedPreferences.getInstance();
+
+    pref.setStringList('favouriteMonuments', list);
+  }
+
+  saveAttractions(List<String> list) async {
+    final pref = await SharedPreferences.getInstance();
+
+    pref.setStringList('favouriteMonuments', list);
+  }
+
+  saveLocalProducts(List<String> list) async {
     final pref = await SharedPreferences.getInstance();
 
     pref.setStringList('favouriteMonuments', list);
@@ -47,10 +65,28 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                   saveRestaurant(list.toList().cast());
                   break;
                 }
-              case 'Zabytki':
+              case 'Kawiarnie':
                 {
                   favouriteListMonuments.remove(widget.list[widget.index].name);
-                  saveMonuments(list.toList().cast());
+                  saveCafe(list.toList().cast());
+                  break;
+                }
+              case 'Bary':
+                {
+                  favouriteListMonuments.remove(widget.list[widget.index].name);
+                  saveCafe(list.toList().cast());
+                  break;
+                }
+              case 'Atrakcje':
+                {
+                  favouriteListMonuments.remove(widget.list[widget.index].name);
+                  saveCafe(list.toList().cast());
+                  break;
+                }
+              case 'Produkty lokalne':
+                {
+                  favouriteListMonuments.remove(widget.list[widget.index].name);
+                  saveCafe(list.toList().cast());
                   break;
                 }
             }
@@ -60,8 +96,17 @@ class _FavouriteButtonState extends State<FavouriteButton> {
               case 'Restauracje':
                 saveRestaurant(list.toList().cast());
                 break;
-              case 'Zabytki':
-                saveMonuments(list.toList().cast());
+              case 'Kawiarnie':
+                saveCafe(list.toList().cast());
+                break;
+              case 'Bary':
+                saveRestaurant(list.toList().cast());
+                break;
+              case 'Atrakcje':
+                saveCafe(list.toList().cast());
+                break;
+              case 'Produkty lokalne':
+                saveCafe(list.toList().cast());
                 break;
             }
 

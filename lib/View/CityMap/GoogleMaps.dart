@@ -20,7 +20,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
   @override
   void initState() {
     SchedulerBinding.instance.addPostFrameCallback(
-      (_) {
+      (_) async {
         rootBundle
             .loadString(whatIsDarkMode
                 ? 'assets/style/googleMapsStyleDark.txt'
@@ -53,7 +53,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
             zoomControlsEnabled: false,
             rotateGesturesEnabled: false,
             initialCameraPosition: initialCameraPositionPrzemysl,
-            onMapCreated: (controller) {
+            onMapCreated: (controller) async {
               _googleMapController = controller;
               _googleMapController.setMapStyle(mt);
             },

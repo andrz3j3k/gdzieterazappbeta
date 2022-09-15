@@ -16,7 +16,7 @@ class _CarouselView extends State<CarouselView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilderView(
-      function: fetchAttraction(),
+      function: fetchCarouselView(),
     );
   }
 }

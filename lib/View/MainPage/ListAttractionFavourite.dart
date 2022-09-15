@@ -15,7 +15,16 @@ class ListAttraction extends StatelessWidget {
     if (context.watch<ChangeText>().text == "Restauracje") {
       list = favouriteListRestaurant;
       return ListElements();
-    } else if (context.watch<ChangeText>().text == "Zabytki") {
+    } else if (context.watch<ChangeText>().text == "Kawiarnie") {
+      list = favouriteListMonuments;
+      return ListElements();
+    } else if (context.watch<ChangeText>().text == "Bary") {
+      list = favouriteListMonuments;
+      return ListElements();
+    } else if (context.watch<ChangeText>().text == "Atrakcje") {
+      list = favouriteListMonuments;
+      return ListElements();
+    } else if (context.watch<ChangeText>().text == "Produkty lokalne") {
       list = favouriteListMonuments;
       return ListElements();
     } else {
@@ -37,16 +46,28 @@ class ListElements extends StatelessWidget {
           text2 = 'restauracje';
           break;
         }
-      case 'Zabytki':
+      case 'Bary':
         {
-          text1 = 'zabytków';
-          text2 = 'zabytki';
+          text1 = 'barów';
+          text2 = 'bary';
           break;
         }
       case 'Kawiarnie':
         {
           text1 = 'kawiarni';
           text2 = 'kawiarnie';
+          break;
+        }
+      case 'Atrakcje':
+        {
+          text1 = 'atrakcji';
+          text2 = 'atrakcje';
+          break;
+        }
+      case 'Produkty lokalne':
+        {
+          text1 = 'produktów lokalnych';
+          text2 = 'produkty lokalne';
           break;
         }
     }
@@ -108,7 +129,7 @@ class ListElements extends StatelessWidget {
             itemBuilder: (context, index) {
               var listPage;
               return FutureBuilder(
-                future: fetchAttraction(),
+                future: fetchCarouselView(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -161,8 +182,9 @@ class ListElements extends StatelessWidget {
                                 margin: const EdgeInsets.only(
                                   top: 10,
                                 ),
-                                child: Text(
+                                child: AutoSizeText(
                                   list.elementAt(index),
+                                  minFontSize: 10,
                                   style: TextStyle(color: universalColor),
                                 ),
                               ),
