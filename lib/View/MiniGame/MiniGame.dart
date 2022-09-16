@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:travelon/Services/AdsService.dart';
 import 'package:travelon/View/CarouselView/ObjectAfterClick.dart';
@@ -98,11 +99,12 @@ class MyAds extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Image.network(
-                          "https://ajlrimlsmg.cfolks.pl/Objects/Ads/${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg",
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Icon(Icons.image_not_supported_outlined,
-                                  size: 40),
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              "https://ajlrimlsmg.cfolks.pl/Objects/Ads/${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg",
+                          errorWidget: (context, url, error) => const Icon(
+                              Icons.image_not_supported_outlined,
+                              size: 40),
                           fit: BoxFit.cover,
                           width: double.infinity,
                         ),

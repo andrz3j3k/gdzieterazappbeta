@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:photo_view/photo_view.dart';
@@ -63,11 +64,13 @@ class ObjectAfterClick extends StatelessWidget {
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(40),
                                 bottomRight: Radius.circular(40)),
-                            child: Image.network(
-                              "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.image_not_supported_outlined,
-                                      size: 40),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                              errorWidget: (context, url, error) => const Icon(
+                                Icons.image_not_supported_outlined,
+                                size: 40,
+                              ),
                               fit: BoxFit.cover,
                               width: double.infinity,
                               height: double.infinity,
