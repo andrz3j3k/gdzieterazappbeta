@@ -9,7 +9,7 @@ Future<List<Ads>> fetchAds() async {
   final response = await http.post(
     Uri.parse('https://ajlrimlsmg.cfolks.pl/adspage.php'),
     body: {
-      "nameBase": returnNameBase(),
+      "nameBase": "Gastronomy",
     },
   );
 
@@ -17,11 +17,9 @@ Future<List<Ads>> fetchAds() async {
   return compute(parseAds, response.body);
 }
 
-returnNameBase() {
-  switch (ChangeText().text) {
-    case 'Restauracje':
-      return "Restaurant";
-    case 'Zabytki':
-      return "Monuments";
-  }
-}
+// returnNameBase() {
+//   switch (ChangeText().text) {
+//     case 'Gastronomia':
+//       return "Gastronomy";
+//   }
+// }

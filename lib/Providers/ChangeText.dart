@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String _text = "Restauracje";
+String _text = "Gastronomia";
 
 class ChangeText extends ChangeNotifier {
   String get text => _text;

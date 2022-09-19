@@ -13,20 +13,14 @@ class ListAttraction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.watch<ChangeText>().text == "Restauracje") {
-      list = favouriteListRestaurant;
-      return ListElements();
-    } else if (context.watch<ChangeText>().text == "Kawiarnie") {
-      list = favouriteListMonuments;
-      return ListElements();
-    } else if (context.watch<ChangeText>().text == "Bary") {
-      list = favouriteListMonuments;
+    if (context.watch<ChangeText>().text == "Gastronomia") {
+      list = favouriteListGastronomy;
       return ListElements();
     } else if (context.watch<ChangeText>().text == "Atrakcje") {
-      list = favouriteListMonuments;
+      list = favouriteListAttractions;
       return ListElements();
     } else if (context.watch<ChangeText>().text == "Produkty lokalne") {
-      list = favouriteListMonuments;
+      list = favouriteListLocalProducts;
       return ListElements();
     } else {
       return ListElements();
@@ -41,22 +35,10 @@ class ListElements extends StatelessWidget {
   late String text2;
   returnValue() {
     switch (ct.text) {
-      case 'Restauracje':
+      case 'Gastronomia':
         {
-          text1 = "restauracji";
-          text2 = 'restauracje';
-          break;
-        }
-      case 'Bary':
-        {
-          text1 = 'barów';
-          text2 = 'bary';
-          break;
-        }
-      case 'Kawiarnie':
-        {
-          text1 = 'kawiarni';
-          text2 = 'kawiarnie';
+          text1 = 'lokali z gastronomii';
+          text2 = 'lokale';
           break;
         }
       case 'Atrakcje':
@@ -185,7 +167,7 @@ class ListElements extends StatelessWidget {
                                 ),
                                 child: AutoSizeText(
                                   list.elementAt(index),
-                                  minFontSize: 10,
+                                  minFontSize: 6,
                                   style: TextStyle(color: universalColor),
                                 ),
                               ),
@@ -213,5 +195,5 @@ returnId(list, listPage) {
       value = i;
     }
   }
-  return listPage[value].id;
+  return listPage[value].idobject;
 }

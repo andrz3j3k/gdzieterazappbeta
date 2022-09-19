@@ -16,12 +16,17 @@ Future main() async {
 
   whatIsDarkMode = pref.getBool('theme') ?? false;
 
-  if (pref.getStringList('favouriteRestaurant') != null) {
-    favouriteListRestaurant =
-        pref.getStringList('favouriteRestaurant')!.toSet();
+  if (pref.getStringList('favouriteGastronomy') != null) {
+    favouriteListGastronomy =
+        pref.getStringList('favouriteGastronomy')!.toSet();
   }
-  if (pref.getStringList('favouriteMonuments') != null) {
-    favouriteListMonuments = pref.getStringList('favouriteMonuments')!.toSet();
+  if (pref.getStringList('favouriteAttractions') != null) {
+    favouriteListAttractions =
+        pref.getStringList('favouriteAttractions')!.toSet();
+  }
+  if (pref.getStringList('favouriteLocalProducts') != null) {
+    favouriteListLocalProducts =
+        pref.getStringList('favouriteLocalProducts')!.toSet();
   }
 
   SystemChrome.setSystemUIOverlayStyle(

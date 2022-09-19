@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/IndividualPageService.dart';
 
@@ -157,24 +158,25 @@ class ObjectAfterClick extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(
                               top: 30, left: 30, right: 30),
-                          child: Text(list.long_description),
+                          child: Text(list.description),
                         ),
                         Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
                           height: MediaQuery.of(context).size.height * 0.7,
                           alignment: Alignment.center,
                           child: ClipRect(
-                            child: PhotoView(
-                              maxScale: 1.0,
-                              backgroundDecoration: const BoxDecoration(
-                                  color: Colors.transparent),
-                              loadingBuilder: (context, event) => const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.image_not_supported_outlined,
-                                      size: 40),
-                              imageProvider: NetworkImage(
-                                "https://ajlrimlsmg.cfolks.pl/Objects/Menu/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                            child: PinchZoom(
+                              maxScale: 2.0,
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://ajlrimlsmg.cfolks.pl/Objects/Menu/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                                errorWidget: (context, url, error) =>
+                                    const Icon(
+                                        Icons.image_not_supported_outlined,
+                                        size: 40),
+                                // errorBuilder: (context, error, stackTrace) =>
+                                //     const Icon(Icons.image_not_supported_outlined, size: 40),
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),

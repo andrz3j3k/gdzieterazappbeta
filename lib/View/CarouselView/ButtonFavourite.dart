@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeText.dart';
 import 'package:travelon/ScaffoldStyle.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FavouriteButton extends StatefulWidget {
   const FavouriteButton(
@@ -20,111 +21,38 @@ class FavouriteButton extends StatefulWidget {
 class _FavouriteButtonState extends State<FavouriteButton> {
   final Map<String, IconData> icons = {
     'favourite': Icons.grade,
+    'web': Icons.web,
+    'phone': Icons.phone,
   };
-  saveRestaurant(List<String> list) async {
-    final pref = await SharedPreferences.getInstance();
-    pref.setStringList('favouriteRestaurant', list);
-  }
-
-  saveCafe(List<String> list) async {
-    final pref = await SharedPreferences.getInstance();
-
-    pref.setStringList('favouriteMonuments', list);
-  }
-
-  saveBar(List<String> list) async {
-    final pref = await SharedPreferences.getInstance();
-
-    pref.setStringList('favouriteMonuments', list);
-  }
-
-  saveAttractions(List<String> list) async {
-    final pref = await SharedPreferences.getInstance();
-
-    pref.setStringList('favouriteMonuments', list);
-  }
-
-  saveLocalProducts(List<String> list) async {
-    final pref = await SharedPreferences.getInstance();
-
-    pref.setStringList('favouriteMonuments', list);
-  }
 
   ChangeText ct = ChangeText();
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {
-        setState(() {
-          if (list.contains(widget.list[widget.index].name)) {
-            switch (ct.text) {
-              case 'Restauracje':
-                {
-                  favouriteListRestaurant
-                      .remove(widget.list[widget.index].name);
-                  saveRestaurant(list.toList().cast());
-                  break;
-                }
-              case 'Kawiarnie':
-                {
-                  favouriteListMonuments.remove(widget.list[widget.index].name);
-                  saveCafe(list.toList().cast());
-                  break;
-                }
-              case 'Bary':
-                {
-                  favouriteListMonuments.remove(widget.list[widget.index].name);
-                  saveCafe(list.toList().cast());
-                  break;
-                }
-              case 'Atrakcje':
-                {
-                  favouriteListMonuments.remove(widget.list[widget.index].name);
-                  saveCafe(list.toList().cast());
-                  break;
-                }
-              case 'Produkty lokalne':
-                {
-                  favouriteListMonuments.remove(widget.list[widget.index].name);
-                  saveCafe(list.toList().cast());
-                  break;
-                }
-            }
-          } else {
-            list.add(widget.list[widget.index].name);
-            switch (ct.text) {
-              case 'Restauracje':
-                saveRestaurant(list.toList().cast());
-                break;
-              case 'Kawiarnie':
-                saveCafe(list.toList().cast());
-                break;
-              case 'Bary':
-                saveRestaurant(list.toList().cast());
-                break;
-              case 'Atrakcje':
-                saveCafe(list.toList().cast());
-                break;
-              case 'Produkty lokalne':
-                saveCafe(list.toList().cast());
-                break;
-            }
-
-            setState(() {});
-          }
-        });
-      },
-      color: list.contains(widget.list[widget.index].name)
-          ? whatIsDarkMode
-              ? themeDark.primaryColor
-              : themeLight.primaryColor
+      onPressed: widget.icon == "favourite"
+          ? favourite
+          : widget.icon == "web"
+              ? web
+              : phone,
+      color: widget.icon == "favourite"
+          ? list.contains(widget.list[widget.index].name)
+              ? whatIsDarkMode
+                  ? themeDark.primaryColor
+                  : themeLight.primaryColor
+              : whatIsDarkMode
+                  ? backgroundColorButtonDark
+                  : Colors.white
           : whatIsDarkMode
               ? backgroundColorButtonDark
               : Colors.white,
-      textColor: list.contains(widget.list[widget.index].name)
-          ? whatIsDarkMode
-              ? universalColor
-              : Colors.white
+      textColor: widget.icon == "favourite"
+          ? list.contains(widget.list[widget.index].name)
+              ? whatIsDarkMode
+                  ? universalColor
+                  : Colors.white
+              : whatIsDarkMode
+                  ? universalColor
+                  : themeLight.primaryColor
           : whatIsDarkMode
               ? universalColor
               : themeLight.primaryColor,
@@ -135,5 +63,79 @@ class _FavouriteButtonState extends State<FavouriteButton> {
         icons[widget.icon],
       ),
     );
+  }
+
+  favourite() {
+    saveGastronomy(List<String> list) async {
+      final pref = await SharedPreferences.getInstance();
+      pref.setStringList('favouriteGastronomy', list);
+    }
+
+    saveAttractions(List<String> list) async {
+      final pref = await SharedPreferences.getInstance();
+
+      pref.setStringList('favouriteAttractions', list);
+    }
+
+    saveLocalProducts(List<String> list) async {
+      final pref = await SharedPreferences.getInstance();
+
+      pref.setStringList('favouriteLocalProducts', list);
+    }
+
+    setState(
+      () {
+        if (list.contains(widget.list[widget.index].name)) {
+          switch (ct.text) {
+            case 'Gastronomia':
+              {
+                favouriteListGastronomy.remove(widget.list[widget.index].name);
+                saveGastronomy(list.toList().cast());
+                break;
+              }
+            case 'Atrakcje':
+              {
+                favouriteListAttractions.remove(widget.list[widget.index].name);
+                saveAttractions(list.toList().cast());
+                break;
+              }
+            case 'Produkty lokalne':
+              {
+                favouriteListLocalProducts
+                    .remove(widget.list[widget.index].name);
+                saveLocalProducts(list.toList().cast());
+                break;
+              }
+          }
+        } else {
+          list.add(widget.list[widget.index].name);
+          switch (ct.text) {
+            case 'Gastronomia':
+              saveGastronomy(list.toList().cast());
+              break;
+
+            case 'Atrakcje':
+              saveAttractions(list.toList().cast());
+              break;
+            case 'Produkty lokalne':
+              saveLocalProducts(list.toList().cast());
+              break;
+          }
+
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  web() async {
+    var uri = Uri.parse(widget.list[widget.index].www);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  phone() {
+    launchUrl(Uri.parse("tel: ${widget.list[widget.index].numberPhone}"));
   }
 }

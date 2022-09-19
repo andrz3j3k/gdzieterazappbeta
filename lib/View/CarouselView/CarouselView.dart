@@ -108,7 +108,7 @@ class WidgetCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ObjectAfterClick(
-                    id: list[index].id,
+                    id: list[index].idobject,
                   ),
                 ),
               );
@@ -135,9 +135,16 @@ class WidgetCard extends StatelessWidget {
                 ),
               ),
             ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            returnButtonTel(),
+            returnButtonWeb(),
             Container(
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.only(top: 15, right: 20),
+              alignment: Alignment.bottomRight,
+              padding: const EdgeInsets.only(top: 5, right: 10),
               child: FavouriteButton(
                 icon: "favourite",
                 list: list,
@@ -148,5 +155,37 @@ class WidgetCard extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  returnButtonWeb() {
+    if (list[index].www != "") {
+      return Container(
+        alignment: Alignment.bottomRight,
+        padding: const EdgeInsets.only(top: 5, right: 10),
+        child: FavouriteButton(
+          icon: "web",
+          list: list,
+          index: index,
+        ),
+      );
+    } else {
+      return const Text('');
+    }
+  }
+
+  returnButtonTel() {
+    if (list[index].numberPhone != "") {
+      return Container(
+        alignment: Alignment.bottomRight,
+        padding: const EdgeInsets.only(top: 5, right: 10),
+        child: FavouriteButton(
+          icon: "phone",
+          list: list,
+          index: index,
+        ),
+      );
+    } else {
+      return const Text('');
+    }
   }
 }

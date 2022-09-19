@@ -19,15 +19,11 @@ Future<List<CarouselView>> fetchCarouselView() async {
 
 returnNameBase() {
   switch (ChangeText().text) {
-    case 'Restauracje':
-      return "Restaurant";
-    case 'Kawiarnie':
-      return "Cafe";
-    case 'Bary':
-      return "Bar";
+    case 'Gastronomia':
+      return "Gastronomy";
     case 'Atrakcje':
       return "Attractions";
     case 'Produkty lokalne':
-      return "LocalProducts";
+      return 'LocalProducts';
   }
 }

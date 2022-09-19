@@ -1,12 +1,10 @@
-Set favouriteListRestaurant = {};
-
-Set favouriteListMonuments = {};
-Set list = favouriteListRestaurant;
+Set favouriteListGastronomy = {};
+Set favouriteListAttractions = {};
+Set favouriteListLocalProducts = {};
+Set list = favouriteListGastronomy;
 
 List<String> kOptions = <String>[
-  'Restauracje',
+  'Gastronomia',
   'Atrakcje',
-  'Bary',
-  'Kawiarnie',
   'Produkty lokalne',
 ];
