@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/View/CarouselView/CarouselView.dart';
@@ -5,11 +7,13 @@ import 'package:travelon/View/CityMap/CityMap.dart';
 import 'package:travelon/View/MainPage/FavouritePlace.dart';
 import 'package:travelon/View/MainPage/ListEvents.dart';
 import 'package:travelon/View/OtherOptions/OtherOptions.dart';
+import '../../Models/MainPageModel/MainText.dart';
 import '../MiniGame/MiniGame.dart';
 import 'ListAttractionFavourite.dart';
 import 'ButtonSearch.dart';
 import 'package:travelon/Models/MainModel.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:http/http.dart' as http;
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -107,6 +111,19 @@ class MainPageApp extends StatefulWidget {
   State<MainPageApp> createState() => _MainPageAppState();
 }
 
+Future<MainText> fetchtext() async {
+  //pobranie strony WWW
+  final response = await http.post(
+    Uri.parse('https://ajlrimlsmg.cfolks.pl/maindisplaytext.php'),
+    body: {
+      "id": "1",
+    },
+  );
+
+  // Use the compute function to run parsePhotos in a separate isolate.
+  return MainText.fromJson(jsonDecode(response.body));
+}
+
 class _MainPageAppState extends State<MainPageApp> {
   @override
   Widget build(BuildContext context) {
@@ -116,15 +133,38 @@ class _MainPageAppState extends State<MainPageApp> {
       children: [
         Container(
           padding: topPadding,
-          margin: EdgeInsets.only(top: 20),
-          child: AutoSizeText(
-            'Witaj w Trip & Travel',
-            style: TextStyle(
-              fontSize: 35,
-              color: whatIsDarkMode ? titleTextColor : themeLight.primaryColor,
-            ),
-            minFontSize: 20,
-            maxLines: 1,
+          margin: const EdgeInsets.only(top: 20, left: 30, right: 30),
+          child: FutureBuilder(
+            future: fetchtext(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return AutoSizeText(
+                  "Witamy ponownie!",
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: whatIsDarkMode
+                        ? titleTextColor
+                        : themeLight.primaryColor,
+                  ),
+                  minFontSize: 15,
+                  maxLines: 1,
+                );
+              } else if (snapshot.hasData) {
+                return AutoSizeText(
+                  snapshot.data!.text,
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: whatIsDarkMode
+                        ? titleTextColor
+                        : themeLight.primaryColor,
+                  ),
+                  minFontSize: 15,
+                  maxLines: 1,
+                );
+              } else {
+                return Container();
+              }
+            },
           ),
         ),
         Container(

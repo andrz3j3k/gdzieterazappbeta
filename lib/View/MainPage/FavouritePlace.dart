@@ -11,7 +11,9 @@ class FavouritePlace extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Text(
-        'Twoje ulubione ${context.watch<ChangeText>().text}',
+        context.watch<ChangeText>().text == "Gastronomia"
+            ? 'Twoja ulubiona ${context.watch<ChangeText>().text}'
+            : 'Twoje ulubione ${context.watch<ChangeText>().text}',
         style: TextStyle(
           fontSize: 20,
           color: whatIsDarkMode ? darkColorText : lightColorTextGrey,
