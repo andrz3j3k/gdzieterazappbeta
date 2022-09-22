@@ -4,15 +4,20 @@ import 'dart:convert';
 class MapData {
   final String id;
   final String name;
-
   final String x;
   final String y;
+  final String www;
+  final String numberPhone;
+  final String route;
 
   const MapData({
     required this.id,
     required this.name,
     required this.x,
     required this.y,
+    required this.www,
+    required this.numberPhone,
+    required this.route,
   });
 
   factory MapData.fromJson(Map<String, dynamic> json) {
@@ -21,6 +26,9 @@ class MapData {
       name: json['name'] as String,
       x: json['x'] as String,
       y: json['y'] as String,
+      www: json['www'] as String,
+      numberPhone: json['numberPhone'] as String,
+      route: json['route'] as String,
     );
   }
 }

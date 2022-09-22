@@ -32,7 +32,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
         );
       },
     );
-    getMarker();
+    getMarker(context);
     super.initState();
   }
 
