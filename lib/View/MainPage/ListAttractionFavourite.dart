@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
@@ -150,10 +150,9 @@ class ListElements extends StatelessWidget {
                                 child: SizedBox(
                                   width: 100,
                                   height: 100,
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        "https://ajlrimlsmg.cfolks.pl/Objects/Logo/${list.elementAt(index).toLowerCase().replaceAll(" ", "")}.jpeg",
-                                    errorWidget: (context, url, error) =>
+                                  child: Image.network(
+                                    "https://ajlrimlsmg.cfolks.pl/Objects/Logo/${list.elementAt(index).toLowerCase().replaceAll(" ", "")}.jpeg",
+                                    errorBuilder: (context, url, error) =>
                                         const Icon(
                                             Icons.image_not_supported_outlined,
                                             size: 40),

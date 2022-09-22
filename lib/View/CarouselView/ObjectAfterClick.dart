@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:photo_view/photo_view.dart';
@@ -65,10 +64,9 @@ class ObjectAfterClick extends StatelessWidget {
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(40),
                                 bottomRight: Radius.circular(40)),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                              errorWidget: (context, url, error) => const Icon(
+                            child: Image.network(
+                              "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                              errorBuilder: (context, url, error) => const Icon(
                                 Icons.image_not_supported_outlined,
                                 size: 40,
                               ),
@@ -157,26 +155,31 @@ class ObjectAfterClick extends StatelessWidget {
                       children: [
                         Container(
                           margin: const EdgeInsets.only(
-                              top: 30, left: 30, right: 30),
+                              top: 30, left: 30, right: 30, bottom: 20),
                           child: Text(list.description),
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
-                          height: MediaQuery.of(context).size.height * 0.7,
-                          alignment: Alignment.center,
-                          child: ClipRect(
-                            child: PinchZoom(
-                              maxScale: 2.0,
-                              child: CachedNetworkImage(
-                                imageUrl:
+                        AspectRatio(
+                          aspectRatio: 9 / 16,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            height: MediaQuery.of(context).size.height * 0.7,
+                            alignment: Alignment.center,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: PinchZoom(
+                                maxScale: 2.0,
+                                child: SizedBox.fromSize(
+                                  child: Image.network(
                                     "https://ajlrimlsmg.cfolks.pl/Objects/Menu/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                                errorWidget: (context, url, error) =>
-                                    const Icon(
-                                        Icons.image_not_supported_outlined,
-                                        size: 40),
-                                // errorBuilder: (context, error, stackTrace) =>
-                                //     const Icon(Icons.image_not_supported_outlined, size: 40),
-                                fit: BoxFit.fill,
+                                    errorBuilder: (context, url, error) =>
+                                        const Icon(
+                                            Icons.image_not_supported_outlined,
+                                            size: 40),
+                                    // errorBuilder: (context, error, stackTrace) =>
+                                    //     const Icon(Icons.image_not_supported_outlined, size: 40),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                               ),
                             ),
                           ),

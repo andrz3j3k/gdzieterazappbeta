@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:travelon/ScaffoldStyle.dart';
@@ -93,13 +93,12 @@ class MyEvents extends StatelessWidget {
                 fit: StackFit.expand,
                 children: list.isNotEmpty
                     ? [
-                        CachedNetworkImage(
-                          imageUrl:
-                              "https://ajlrimlsmg.cfolks.pl/Events/MainPhoto/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                          errorWidget: (context, url, error) => const Icon(
+                        Image.network(
+                          "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                          errorBuilder: (context, url, error) => const Icon(
                               Icons.image_not_supported_outlined,
                               size: 40),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,

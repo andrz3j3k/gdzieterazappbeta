@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/AttractionService.dart';
@@ -93,10 +93,9 @@ class WidgetCard extends StatelessWidget {
           child: GestureDetector(
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(40)),
-              child: CachedNetworkImage(
-                imageUrl:
-                    "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                errorWidget: (context, url, error) =>
+              child: Image.network(
+                "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                errorBuilder: (context, url, error) =>
                     const Icon(Icons.image_not_supported_outlined, size: 40),
                 // errorBuilder: (context, error, stackTrace) =>
                 //     const Icon(Icons.image_not_supported_outlined, size: 40),
