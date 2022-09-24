@@ -85,72 +85,80 @@ class WidgetCard extends StatelessWidget {
     var topPadding = MediaQuery.of(context).viewPadding;
     return Column(
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.7,
-          width: double.infinity,
-          padding:
-              topPadding + const EdgeInsets.only(top: 30, left: 20, right: 20),
-          child: GestureDetector(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(40)),
-              child: Image.network(
-                "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                errorBuilder: (context, url, error) =>
-                    const Icon(Icons.image_not_supported_outlined, size: 40),
-                // errorBuilder: (context, error, stackTrace) =>
-                //     const Icon(Icons.image_not_supported_outlined, size: 40),
-                fit: BoxFit.fill,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ObjectAfterClick(
-                    id: list[index].idobject,
-                  ),
+        AspectRatio(
+          aspectRatio: 2 / 3,
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            width: double.infinity,
+            padding: topPadding +
+                const EdgeInsets.only(top: 30, left: 20, right: 20),
+            child: GestureDetector(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(40)),
+                child: Image.network(
+                  "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                  errorBuilder: (context, url, error) =>
+                      const Icon(Icons.image_not_supported_outlined, size: 40),
+                  // errorBuilder: (context, error, stackTrace) =>
+                  //     const Icon(Icons.image_not_supported_outlined, size: 40),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ObjectAfterClick(
+                      id: list[index].idobject,
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
-        Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(top: 10, left: 10),
-              child: ListTile(
-                title: AutoSizeText(
-                  list[index].name,
-                  minFontSize: 20.0,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: whatIsDarkMode ? universalColor : textBlack),
-                ),
-                subtitle: Text(
-                  'ul. ${list[index].street}',
-                  style: TextStyle(
-                    color: textBlack2,
+        Expanded(
+          child: Stack(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(top: 10, left: 10),
+                child: ListTile(
+                  title: AutoSizeText(
+                    list[index].name,
+                    minFontSize: 20.0,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: whatIsDarkMode ? universalColor : textBlack),
+                  ),
+                  subtitle: Text(
+                    'ul. ${list[index].street}',
+                    style: TextStyle(
+                      color: textBlack2,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            returnButtonTel(),
-            returnButtonWeb(),
-            Container(
-              alignment: Alignment.bottomRight,
-              padding: const EdgeInsets.only(top: 5, right: 10),
-              child: FavouriteButton(
-                icon: "favourite",
-                list: list,
-                index: index,
+        Container(
+          margin: EdgeInsets.only(bottom: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              returnButtonTel(),
+              returnButtonWeb(),
+              Container(
+                alignment: Alignment.bottomRight,
+                padding: const EdgeInsets.only(top: 5, right: 10),
+                child: FavouriteButton(
+                  icon: "favourite",
+                  list: list,
+                  index: index,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

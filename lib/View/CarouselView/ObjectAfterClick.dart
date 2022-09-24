@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/IndividualPageService.dart';
+import 'package:travelon/View/CarouselView/Page.dart';
 
 class ObjectAfterClick extends StatelessWidget {
   const ObjectAfterClick({Key? key, required this.id}) : super(key: key);
@@ -48,147 +47,8 @@ class ObjectAfterClick extends StatelessWidget {
             );
           } else if (snapshot.hasData) {
             var list = snapshot.data!;
-            return Column(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Material(
-                    elevation: 7,
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40)),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40)),
-                            child: Image.network(
-                              "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                              errorBuilder: (context, url, error) => const Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 40,
-                              ),
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: double.infinity,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20, top: 55),
-                            child: MaterialButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              color: whatIsDarkMode
-                                  ? backgroundColorButtonDark
-                                  : Colors.white,
-                              padding: const EdgeInsets.all(8),
-                              shape: const CircleBorder(),
-                              minWidth: 1,
-                              child: Icon(
-                                Icons.arrow_back_rounded,
-                                color: whatIsDarkMode
-                                    ? universalColor
-                                    : themeLight.primaryColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(40),
-                              bottomRight: Radius.circular(40)),
-                          child: Container(
-                            height: double.infinity,
-                            width: double.infinity,
-                            margin: const EdgeInsets.only(top: 100),
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              stops: const [0.25, 0.5, 0.75, 1],
-                              colors: whatIsDarkMode
-                                  ? [
-                                      themeDark.primaryColor.withAlpha(250),
-                                      themeDark.primaryColor.withAlpha(180),
-                                      themeDark.primaryColor.withAlpha(50),
-                                      Colors.transparent
-                                    ]
-                                  : [
-                                      themeLight.primaryColor.withAlpha(250),
-                                      themeLight.primaryColor.withAlpha(180),
-                                      themeLight.primaryColor.withAlpha(50),
-                                      Colors.transparent
-                                    ],
-                            )),
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 45, bottom: 10),
-                                child: Text(
-                                  list.name,
-                                  style: TextStyle(
-                                      color: whatIsDarkMode
-                                          ? universalColor
-                                          : Colors.white,
-                                      fontSize: 26),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                              top: 30, left: 30, right: 30, bottom: 20),
-                          child: Text(list.description),
-                        ),
-                        AspectRatio(
-                          aspectRatio: 9 / 16,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 20),
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            alignment: Alignment.center,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: PinchZoom(
-                                maxScale: 2.0,
-                                child: SizedBox.fromSize(
-                                  child: Image.network(
-                                    "https://ajlrimlsmg.cfolks.pl/Objects/Menu/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                                    errorBuilder: (context, url, error) =>
-                                        const Icon(
-                                            Icons.image_not_supported_outlined,
-                                            size: 40),
-                                    // errorBuilder: (context, error, stackTrace) =>
-                                    //     const Icon(Icons.image_not_supported_outlined, size: 40),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
+            return ListPage(
+              list: list,
             );
           } else {
             return const Center(

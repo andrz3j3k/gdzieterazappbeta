@@ -68,99 +68,96 @@ class PhotoAndText extends StatelessWidget {
       children: [
         Expanded(
           flex: 2,
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Material(
-              elevation: 7,
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40)),
-              child: Stack(
-                children: [
-                  SizedBox(
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(40),
-                          bottomRight: Radius.circular(40)),
-                      child: Image.network(
-                        "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                        errorBuilder: (context, url, error) => const Icon(
-                            Icons.image_not_supported_outlined,
-                            size: 40),
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 55),
-                      child: MaterialButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: whatIsDarkMode
-                            ? backgroundColorButtonDark
-                            : Colors.white,
-                        padding: const EdgeInsets.all(8),
-                        shape: const CircleBorder(),
-                        minWidth: 1,
-                        child: Icon(
-                          Icons.arrow_back_rounded,
-                          color: whatIsDarkMode
-                              ? universalColor
-                              : themeLight.primaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  ClipRRect(
+          child: Material(
+            elevation: 7,
+            borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30)),
+            child: Stack(
+              children: [
+                SizedBox(
+                  child: ClipRRect(
                     borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40)),
-                    child: Container(
-                      height: double.infinity,
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30)),
+                    child: Image.network(
+                      "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                      errorBuilder: (context, url, error) => const Icon(
+                          Icons.image_not_supported_outlined,
+                          size: 40),
+                      fit: BoxFit.cover,
                       width: double.infinity,
-                      margin: const EdgeInsets.only(top: 100),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          stops: const [0.25, 0.5, 0.75, 1],
-                          colors: whatIsDarkMode
-                              ? [
-                                  themeDark.primaryColor.withAlpha(250),
-                                  themeDark.primaryColor.withAlpha(180),
-                                  themeDark.primaryColor.withAlpha(50),
-                                  Colors.transparent
-                                ]
-                              : [
-                                  themeLight.primaryColor.withAlpha(250),
-                                  themeLight.primaryColor.withAlpha(180),
-                                  themeLight.primaryColor.withAlpha(50),
-                                  Colors.transparent
-                                ],
-                        ),
+                      height: double.infinity,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 55),
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      color: whatIsDarkMode
+                          ? backgroundColorButtonDark
+                          : Colors.white,
+                      padding: const EdgeInsets.all(8),
+                      shape: const CircleBorder(),
+                      minWidth: 1,
+                      child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: whatIsDarkMode
+                            ? universalColor
+                            : themeLight.primaryColor,
                       ),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 45, bottom: 10),
-                          child: Text(
-                            event.name,
-                            style: TextStyle(
-                              color: universalColor,
-                              fontSize: 26,
-                            ),
+                    ),
+                  ),
+                ),
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30)),
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    margin: const EdgeInsets.only(top: 100),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        stops: const [0.25, 0.5, 0.75, 1],
+                        colors: whatIsDarkMode
+                            ? [
+                                themeDark.primaryColor.withAlpha(250),
+                                themeDark.primaryColor.withAlpha(180),
+                                themeDark.primaryColor.withAlpha(50),
+                                Colors.transparent
+                              ]
+                            : [
+                                themeLight.primaryColor.withAlpha(250),
+                                themeLight.primaryColor.withAlpha(180),
+                                themeLight.primaryColor.withAlpha(50),
+                                Colors.transparent
+                              ],
+                      ),
+                    ),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 45, bottom: 10),
+                        child: Text(
+                          event.name,
+                          style: TextStyle(
+                            color: universalColor,
+                            fontSize: 26,
                           ),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -185,10 +182,7 @@ class PhotoAndText extends StatelessWidget {
 
 changePage(event) {
   List<Widget> list = [
-    Container(
-      margin: const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 30),
-      child: Text(event.long_description),
-    ),
+    TextWidget(event: event),
     Photo(
       event: event,
     ),
@@ -199,6 +193,18 @@ changePage(event) {
     return Column(children: [list[1]]);
   } else {
     return Column(children: [list[0], list[1]]);
+  }
+}
+
+class TextWidget extends StatelessWidget {
+  TextWidget({super.key, required this.event});
+  var event;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 30),
+      child: Text(event.long_description),
+    );
   }
 }
 
