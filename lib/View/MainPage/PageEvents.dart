@@ -213,15 +213,18 @@ class Photo extends StatelessWidget {
   final event;
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: SizedBox.fromSize(
-        child: Image.network(
-          "https://ajlrimlsmg.cfolks.pl/Events/MainPhoto/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-          errorBuilder: (context, url, error) =>
-              const Icon(Icons.image_not_supported_outlined, size: 40),
-          fit: BoxFit.cover,
-          width: double.infinity,
+    return AspectRatio(
+      aspectRatio: 9 / 16,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: SizedBox.fromSize(
+          child: Image.network(
+            "https://ajlrimlsmg.cfolks.pl/Events/MainPhoto/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+            errorBuilder: (context, url, error) =>
+                const Icon(Icons.image_not_supported_outlined, size: 40),
+            fit: BoxFit.cover,
+            width: double.infinity,
+          ),
         ),
       ),
     );

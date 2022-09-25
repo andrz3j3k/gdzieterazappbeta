@@ -85,36 +85,33 @@ class WidgetCard extends StatelessWidget {
     var topPadding = MediaQuery.of(context).viewPadding;
     return Column(
       children: [
-        AspectRatio(
-          aspectRatio: 2 / 3,
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: double.infinity,
-            padding: topPadding +
-                const EdgeInsets.only(top: 30, left: 20, right: 20),
-            child: GestureDetector(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
-                child: Image.network(
-                  "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
-                  errorBuilder: (context, url, error) =>
-                      const Icon(Icons.image_not_supported_outlined, size: 40),
-                  // errorBuilder: (context, error, stackTrace) =>
-                  //     const Icon(Icons.image_not_supported_outlined, size: 40),
-                  fit: BoxFit.fill,
-                ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: double.infinity,
+          padding:
+              topPadding + const EdgeInsets.only(top: 30, left: 20, right: 20),
+          child: GestureDetector(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(40)),
+              child: Image.network(
+                "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                errorBuilder: (context, url, error) =>
+                    const Icon(Icons.image_not_supported_outlined, size: 40),
+                // errorBuilder: (context, error, stackTrace) =>
+                //     const Icon(Icons.image_not_supported_outlined, size: 40),
+                fit: BoxFit.fill,
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ObjectAfterClick(
-                      id: list[index].idobject,
-                    ),
-                  ),
-                );
-              },
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ObjectAfterClick(
+                    id: list[index].idobject,
+                  ),
+                ),
+              );
+            },
           ),
         ),
         Expanded(
