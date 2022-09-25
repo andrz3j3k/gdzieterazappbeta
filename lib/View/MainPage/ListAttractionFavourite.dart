@@ -107,6 +107,7 @@ class ListElements extends StatelessWidget {
             ),
           )
         : ListView.builder(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: list.isEmpty ? 10 : list.length,
             itemBuilder: (context, index) {

@@ -110,6 +110,7 @@ class ListPage extends StatelessWidget {
         Expanded(
           flex: 5,
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
             child: ListBody(
               children: [
@@ -234,6 +235,7 @@ class MyMenu extends StatelessWidget {
         } else if (snapshot.hasData) {
           var data = snapshot.data!;
           return ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: data.length,
             itemBuilder: (context, index) {
               return Container(
@@ -286,6 +288,7 @@ class CarouselPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: int.parse(length),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {

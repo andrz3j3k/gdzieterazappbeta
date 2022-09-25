@@ -164,6 +164,7 @@ class PhotoAndText extends StatelessWidget {
         Expanded(
           flex: 5,
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
             child: Container(
               margin: const EdgeInsets.only(left: 30, right: 30, top: 20),

@@ -62,6 +62,7 @@ class PageViewBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: list.length,
       itemBuilder: (context, index) {
         return WidgetCard(

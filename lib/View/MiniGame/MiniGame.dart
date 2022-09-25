@@ -65,6 +65,7 @@ class MyAds extends StatelessWidget {
             ),
           )
         : ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: list.length,
             itemBuilder: (context, index) {
               return Center(

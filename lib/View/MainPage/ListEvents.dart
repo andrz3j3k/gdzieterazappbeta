@@ -47,6 +47,7 @@ class MyEventsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.only(top: 10),
       shrinkWrap: true,
       itemCount: list.isEmpty ? 1 : list.length,
