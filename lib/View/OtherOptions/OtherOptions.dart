@@ -1,3 +1,5 @@
+import 'package:travelon/View/OtherOptions/PageInfo.dart';
+
 import 'OptionOnClick.dart';
 import 'OptionThemeMode.dart';
 import 'Search.dart';
@@ -17,22 +19,30 @@ class _OtherOptions extends State<OtherOptions> {
     return Container(
       padding: topPadding + const EdgeInsets.only(left: 25, top: 25),
       child: Column(
-        children: const [
-          Categories(categorie: 'Wybierz miasto'),
-          Search(),
-          Categories(categorie: 'Wygląd'),
-          OptionThemeMode(
+        children: [
+          const Categories(categorie: 'Wybierz miasto'),
+          const Search(),
+          const Categories(categorie: 'Wygląd'),
+          const OptionThemeMode(
             title: 'Tryb ciemny',
             subtitle: 'Switch',
           ),
-          Categories(categorie: 'Informacje prawne'),
+          const Categories(categorie: 'Informacje prawne'),
           OptionOnClick(
             title: 'Regulamin',
+            function: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const RegulationsInfo(),
+                ),
+              );
+            },
           ),
-          Categories(categorie: 'Kontakt'),
-          OptionOnClick(
-            title: 'Kontakt',
-          ),
+          const Categories(categorie: 'Kontakt'),
+          // OptionOnClick(
+          //   title: 'Kontakt',
+          // ),
         ],
       ),
     );

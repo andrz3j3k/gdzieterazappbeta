@@ -5,6 +5,7 @@ class IndividualPage {
   final String description;
   final String elections;
   final String length;
+  final String id_view_menu;
 
   const IndividualPage({
     required this.id,
@@ -12,6 +13,7 @@ class IndividualPage {
     required this.description,
     required this.elections,
     required this.length,
+    required this.id_view_menu,
   });
 
   factory IndividualPage.fromJson(Map<String, dynamic> json) {
@@ -21,6 +23,7 @@ class IndividualPage {
       description: json['description'] as String,
       elections: json['elections'] as String,
       length: json['length'] as String,
+      id_view_menu: json['id_view_menu'] as String,
     );
   }
 }
