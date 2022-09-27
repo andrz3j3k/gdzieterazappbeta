@@ -23,6 +23,7 @@ class _FavouriteButtonState extends State<FavouriteButton> {
     'favourite': Icons.grade,
     'web': Icons.web,
     'phone': Icons.phone,
+    'info': Icons.info_outline,
   };
 
   ChangeText ct = ChangeText();
@@ -33,7 +34,9 @@ class _FavouriteButtonState extends State<FavouriteButton> {
           ? favourite
           : widget.icon == "web"
               ? web
-              : phone,
+              : widget.icon == "phone"
+                  ? phone
+                  : info,
       color: widget.icon == "favourite"
           ? list.contains(widget.list[widget.index].name)
               ? whatIsDarkMode
@@ -86,6 +89,20 @@ class _FavouriteButtonState extends State<FavouriteButton> {
     setState(
       () {
         if (list.contains(widget.list[widget.index].name)) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: const Duration(seconds: 1),
+              backgroundColor: whatIsDarkMode
+                  ? themeDark.primaryColor
+                  : themeLight.primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                "Usunięte z ulubionych: ${widget.list[widget.index].name}",
+              ),
+            ),
+          );
           switch (ct.text) {
             case 'Gastronomia':
               {
@@ -108,6 +125,21 @@ class _FavouriteButtonState extends State<FavouriteButton> {
               }
           }
         } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: whatIsDarkMode
+                  ? themeDark.primaryColor
+                  : themeLight.primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(seconds: 1),
+              content: Text(
+                "Dodane do ulubionych: ${widget.list[widget.index].name}",
+              ),
+            ),
+          );
+
           list.add(widget.list[widget.index].name);
           switch (ct.text) {
             case 'Gastronomia':
@@ -137,5 +169,77 @@ class _FavouriteButtonState extends State<FavouriteButton> {
 
   phone() {
     launchUrl(Uri.parse("tel: ${widget.list[widget.index].numberPhone}"));
+  }
+
+  info() {
+    showModalBottomSheet(
+      context: context,
+      barrierColor: Colors.transparent,
+      backgroundColor: whatIsDarkMode
+          ? themeDark.scaffoldBackgroundColor
+          : themeLight.scaffoldBackgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      builder: (context) {
+        return ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.25,
+            color: whatIsDarkMode
+                ? themeDark.primaryColor
+                : themeLight.primaryColor,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      margin: const EdgeInsets.only(top: 5, bottom: 5),
+                      child: const Text(
+                        "Godziny otwarcia:",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  InfoText(day: 'pon:', time: returnTime(0)),
+                  InfoText(day: 'wt:', time: returnTime(1)),
+                  InfoText(day: 'śr:', time: returnTime(2)),
+                  InfoText(day: 'czw:', time: returnTime(3)),
+                  InfoText(day: 'pt:', time: returnTime(4)),
+                  InfoText(day: 'sob:', time: returnTime(5)),
+                  InfoText(day: 'nd:', time: returnTime(6)),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  returnTime(day) {
+    var listDatabase = widget.list[widget.index].time;
+    List<String> listTime;
+
+    listTime = listDatabase.split(';');
+    if (day > listTime.length - 1 || listTime.first == "") {
+      return "Nieczynne";
+    } else {
+      return listTime[day];
+    }
+  }
+}
+
+class InfoText extends StatelessWidget {
+  InfoText({super.key, required this.day, required this.time});
+  String day, time;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "$day $time",
+      style: TextStyle(color: Colors.white),
+    );
   }
 }

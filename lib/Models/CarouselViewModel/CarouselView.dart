@@ -8,6 +8,7 @@ class CarouselView {
   final String street;
   final String numberPhone;
   final String www;
+  final String time;
 
   const CarouselView({
     required this.idobject,
@@ -16,6 +17,7 @@ class CarouselView {
     required this.street,
     required this.numberPhone,
     required this.www,
+    required this.time,
   });
 
   factory CarouselView.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class CarouselView {
       street: json['street'] as String,
       numberPhone: json['numberPhone'] as String,
       www: json['www'] as String,
+      time: json['time'] as String,
     );
   }
 }

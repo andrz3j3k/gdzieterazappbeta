@@ -127,24 +127,27 @@ getMarker(context) {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 80, bottom: 20),
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: ButtonButtomSheet(
-                            icon: const Icon(
-                              Icons.web,
-                              size: 30,
+                      listLocation[i].www == ""
+                          ? const Text('')
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 80, bottom: 20),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
+                                child: ButtonButtomSheet(
+                                  icon: const Icon(
+                                    Icons.web,
+                                    size: 30,
+                                  ),
+                                  function: () async {
+                                    var uri = Uri.parse(listLocation[i].www);
+                                    if (await canLaunchUrl(uri)) {
+                                      await launchUrl(uri);
+                                    }
+                                  },
+                                ),
+                              ),
                             ),
-                            function: () async {
-                              var uri = Uri.parse(listLocation[i].www);
-                              if (await canLaunchUrl(uri)) {
-                                await launchUrl(uri);
-                              }
-                            },
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),

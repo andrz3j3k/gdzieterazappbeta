@@ -150,6 +150,15 @@ class WidgetCard extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 padding: const EdgeInsets.only(top: 5, right: 10),
                 child: FavouriteButton(
+                  icon: "info",
+                  list: list,
+                  index: index,
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomRight,
+                padding: const EdgeInsets.only(top: 5, right: 10),
+                child: FavouriteButton(
                   icon: "favourite",
                   list: list,
                   index: index,

@@ -1,4 +1,6 @@
+import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/View/OtherOptions/PageInfo.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'OptionOnClick.dart';
 import 'OptionThemeMode.dart';
@@ -25,7 +27,7 @@ class _OtherOptions extends State<OtherOptions> {
           const Categories(categorie: 'Wygląd'),
           const OptionThemeMode(
             title: 'Tryb ciemny',
-            subtitle: 'Switch',
+            subtitle: 'Przełącz pomiędzy trybem jasnym, a ciemnym.',
           ),
           const Categories(categorie: 'Informacje prawne'),
           OptionOnClick(
@@ -39,7 +41,7 @@ class _OtherOptions extends State<OtherOptions> {
               );
             },
           ),
-          const Categories(categorie: 'Kontakt'),
+
           // OptionOnClick(
           //   title: 'Kontakt',
           // ),
