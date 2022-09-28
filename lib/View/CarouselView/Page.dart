@@ -240,29 +240,102 @@ class MyMenu extends StatelessWidget {
             itemBuilder: (context, index) {
               return Container(
                 margin: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
-                child: Card(
-                  color: whatIsDarkMode
-                      ? themeDark.primaryColor
-                      : themeLight.primaryColor,
-                  child: ListTile(
-                    textColor: Colors.white,
-                    trailing: Text(
-                      '${data[index].price} zł',
-                    ),
-                    title: Text(
-                      data[index].name,
-                      style: const TextStyle(fontSize: 17),
-                    ),
-                    contentPadding:
-                        const EdgeInsets.only(left: 5, right: 20, bottom: 5),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text(
-                        data[index].description,
-                        style: TextStyle(
-                          color: whatIsDarkMode
-                              ? darkColorText
-                              : themeDark.scaffoldBackgroundColor,
+                child: GestureDetector(
+                  onTap: () {
+                    if (int.parse(data[index].count) != 1) {
+                      showModalBottomSheet(
+                        context: context,
+                        barrierColor: Colors.transparent,
+                        backgroundColor: whatIsDarkMode
+                            ? themeDark.scaffoldBackgroundColor
+                            : Colors.white,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30),
+                          ),
+                        ),
+                        builder: (context) {
+                          return ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30)),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              color: whatIsDarkMode
+                                  ? themeDark.scaffoldBackgroundColor
+                                  : Colors.white,
+                              child: Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                child: Center(
+                                    child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: int.parse(data[index].count),
+                                  itemBuilder: (context, index2) {
+                                    return ClipRRect(
+                                      borderRadius: BorderRadius.circular(30),
+                                      child: Container(
+                                        color: whatIsDarkMode
+                                            ? themeDark.primaryColor
+                                            : themeLight.primaryColor,
+                                        child: ListTile(
+                                          title: Text(
+                                            data[index].name,
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          subtitle: Text(
+                                            'Rozmiar: ${returnSize(data, index, int.parse(data[index2].count))}',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          trailing: Text(
+                                            returnPrice(data, index,
+                                                int.parse(data[index2].count)),
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: Card(
+                    color: whatIsDarkMode
+                        ? themeDark.primaryColor
+                        : themeLight.primaryColor,
+                    child: ListTile(
+                      textColor: Colors.white,
+                      trailing: int.parse(data[index].count) == 1
+                          ? Text(
+                              '${returnPrice(data, index, int.parse(data[index].count))} zł',
+                            )
+                          : const Icon(
+                              Icons.arrow_forward_outlined,
+                              color: Colors.white,
+                            ),
+                      title: Text(
+                        data[index].name,
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      contentPadding:
+                          const EdgeInsets.only(left: 5, right: 20, bottom: 5),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text(
+                          data[index].description,
+                          style: TextStyle(
+                            color: whatIsDarkMode
+                                ? darkColorText
+                                : themeDark.scaffoldBackgroundColor,
+                          ),
                         ),
                       ),
                     ),
@@ -278,6 +351,30 @@ class MyMenu extends StatelessWidget {
         }
       },
     );
+  }
+
+  returnPrice(list, index, count) {
+    var listDatabase = list[index].price;
+    List<String> listPrice;
+
+    listPrice = listDatabase.split(';');
+    if (count > listPrice.length || listPrice.first == "") {
+      return "Brak";
+    } else {
+      return listPrice[count - 1];
+    }
+  }
+
+  returnSize(list, index, count) {
+    var listDatabase = list[index].size;
+    List<String> listSize;
+
+    listSize = listDatabase.split(';');
+    if (count > listSize.length - 1 || listSize.first == "") {
+      return "Brak";
+    } else {
+      return listSize[count - 1];
+    }
   }
 }
 

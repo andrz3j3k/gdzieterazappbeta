@@ -5,12 +5,16 @@ class MenuData {
   final String name;
   final String description;
   final String price;
+  final String count;
+  final String size;
 
   const MenuData({
     required this.id,
     required this.name,
     required this.description,
     required this.price,
+    required this.count,
+    required this.size,
   });
 
   factory MenuData.fromJson(Map<String, dynamic> json) {
@@ -19,6 +23,8 @@ class MenuData {
       name: json['name'] as String,
       description: json['description'] as String,
       price: json['price'] as String,
+      count: json['count'] as String,
+      size: json['size'] as String,
     );
   }
 }
