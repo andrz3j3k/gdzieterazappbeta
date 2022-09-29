@@ -6,7 +6,7 @@ import 'package:travelon/Models/CarouselViewModel/IndividualPage.dart';
 
 import 'AttractionService.dart';
 
-Future<IndividualPage> fetchIndividualPageData(id) async {
+Future fetchIndividualPageData(id) async {
   //pobranie strony WWW
   final response = await http.post(
     Uri.parse('https://ajlrimlsmg.cfolks.pl/pageobject.php'),
@@ -17,5 +17,9 @@ Future<IndividualPage> fetchIndividualPageData(id) async {
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.
-  return IndividualPage.fromJson(jsonDecode(response.body));
+  if (returnNameBase() == "Gastronomy" || returnNameBase() == "LocalProducts") {
+    return IndividualPage.fromJson(jsonDecode(response.body));
+  } else {
+    return Attractions.fromJson(jsonDecode(response.body));
+  }
 }

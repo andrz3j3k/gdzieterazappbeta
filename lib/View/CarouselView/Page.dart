@@ -396,6 +396,8 @@ class CarouselPhoto extends StatelessWidget {
             margin: EdgeInsets.only(right: 5, left: 5),
             child: Image.network(
               "https://ajlrimlsmg.cfolks.pl/Objects/PhotoCarouselPageObject/${"${name.toLowerCase().replaceAll(" ", "")}$index.jpeg"}",
+              errorBuilder: (context, url, error) =>
+                  const Icon(Icons.image_not_supported_outlined, size: 40),
               fit: BoxFit.cover,
             ),
           ),
