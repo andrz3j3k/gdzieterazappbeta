@@ -190,7 +190,7 @@ changePage(event) {
   ];
   if (event.page == '2') {
     return Column(children: [list[0]]);
-  } else if (event.page == '2') {
+  } else if (event.page == '3') {
     return Column(children: [list[1]]);
   } else {
     return Column(children: [list[0], list[1]]);

@@ -73,14 +73,16 @@ class MyEvents extends StatelessWidget {
       child: SizedBox(
         child: GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PageEvents(
-                  id: (list[index].id),
+            if (list.isNotEmpty) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PageEvents(
+                    id: (list[index].id),
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           },
           child: Card(
             elevation: 5,
@@ -150,7 +152,13 @@ class MyEvents extends StatelessWidget {
                               ? themeDark.primaryColor
                               : themeLight.primaryColor,
                           child: const Center(
-                              child: Text("Aktualnie brak wydarzeń!")),
+                            child: Text(
+                              "Aktualnie brak wydarzeń!",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         )
                       ],
               ),
