@@ -45,7 +45,7 @@ dependencies:
   shared_preferences: ^2.0.15
   url_launcher: ^6.1.5
   pinch_zoom: ^1.0.0
-
+  flutter_native_splash: ^2.2.10+1
  
 dev_dependencies:
   flutter_test:
@@ -58,6 +58,18 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.10.0
+flutter_native_splash:
+  color: "#E8AA42"
+  color_dark: "#303030"
+  image: assets/splash.png
+  image_dark: assets/splash.png
+
+  android_12:
+    image: assets/splash.png
+    icon_background_color: "#E8AA42"
+    image_dark: assets/splash.png
+    icon_background_color_dark: "#303030"
+
 flutter_icons:
   android: true
   ios: true
