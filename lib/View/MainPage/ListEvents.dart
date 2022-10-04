@@ -155,7 +155,9 @@ class MyEvents extends StatelessWidget {
                             child: Text(
                               "Aktualnie brak wydarzeń!",
                               style: TextStyle(
-                                color: darkColorText,
+                                color: whatIsDarkMode
+                                    ? darkColorText
+                                    : Colors.white,
                               ),
                             ),
                           ),

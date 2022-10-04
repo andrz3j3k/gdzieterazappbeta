@@ -59,10 +59,14 @@ class MyAds extends StatelessWidget {
                   color:
                       whatIsDarkMode ? darkColorText : themeLight.primaryColor,
                 ),
-                const Text(
+                Text(
                   'Aktualnie brak promocji! \n Zajrzyj wkrótce!',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: whatIsDarkMode
+                          ? darkColorText
+                          : themeLight.primaryColor),
                 ),
               ],
             ),

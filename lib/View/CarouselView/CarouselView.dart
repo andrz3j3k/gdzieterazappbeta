@@ -84,11 +84,14 @@ class PageViewBuilder extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 30, right: 30),
-                  child: const Text(
+                  child: Text(
                     textAlign: TextAlign.center,
                     "Aktualnie nic tutaj nie znajdziesz...\nJednak możesz to zmienić zachęcając swoją ulubioną firmę do dołączenia!",
                     style: TextStyle(
                       fontSize: 16,
+                      color: whatIsDarkMode
+                          ? darkColorText
+                          : themeLight.primaryColor,
                     ),
                   ),
                 ),
