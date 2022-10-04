@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/Services/AdsService.dart';
 import 'package:travelon/View/CarouselView/ObjectAfterClick.dart';
 
@@ -51,12 +52,14 @@ class MyAds extends StatelessWidget {
         ? Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(
                   Icons.sentiment_dissatisfied_outlined,
                   size: 50,
+                  color:
+                      whatIsDarkMode ? darkColorText : themeLight.primaryColor,
                 ),
-                Text(
+                const Text(
                   'Aktualnie brak promocji! \n Zajrzyj wkrótce!',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),

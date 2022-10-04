@@ -151,11 +151,11 @@ class MyEvents extends StatelessWidget {
                           color: whatIsDarkMode
                               ? themeDark.primaryColor
                               : themeLight.primaryColor,
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               "Aktualnie brak wydarzeń!",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: darkColorText,
                               ),
                             ),
                           ),

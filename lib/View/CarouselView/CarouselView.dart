@@ -61,16 +61,40 @@ class PageViewBuilder extends StatelessWidget {
   final list;
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      physics: const BouncingScrollPhysics(),
-      itemCount: list.length,
-      itemBuilder: (context, index) {
-        return WidgetCard(
-          list: list,
-          index: index,
-        );
-      },
-    );
+    return list.isNotEmpty
+        ? PageView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return WidgetCard(
+                list: list,
+                index: index,
+              );
+            },
+          )
+        : Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.sentiment_dissatisfied_outlined,
+                  size: 50,
+                  color:
+                      whatIsDarkMode ? darkColorText : themeLight.primaryColor,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 30, right: 30),
+                  child: const Text(
+                    textAlign: TextAlign.center,
+                    "Aktualnie nic tutaj nie znajdziesz...\nJednak możesz to zmienić zachęcając swoją ulubioną firmę do dołączenia!",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }
 
