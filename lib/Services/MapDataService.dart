@@ -9,9 +9,9 @@ import 'AttractionService.dart';
 Future<List<MapData>> fetchMapaData() async {
   //pobranie strony WWW
   final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/mapdata.php'),
+    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/mapdata.php'),
     body: {
-      "nameBase": returnNameBase(),
+      "type": returnType(),
     },
   );
 

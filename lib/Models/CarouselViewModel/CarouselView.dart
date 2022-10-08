@@ -2,33 +2,33 @@ import 'dart:convert';
 
 //wykonywane najpierw
 class CarouselView {
-  final String id;
   final String idobject;
+  final String id_position;
   final String name;
   final String street;
+  final String type;
   final String numberPhone;
   final String www;
-  final String time;
 
   const CarouselView({
     required this.idobject,
-    required this.id,
+    required this.id_position,
     required this.name,
     required this.street,
     required this.numberPhone,
     required this.www,
-    required this.time,
+    required this.type,
   });
 
   factory CarouselView.fromJson(Map<String, dynamic> json) {
     return CarouselView(
       idobject: json['idobject'] as String,
-      id: json['id'] as String,
+      id_position: json['id_position'] as String,
       name: json['name'] as String,
       street: json['street'] as String,
       numberPhone: json['numberPhone'] as String,
       www: json['www'] as String,
-      time: json['time'] as String,
+      type: json['type'] as String,
     );
   }
 }

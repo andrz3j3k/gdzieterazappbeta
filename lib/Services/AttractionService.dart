@@ -7,9 +7,9 @@ import 'package:flutter/foundation.dart';
 Future<List<CarouselView>> fetchCarouselView() async {
   //pobranie strony WWW
   final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/carouselview.php'),
+    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/carouselview.php'),
     body: {
-      "nameBase": returnNameBase(),
+      "type": returnType(),
     },
   );
 
@@ -17,7 +17,7 @@ Future<List<CarouselView>> fetchCarouselView() async {
   return compute(parseCarouselView, response.body);
 }
 
-returnNameBase() {
+returnType() {
   switch (ChangeText().text) {
     case 'Gastronomia':
       return "Gastronomy";

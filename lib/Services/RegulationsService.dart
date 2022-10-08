@@ -6,7 +6,7 @@ import 'package:travelon/Models/OtherOptionsModel/regulations.dart';
 Future<List<Regulations>> fetchRegulations() async {
   //pobranie strony WWW
   final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/regulations.php'),
+    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/regulations.php'),
     body: {
       "nameBase": "Regulamin",
     },

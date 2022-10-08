@@ -114,10 +114,10 @@ class ListPage extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: ListBody(
               children: [
-                choiceOption(list.elections, list, 0, context),
-                choiceOption(list.elections, list, 1, context),
-                choiceOption(list.elections, list, 2, context),
-                choiceOption(list.elections, list, 3, context),
+                choiceOption(list.view_page, list, 0, context),
+                choiceOption(list.view_page, list, 1, context),
+                choiceOption(list.view_page, list, 2, context),
+                choiceOption(list.view_page, list, 3, context),
               ],
             ),
           ),
@@ -127,10 +127,10 @@ class ListPage extends StatelessWidget {
   }
 }
 
-choiceOption(elections, list, index, context) {
+choiceOption(view_page, list, index, context) {
   List<Widget> listWidget = [];
   for (int i = 0; i < 4; i++) {
-    switch (elections[i]) {
+    switch (view_page[i]) {
       case '1':
         listWidget.add(Container(
             margin: const EdgeInsets.only(top: 5, bottom: 5),
@@ -153,7 +153,7 @@ choiceOption(elections, list, index, context) {
             height: 300,
             child: CarouselPhoto(
               name: list.name,
-              length: list.length,
+              length: list.number_of_photos,
             )));
         break;
       case '0':
@@ -234,6 +234,7 @@ class MyMenu extends StatelessWidget {
           );
         } else if (snapshot.hasData) {
           var data = snapshot.data!;
+
           return ListView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: data.length,
@@ -242,7 +243,7 @@ class MyMenu extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
                 child: GestureDetector(
                   onTap: () {
-                    if (int.parse(data[index].count) != 1) {
+                    if ((data[index].size) != "") {
                       showModalBottomSheet(
                         context: context,
                         barrierColor: Colors.transparent,
@@ -256,52 +257,76 @@ class MyMenu extends StatelessWidget {
                           ),
                         ),
                         builder: (context) {
-                          return ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30)),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.25,
-                              color: whatIsDarkMode
-                                  ? themeDark.scaffoldBackgroundColor
-                                  : Colors.white,
-                              child: Container(
-                                margin: const EdgeInsets.only(top: 10),
-                                child: Center(
-                                    child: ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: int.parse(data[index].count),
-                                  itemBuilder: (context, index2) {
-                                    return ClipRRect(
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: Container(
-                                        color: whatIsDarkMode
-                                            ? themeDark.primaryColor
-                                            : themeLight.primaryColor,
-                                        child: ListTile(
-                                          title: Text(
-                                            data[index].name,
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                          subtitle: Text(
-                                            'Rozmiar: ${returnSize(data, index, int.parse(data[index2].count))}',
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                          trailing: Text(
-                                            returnPrice(data, index,
-                                                int.parse(data[index2].count)),
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                        ),
+                          return FutureBuilder(
+                            future: fetchExtendedMenuData(id, data[index].id),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(
+                                        Icons.wifi_off,
+                                        size: 40,
                                       ),
-                                    );
-                                  },
-                                )),
-                              ),
-                            ),
+                                      Text('Brak połączenia z internetem'),
+                                    ],
+                                  ),
+                                );
+                              } else if (snapshot.hasData) {
+                                var data2 = snapshot.data!;
+                                return ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30)),
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.25,
+                                    color: whatIsDarkMode
+                                        ? themeDark.scaffoldBackgroundColor
+                                        : Colors.white,
+                                    child: Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      child: Center(
+                                          child: ListView.builder(
+                                        physics: const BouncingScrollPhysics(),
+                                        itemCount: data2.length,
+                                        itemBuilder: (context, index2) {
+                                          return ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            child: Container(
+                                              color: whatIsDarkMode
+                                                  ? themeDark.primaryColor
+                                                  : themeLight.primaryColor,
+                                              child: ListTile(
+                                                title: Text(
+                                                  data2[index2].name,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                subtitle: Text(
+                                                  'Rozmiar: ${data2[index2].size}',
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                trailing: Text(
+                                                  "${data2[index2].price} zł",
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      )),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
+                            },
                           );
                         },
                       );
@@ -313,9 +338,9 @@ class MyMenu extends StatelessWidget {
                         : themeLight.primaryColor,
                     child: ListTile(
                       textColor: Colors.white,
-                      trailing: int.parse(data[index].count) == 1
+                      trailing: data[index].size == ""
                           ? Text(
-                              '${returnPrice(data, index, int.parse(data[index].count))} zł',
+                              '${data[index].price} zł',
                             )
                           : const Icon(
                               Icons.arrow_forward_outlined,
@@ -352,30 +377,6 @@ class MyMenu extends StatelessWidget {
       },
     );
   }
-
-  returnPrice(list, index, count) {
-    var listDatabase = list[index].price;
-    List<String> listPrice;
-
-    listPrice = listDatabase.split(';');
-    if (count > listPrice.length || listPrice.first == "") {
-      return "Brak";
-    } else {
-      return listPrice[count - 1];
-    }
-  }
-
-  returnSize(list, index, count) {
-    var listDatabase = list[index].size;
-    List<String> listSize;
-
-    listSize = listDatabase.split(';');
-    if (count > listSize.length - 1 || listSize.first == "") {
-      return "Brak";
-    } else {
-      return listSize[count - 1];
-    }
-  }
 }
 
 class CarouselPhoto extends StatelessWidget {
@@ -393,7 +394,7 @@ class CarouselPhoto extends StatelessWidget {
           aspectRatio: 1 / 1,
           child: Container(
             width: 300,
-            margin: EdgeInsets.only(right: 5, left: 5),
+            margin: const EdgeInsets.only(right: 5, left: 5),
             child: Image.network(
               "https://ajlrimlsmg.cfolks.pl/Objects/PhotoCarouselPageObject/${"${name.toLowerCase().replaceAll(" ", "")}$index.jpeg"}",
               errorBuilder: (context, url, error) =>
