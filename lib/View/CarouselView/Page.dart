@@ -324,7 +324,7 @@ class MyMenu extends StatelessWidget {
                                   ),
                                 );
                               } else {
-                                return const CircularProgressIndicator();
+                                return const LinearProgressIndicator();
                               }
                             },
                           );

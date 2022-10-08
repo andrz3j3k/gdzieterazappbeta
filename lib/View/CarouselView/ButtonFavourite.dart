@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeText.dart';
 import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Services/OpeningHours.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FavouriteButton extends StatefulWidget {
@@ -194,41 +195,52 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                 ? themeDark.primaryColor
                 : themeLight.primaryColor,
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      margin: const EdgeInsets.only(top: 5, bottom: 5),
-                      child: const Text(
-                        "Godziny otwarcia:",
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  InfoText(day: 'pon:', time: returnTime(0)),
-                  InfoText(day: 'wt:', time: returnTime(1)),
-                  InfoText(day: 'śr:', time: returnTime(2)),
-                  InfoText(day: 'czw:', time: returnTime(3)),
-                  InfoText(day: 'pt:', time: returnTime(4)),
-                  InfoText(day: 'sob:', time: returnTime(5)),
-                  InfoText(day: 'nd:', time: returnTime(6)),
-                ],
+              child: FutureBuilder(
+                future: fetchOpeningHours(widget.list[widget.index].idobject),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.wifi_off,
+                            size: 40,
+                          ),
+                          Text('Brak połączenia z internetem'),
+                        ],
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    var data = snapshot.data!;
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            margin: const EdgeInsets.only(top: 5, bottom: 5),
+                            child: const Text(
+                              "Godziny otwarcia:",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                        InfoText(day: 'pon:', time: data.pon),
+                        InfoText(day: 'wt:', time: data.wt),
+                        InfoText(day: 'śr:', time: data.sr),
+                        InfoText(day: 'czw:', time: data.czw),
+                        InfoText(day: 'pt:', time: data.pt),
+                        InfoText(day: 'sob:', time: data.sob),
+                        InfoText(day: 'nd:', time: data.nd),
+                      ],
+                    );
+                  } else {
+                    return const LinearProgressIndicator();
+                  }
+                },
               ),
             ),
           ),
         );
       },
     );
-  }
-
-  returnTime(day) {
-    var listDatabase = widget.list[widget.index].time;
-    List<String> listTime;
-
-    listTime = listDatabase.split(';');
-    if (day > listTime.length - 1 || listTime.first == "") {
-      return "Nieczynne";
-    } else {
-      return listTime[day];
-    }
   }
 }
 
