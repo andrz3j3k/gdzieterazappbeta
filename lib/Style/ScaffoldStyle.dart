@@ -8,44 +8,44 @@ var themeLight = ThemeData(
   ),
   scaffoldBackgroundColor: Colors.white,
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: HexColor('E8AA42'),
+    backgroundColor: HexColor('E8AA42'), //zółty
     selectedItemColor: Colors.white,
     unselectedItemColor: Colors.white,
   ),
-  primaryColor: HexColor('E8AA42'),
+  primaryColor: HexColor('E8AA42'), //zółty
 );
 
 var themeDark = ThemeData(
   textTheme: TextTheme(
     bodyText2: GoogleFonts.roboto(
       fontWeight: FontWeight.w500,
-      color: HexColor('D0D0D0'),
+      color: HexColor('D0D0D0'), //szary
     ),
   ),
-  primaryColor: HexColor('373590'),
-  scaffoldBackgroundColor: HexColor('303030'),
+  primaryColor: HexColor('373590'), //granatowy
+  scaffoldBackgroundColor: HexColor('303030'), //jasnoczarny
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: HexColor('373590'),
-    selectedItemColor: HexColor('D0D0D0'),
-    unselectedItemColor: HexColor('D0D0D0'),
+    backgroundColor: HexColor('373590'), //granatowy
+    selectedItemColor: HexColor('D0D0D0'), //szary
+    unselectedItemColor: HexColor('D0D0D0'), //szary
   ),
   listTileTheme: ListTileThemeData(
     textColor: universalColor,
   ),
 );
 //text colors
-Color darkColorText = HexColor('D0D0D0');
+Color darkColorText = HexColor('D0D0D0'); //szary
 Color lightColorText = Colors.white;
-Color lightColorTextGrey = ColorToHex(Colors.black54);
-Color universalColor = HexColor('F6F6F6');
-Color textBlack = HexColor('555555');
-Color textBlack2 = HexColor('787878');
+Color lightColorTextGrey = ColorToHex(Colors.black54); //czarnyjasny
+Color universalColor = HexColor('F6F6F6'); //bialy
+Color textBlack = HexColor('555555'); //szary po srodku czerni
+Color textBlack2 = HexColor('787878'); //podobny do powyzszej szarosci
 
 //title text color
 Color titleTextColor = HexColor('5D5BBA');
 
 //buttonStyle dark
-Color backgroundColorButtonDark = HexColor('555555');
+Color backgroundColorButtonDark = HexColor('555555'); //szary po srodku czerni
 
 //dropDownButton dark mode
 Color darkColorDropDownButton = HexColor('414141');

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:travelon/Services/MenuService.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 
-import '../../ScaffoldStyle.dart';
+import '../../Style/ScaffoldStyle.dart';
 
 class ListPage extends StatelessWidget {
   ListPage({super.key, required this.list});
@@ -96,7 +98,7 @@ class ListPage extends StatelessWidget {
                           style: TextStyle(
                               color: whatIsDarkMode
                                   ? universalColor
-                                  : Colors.white,
+                                  : lightColorText,
                               fontSize: 26),
                         ),
                       ),
@@ -220,17 +222,8 @@ class MyMenu extends StatelessWidget {
       future: fetchMenuData(id),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.wifi_off,
-                  size: 40,
-                ),
-                Text('Brak połączenia z internetem'),
-              ],
-            ),
+          return const Center(
+            child: NoConnectionInternet(),
           );
         } else if (snapshot.hasData) {
           var data = snapshot.data!;
@@ -261,17 +254,8 @@ class MyMenu extends StatelessWidget {
                             future: fetchExtendedMenuData(id, data[index].id),
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
-                                return Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Icon(
-                                        Icons.wifi_off,
-                                        size: 40,
-                                      ),
-                                      Text('Brak połączenia z internetem'),
-                                    ],
-                                  ),
+                                return const Center(
+                                  child: NoConnectionInternet(),
                                 );
                               } else if (snapshot.hasData) {
                                 var data2 = snapshot.data!;
@@ -324,7 +308,7 @@ class MyMenu extends StatelessWidget {
                                   ),
                                 );
                               } else {
-                                return const LinearProgressIndicator();
+                                return const LinearProgressIndicatorCustom();
                               }
                             },
                           );
@@ -371,7 +355,7 @@ class MyMenu extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicatorCustom(),
           );
         }
       },

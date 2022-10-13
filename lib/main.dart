@@ -8,7 +8,8 @@ import 'package:travelon/LoadingApp.dart';
 import 'package:travelon/Models/MainModel.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeTheme.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 import 'Models/MainPageModel/MainText.dart';
 import 'View/MainPage/MainPage.dart';
 import 'package:provider/provider.dart';
@@ -172,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         } else {
           return const Scaffold(
-              body: Center(child: CircularProgressIndicator()));
+              body: Center(child: CircularProgressIndicatorCustom()));
         }
       },
     );

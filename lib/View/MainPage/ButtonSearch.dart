@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import '../../Providers/ChangeText.dart';
 import 'package:provider/provider.dart';
 

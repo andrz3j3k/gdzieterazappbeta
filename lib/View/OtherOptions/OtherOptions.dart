@@ -1,10 +1,7 @@
-import 'package:travelon/ScaffoldStyle.dart';
 import 'package:travelon/View/OtherOptions/PageInfo.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import 'OptionOnClick.dart';
-import 'OptionThemeMode.dart';
-import 'Search.dart';
+import '../../Widget/OptionOnClick.dart';
+import '../../Widget/OptionThemeMode.dart';
+import '../../Widget/Search.dart';
 import 'package:flutter/material.dart';
 
 class OtherOptions extends StatefulWidget {

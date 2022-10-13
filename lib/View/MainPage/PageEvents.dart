@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 import '../../Services/EventsService.dart';
 
 class PageEvents extends StatelessWidget {
@@ -18,11 +20,7 @@ class PageEvents extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.wifi_off,
-                  size: 40,
-                ),
-                const Text('Brak połączenia z internetem'),
+                const NoConnectionInternet(),
                 Container(
                   margin: const EdgeInsets.only(top: 25),
                   child: ElevatedButton(
@@ -51,7 +49,7 @@ class PageEvents extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicatorCustom(),
           );
         }
       },

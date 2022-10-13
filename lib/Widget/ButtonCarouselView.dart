@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeText.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/OpeningHours.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FavouriteButton extends StatefulWidget {
-  const FavouriteButton(
+class FavouriteCarouselView extends StatefulWidget {
+  const FavouriteCarouselView(
       {Key? key, required this.icon, required this.list, required this.index})
       : super(key: key);
 
@@ -16,10 +18,10 @@ class FavouriteButton extends StatefulWidget {
   final int index;
 
   @override
-  State<FavouriteButton> createState() => _FavouriteButtonState();
+  State<FavouriteCarouselView> createState() => _FavouriteCarouselViewState();
 }
 
-class _FavouriteButtonState extends State<FavouriteButton> {
+class _FavouriteCarouselViewState extends State<FavouriteCarouselView> {
   final Map<String, IconData> icons = {
     'favourite': Icons.grade,
     'web': Icons.web,
@@ -199,17 +201,8 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                 future: fetchOpeningHours(widget.list[widget.index].idobject),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.wifi_off,
-                            size: 40,
-                          ),
-                          Text('Brak połączenia z internetem'),
-                        ],
-                      ),
+                    return const Center(
+                      child: NoConnectionInternet(),
                     );
                   } else if (snapshot.hasData) {
                     var data = snapshot.data!;
@@ -232,7 +225,9 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                       ],
                     );
                   } else {
-                    return const LinearProgressIndicator();
+                    return const Align(
+                        alignment: Alignment.bottomCenter,
+                        child: LinearProgressIndicatorCustom());
                   }
                 },
               ),

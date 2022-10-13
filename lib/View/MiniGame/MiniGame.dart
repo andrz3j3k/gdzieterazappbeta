@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/AdsService.dart';
 import 'package:travelon/View/CarouselView/ObjectAfterClick.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 
 class MiniGame extends StatefulWidget {
   const MiniGame({Key? key}) : super(key: key);
@@ -17,17 +19,8 @@ class _MiniGameState extends State<MiniGame> {
       future: fetchAds(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.wifi_off,
-                  size: 40,
-                ),
-                Text('Brak połączenia z internetem'),
-              ],
-            ),
+          return const Center(
+            child: NoConnectionInternet(),
           );
         } else if (snapshot.hasData) {
           return MyAds(
@@ -35,7 +28,7 @@ class _MiniGameState extends State<MiniGame> {
           );
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicatorCustom(),
           );
         }
       },

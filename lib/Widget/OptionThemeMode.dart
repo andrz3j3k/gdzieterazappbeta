@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelon/Providers/ChangeTheme.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:provider/provider.dart';
-import 'package:travelon/View/OtherOptions/Search.dart';
+import 'package:travelon/Widget/Search.dart';
 
 class OptionThemeMode extends StatefulWidget {
   const OptionThemeMode({

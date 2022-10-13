@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Providers/ChangeTheme.dart';
-import 'package:travelon/ScaffoldStyle.dart';
-import '../../Models/OtherOptionsModel/SearchModel.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
+import '../Models/OtherOptionsModel/SearchModel.dart';
 import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {

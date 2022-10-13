@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/IndividualPageService.dart';
 import 'package:travelon/View/CarouselView/Page.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 
 class ObjectAfterClick extends StatelessWidget {
   const ObjectAfterClick({Key? key, required this.id}) : super(key: key);
@@ -19,11 +21,7 @@ class ObjectAfterClick extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.wifi_off,
-                    size: 40,
-                  ),
-                  const Text('Brak połączenia z internetem'),
+                  const NoConnectionInternet(),
                   Container(
                     margin: const EdgeInsets.only(top: 25),
                     child: ElevatedButton(
@@ -52,7 +50,7 @@ class ObjectAfterClick extends StatelessWidget {
             );
           } else {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicatorCustom(),
             );
           }
         },

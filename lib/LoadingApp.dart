@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -22,12 +23,13 @@ class _LoadingPageState extends State<LoadingPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.wifi_off,
+                      Icons.system_update,
                       size: 40,
                       color: whatIsDarkMode
                           ? darkColorText
                           : themeLight.primaryColor,
                     ),
+                    const Padding(padding: EdgeInsets.only(bottom: 10)),
                     Text(
                       widget.text,
                       textAlign: TextAlign.center,
@@ -41,26 +43,18 @@ class _LoadingPageState extends State<LoadingPage> {
                           await launchUrl(uri);
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: whatIsDarkMode
+                              ? backgroundColorButtonDark
+                              : themeLight.primaryColor),
                       child: const Text("Zaaktualizuj mnie!"),
                     ),
                   ],
                 ),
               ),
             )
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.wifi_off,
-                    size: 40,
-                    color: whatIsDarkMode
-                        ? darkColorText
-                        : themeLight.primaryColor,
-                  ),
-                  Text(widget.text),
-                ],
-              ),
+          : const Center(
+              child: NoConnectionInternet(),
             ),
     );
   }

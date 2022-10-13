@@ -2,9 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/EventsService.dart';
 import 'package:travelon/View/MainPage/PageEvents.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 
 import '../../Models/MainPageModel/MainPageEvents.dart';
 
@@ -17,23 +19,12 @@ class ListEvents extends StatelessWidget {
       future: fetchMainPageEvents(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.wifi_off,
-                  size: 40,
-                ),
-                Text('Brak połączenia z internetem'),
-              ],
-            ),
-          );
+          return const Center(child: NoConnectionInternet());
         } else if (snapshot.hasData) {
           return MyEventsBuilder(list: snapshot.data!);
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicatorCustom(),
           );
         }
       },

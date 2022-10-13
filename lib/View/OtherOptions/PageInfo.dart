@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/OtherOptionsModel/regulations.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/RegulationsService.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 
 class RegulationsInfo extends StatelessWidget {
   const RegulationsInfo({super.key});
@@ -19,17 +21,8 @@ class RegulationsInfo extends StatelessWidget {
           future: fetchRegulations(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.wifi_off,
-                      size: 40,
-                    ),
-                    Text('Brak połączenia z internetem'),
-                  ],
-                ),
+              return const Center(
+                child: NoConnectionInternet(),
               );
             } else if (snapshot.hasData) {
               var data = snapshot.data!;
@@ -40,7 +33,7 @@ class RegulationsInfo extends StatelessWidget {
                 },
               );
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicatorCustom());
             }
           },
         ),

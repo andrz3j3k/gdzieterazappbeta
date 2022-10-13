@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import '../../ScaffoldStyle.dart';
+import '../../Style/ScaffoldStyle.dart';
 import '../../View/CarouselView/ObjectAfterClick.dart';
 
 const initialCameraPositionPrzemysl = CameraPosition(
@@ -59,7 +59,7 @@ getMarker(context) {
                             Container(
                               width: double.infinity,
                               height: double.infinity,
-                              color: Colors.black54,
+                              color: lightColorTextGrey,
                             ),
                             Container(
                               margin: const EdgeInsets.only(
@@ -71,7 +71,7 @@ getMarker(context) {
                                 style: TextStyle(
                                   color: whatIsDarkMode
                                       ? darkColorText
-                                      : Colors.white,
+                                      : lightColorText,
                                 ),
                                 minFontSize: 25,
                                 maxFontSize: 32,
@@ -176,7 +176,7 @@ class _ButtonButtomSheetState extends State<ButtonButtomSheet> {
     return MaterialButton(
       onPressed: widget.function,
       color: whatIsDarkMode ? themeDark.primaryColor : themeLight.primaryColor,
-      textColor: whatIsDarkMode ? universalColor : Colors.white,
+      textColor: whatIsDarkMode ? universalColor : lightColorText,
       padding: const EdgeInsets.all(10),
       shape: const CircleBorder(),
       minWidth: 1,

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/View/CarouselView/CarouselView.dart';
 import 'package:travelon/View/CityMap/CityMap.dart';
 import 'package:travelon/View/MainPage/FavouritePlace.dart';

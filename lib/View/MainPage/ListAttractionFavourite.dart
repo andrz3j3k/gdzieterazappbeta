@@ -3,8 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:provider/provider.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/AttractionService.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 import '../../Providers/ChangeText.dart';
 import '../CarouselView/ObjectAfterClick.dart';
 
@@ -178,7 +179,7 @@ class ListElements extends StatelessWidget {
                     );
                   } else {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicatorCustom(),
                     );
                   }
                 },

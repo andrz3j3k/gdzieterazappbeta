@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:flutter/material.dart';
-import 'package:travelon/ScaffoldStyle.dart';
+import 'package:travelon/Style/ScaffoldStyle.dart';
 import 'package:travelon/Services/AttractionService.dart';
+import 'package:travelon/Widget/NoConnectionInternet.dart';
+import 'package:travelon/Widget/ProgressIndicator.dart';
 import 'ObjectAfterClick.dart';
-import 'ButtonFavourite.dart';
+import '../../Widget/ButtonCarouselView.dart';
 
 class CarouselView extends StatefulWidget {
   const CarouselView({Key? key}) : super(key: key);
@@ -32,23 +34,12 @@ class FutureBuilderView extends StatelessWidget {
       future: function,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.wifi_off,
-                  size: 40,
-                ),
-                Text('Brak połączenia z internetem'),
-              ],
-            ),
-          );
+          return const Center(child: NoConnectionInternet());
         } else if (snapshot.hasData) {
           return PageViewBuilder(list: snapshot.data!);
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicatorCustom(),
           );
         }
       },
@@ -125,8 +116,6 @@ class WidgetCard extends StatelessWidget {
                 "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                 errorBuilder: (context, url, error) =>
                     const Icon(Icons.image_not_supported_outlined, size: 40),
-                // errorBuilder: (context, error, stackTrace) =>
-                //     const Icon(Icons.image_not_supported_outlined, size: 40),
                 fit: BoxFit.fill,
               ),
             ),
@@ -167,7 +156,7 @@ class WidgetCard extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: 20),
+          margin: const EdgeInsets.only(bottom: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -176,7 +165,7 @@ class WidgetCard extends StatelessWidget {
               Container(
                 alignment: Alignment.bottomRight,
                 padding: const EdgeInsets.only(top: 5, right: 10),
-                child: FavouriteButton(
+                child: FavouriteCarouselView(
                   icon: "info",
                   list: list,
                   index: index,
@@ -185,7 +174,7 @@ class WidgetCard extends StatelessWidget {
               Container(
                 alignment: Alignment.bottomRight,
                 padding: const EdgeInsets.only(top: 5, right: 10),
-                child: FavouriteButton(
+                child: FavouriteCarouselView(
                   icon: "favourite",
                   list: list,
                   index: index,
@@ -203,7 +192,7 @@ class WidgetCard extends StatelessWidget {
       return Container(
         alignment: Alignment.bottomRight,
         padding: const EdgeInsets.only(top: 5, right: 10),
-        child: FavouriteButton(
+        child: FavouriteCarouselView(
           icon: "web",
           list: list,
           index: index,
@@ -219,7 +208,7 @@ class WidgetCard extends StatelessWidget {
       return Container(
         alignment: Alignment.bottomRight,
         padding: const EdgeInsets.only(top: 5, right: 10),
-        child: FavouriteButton(
+        child: FavouriteCarouselView(
           icon: "phone",
           list: list,
           index: index,
