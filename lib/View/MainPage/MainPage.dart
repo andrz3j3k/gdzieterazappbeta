@@ -18,7 +18,7 @@ import 'package:http/http.dart' as http;
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
   _switchPageFunction() {
-    switch (switchPage) {
+    switch (Settings.switchPage) {
       case 0:
         return const MainPageApp();
       case 1:
@@ -39,7 +39,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   _onItemTapped(int index) {
     setState(() {
-      switchPage = index;
+      Settings.switchPage = index;
     });
   }
 
@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> {
         borderRadius: const BorderRadius.only(
             topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         child: BottomNavigationBar(
-          currentIndex: switchPage,
+          currentIndex: Settings.switchPage,
           onTap: _onItemTapped,
           type: BottomNavigationBarType.fixed,
           // backgroundColor: const Color.fromARGB(255, 232, 171, 66),

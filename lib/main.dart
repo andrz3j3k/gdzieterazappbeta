@@ -1,17 +1,25 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelon/LoadingApp.dart';
+import 'package:travelon/Models/MainModel.dart';
 import 'package:travelon/Models/MainPageModel/MainPageModel.dart';
 import 'package:travelon/Providers/ChangeTheme.dart';
 import 'package:travelon/ScaffoldStyle.dart';
+import 'Models/MainPageModel/MainText.dart';
 import 'View/MainPage/MainPage.dart';
 import 'package:provider/provider.dart';
 import 'Providers/ChangeText.dart';
 import 'Providers/RefreshList.dart';
+import 'package:http/http.dart' as http;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  Settings.version = packageInfo.version;
   final pref = await SharedPreferences.getInstance();
 
   whatIsDarkMode = pref.getBool('theme') ?? false;
@@ -119,8 +127,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<MainText> fetchtext() async {
+    //pobranie strony WWW
+    final response = await http.post(
+      Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/maindisplaytext.php'),
+      body: {
+        "id": "2",
+      },
+    );
+
+    // Use the compute function to run parsePhotos in a separate isolate.
+    return MainText.fromJson(jsonDecode(response.body));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const MainPage();
+    return FutureBuilder(
+      future: fetchtext(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                build(context);
+              });
+            },
+            child: Scaffold(
+              body: LoadingPage(
+                  text: "Brak połączenia z internetem!",
+                  type: "Brak internetu"),
+            ),
+          );
+        } else if (snapshot.hasData) {
+          if (Settings.version == snapshot.data!.text) {
+            return const MainPage();
+          } else {
+            return Scaffold(
+              body: LoadingPage(
+                text:
+                    "Pojawiła się nowa aktualizacja aplikacji. Zaaktualizuj aplikację, aby mogła informować Cię o nowych promocjach i wydarzeniach!",
+                type: "Brak aktualizacji",
+              ),
+            );
+          }
+        } else {
+          return const Scaffold(
+              body: Center(child: CircularProgressIndicator()));
+        }
+      },
+    );
   }
 }

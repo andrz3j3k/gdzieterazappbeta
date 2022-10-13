@@ -46,6 +46,7 @@ dependencies:
   url_launcher: ^6.1.5
   pinch_zoom: ^1.0.0
   flutter_native_splash: ^2.2.10+1
+  package_info_plus: ^2.0.0
  
 dev_dependencies:
   flutter_test:
