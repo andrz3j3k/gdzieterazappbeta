@@ -267,8 +267,8 @@ class MyMenu extends StatelessWidget {
                                     height: MediaQuery.of(context).size.height *
                                         0.25,
                                     color: whatIsDarkMode
-                                        ? themeDark.scaffoldBackgroundColor
-                                        : Colors.white,
+                                        ? themeDark.primaryColor
+                                        : themeLight.primaryColor,
                                     child: Container(
                                       margin: const EdgeInsets.only(top: 10),
                                       child: Center(
@@ -276,28 +276,38 @@ class MyMenu extends StatelessWidget {
                                         physics: const BouncingScrollPhysics(),
                                         itemCount: data2.length,
                                         itemBuilder: (context, index2) {
-                                          return ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                            child: Container(
-                                              color: whatIsDarkMode
-                                                  ? themeDark.primaryColor
-                                                  : themeLight.primaryColor,
-                                              child: ListTile(
-                                                title: Text(
-                                                  data2[index2].name,
-                                                  style: const TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                subtitle: Text(
-                                                  'Rozmiar: ${data2[index2].size}',
-                                                  style: const TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                                trailing: Text(
-                                                  "${data2[index2].price} zł",
-                                                  style: const TextStyle(
-                                                      color: Colors.white),
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              child: Container(
+                                                color: whatIsDarkMode
+                                                    ? themeDark
+                                                        .scaffoldBackgroundColor
+                                                    : Colors.white,
+                                                child: ListTile(
+                                                  title: Text(
+                                                    data2[index2].name,
+                                                    style: TextStyle(
+                                                        color: whatIsDarkMode
+                                                            ? lightColorText
+                                                            : Colors.black),
+                                                  ),
+                                                  subtitle: Text(
+                                                    'Rozmiar: ${data2[index2].size}',
+                                                    style: TextStyle(
+                                                        color: whatIsDarkMode
+                                                            ? lightColorText
+                                                            : Colors.black),
+                                                  ),
+                                                  trailing: Text(
+                                                    "${data2[index2].price} zł",
+                                                    style: TextStyle(
+                                                        color: whatIsDarkMode
+                                                            ? lightColorText
+                                                            : Colors.black),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -321,7 +331,7 @@ class MyMenu extends StatelessWidget {
                         ? themeDark.primaryColor
                         : themeLight.primaryColor,
                     child: ListTile(
-                      textColor: Colors.white,
+                      textColor: lightColorText,
                       trailing: data[index].size == ""
                           ? Text(
                               '${data[index].price} zł',
@@ -341,9 +351,8 @@ class MyMenu extends StatelessWidget {
                         child: Text(
                           data[index].description,
                           style: TextStyle(
-                            color: whatIsDarkMode
-                                ? darkColorText
-                                : themeDark.scaffoldBackgroundColor,
+                            color:
+                                whatIsDarkMode ? darkColorText : lightColorText,
                           ),
                         ),
                       ),
