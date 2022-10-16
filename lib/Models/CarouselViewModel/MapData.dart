@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class MapData {
-  final String id;
+  final int id;
   final String name;
   final String x;
   final String y;
@@ -22,7 +22,7 @@ class MapData {
 
   factory MapData.fromJson(Map<String, dynamic> json) {
     return MapData(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       x: json['x'] as String,
       y: json['y'] as String,

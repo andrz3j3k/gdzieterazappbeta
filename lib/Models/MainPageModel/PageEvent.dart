@@ -1,6 +1,6 @@
 //wykonywane najpierw
 class PageEvents {
-  final String id;
+  final int id;
   final String name;
   final String long_description;
   final String page;
@@ -14,7 +14,7 @@ class PageEvents {
 
   factory PageEvents.fromJson(Map<String, dynamic> json) {
     return PageEvents(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       long_description: json['long_description'] as String,
       page: json['page'] as String,

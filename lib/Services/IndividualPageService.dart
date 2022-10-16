@@ -8,12 +8,8 @@ import 'AttractionService.dart';
 
 Future<IndividualPage> fetchIndividualPageData(id) async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/pageobject.php'),
-    body: {
-      "type": returnType(),
-      "idObject": id.toString(),
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/objects/$id/type/${returnType()}'),
   );
 
   // // Use the compute function to run parsePhotos in a separate isolate.

@@ -4,6 +4,7 @@ import 'package:travelon/Services/MenuService.dart';
 import 'package:travelon/Widget/NoConnectionInternet.dart';
 import 'package:travelon/Widget/ProgressIndicator.dart';
 
+import '../../Services/AttractionService.dart';
 import '../../Style/ScaffoldStyle.dart';
 
 class ListPage extends StatelessWidget {
@@ -28,7 +29,7 @@ class ListPage extends StatelessWidget {
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30)),
                     child: Image.network(
-                      "https://ajlrimlsmg.cfolks.pl/Objects/Background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                      "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/background/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                       errorBuilder: (context, url, error) => const Icon(
                         Icons.image_not_supported_outlined,
                         size: 40,
@@ -147,7 +148,7 @@ choiceOption(view_page, list, index, context) {
         listWidget.add(Container(
             margin: const EdgeInsets.only(top: 5, bottom: 5),
             height: MediaQuery.of(context).size.height * 0.5,
-            child: MyMenu(id: list.id)));
+            child: MyMenu(id: list.id.toString())));
         break;
       case '4':
         listWidget.add(Container(
@@ -198,7 +199,7 @@ class MyPhoto extends StatelessWidget {
             maxScale: 2.0,
             child: SizedBox.fromSize(
               child: Image.network(
-                "https://ajlrimlsmg.cfolks.pl/Objects/PhotoPageObject/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/posterpageobject/${"${list.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                 errorBuilder: (context, url, error) =>
                     const Icon(Icons.image_not_supported_outlined, size: 40),
                 // errorBuilder: (context, error, stackTrace) =>
@@ -389,7 +390,7 @@ class CarouselPhoto extends StatelessWidget {
             width: 300,
             margin: const EdgeInsets.only(right: 5, left: 5),
             child: Image.network(
-              "https://ajlrimlsmg.cfolks.pl/Objects/PhotoCarouselPageObject/${"${name.toLowerCase().replaceAll(" ", "")}$index.jpeg"}",
+              "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/photospageobject/${"${name.toLowerCase().replaceAll(" ", "")}$index.jpeg"}",
               errorBuilder: (context, url, error) =>
                   const Icon(Icons.image_not_supported_outlined, size: 40),
               fit: BoxFit.cover,

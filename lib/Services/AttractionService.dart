@@ -6,11 +6,8 @@ import 'package:flutter/foundation.dart';
 
 Future<List<CarouselView>> fetchCarouselView() async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/carouselview.php'),
-    body: {
-      "type": returnType(),
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/carousel/type/${returnType()}'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.

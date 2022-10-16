@@ -113,7 +113,7 @@ class WidgetCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(40)),
               child: Image.network(
-                "https://ajlrimlsmg.cfolks.pl/Objects/CarouselView/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/carouselview/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                 errorBuilder: (context, url, error) =>
                     const Icon(Icons.image_not_supported_outlined, size: 40),
                 fit: BoxFit.fill,
@@ -124,7 +124,7 @@ class WidgetCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ObjectAfterClick(
-                    id: list[index].idobject,
+                    id: list[index].idobject.toString(),
                   ),
                 ),
               );

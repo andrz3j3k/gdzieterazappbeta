@@ -1,7 +1,7 @@
 //wykonywane najpierw
 
 class IndividualPage {
-  final String id;
+  final int id;
   final String name;
   final String description;
   final String view_page;
@@ -17,11 +17,11 @@ class IndividualPage {
 
   factory IndividualPage.fromJson(Map<String, dynamic> json) {
     return IndividualPage(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
-      view_page: json['view_page'] as String,
-      number_of_photos: json['number_of_photos'] as String,
+      view_page: json['viewPage'] as String,
+      number_of_photos: json['numberOfPhotos'] as String,
     );
   }
 }

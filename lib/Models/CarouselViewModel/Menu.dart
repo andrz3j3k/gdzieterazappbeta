@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 class MenuData {
-  final String id;
+  final int id;
   final String name;
   final String description;
   final String price;
@@ -18,7 +18,7 @@ class MenuData {
 
   factory MenuData.fromJson(Map<String, dynamic> json) {
     return MenuData(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
       price: json['price'] as String,
@@ -36,7 +36,7 @@ List<MenuData> parseMenuData(String responseBody) {
 }
 
 class ExtendedMenuData {
-  final String id;
+  final int id;
   final String name;
   final String price;
   final String size;
@@ -50,7 +50,7 @@ class ExtendedMenuData {
 
   factory ExtendedMenuData.fromJson(Map<String, dynamic> json) {
     return ExtendedMenuData(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       price: json['price'] as String,
       size: json['size'] as String,

@@ -29,7 +29,7 @@ class RegulationsInfo extends StatelessWidget {
               return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return Text(data[index].tekst);
+                  return Text(data[index].text);
                 },
               );
             } else {

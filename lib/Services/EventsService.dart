@@ -6,8 +6,8 @@ import '../Models/MainPageModel/PageEvent.dart';
 
 Future<List<MainPageEvents>> fetchMainPageEvents() async {
   //pobranie strony WWW
-  final response = await http.get(
-      Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/mainpageevents.php'));
+  final response =
+      await http.get(Uri.parse('https://gdzieterazapp.pl/api/events'));
 
   // Use the compute function to run parsePhotos in a separate isolate.
   return compute(parseMainPageEvents, response.body);
@@ -15,11 +15,8 @@ Future<List<MainPageEvents>> fetchMainPageEvents() async {
 
 Future<PageEvents> fetchPageEvents(id) async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/pageevent.php'),
-    body: {
-      "idEvents": id.toString(),
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/events/$id'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.

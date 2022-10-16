@@ -113,11 +113,8 @@ class MainPageApp extends StatefulWidget {
 
 Future<MainText> fetchtext() async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/maindisplaytext.php'),
-    body: {
-      "id": "1",
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/settings/maintext'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.

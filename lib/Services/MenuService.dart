@@ -5,11 +5,8 @@ import 'package:flutter/foundation.dart';
 
 Future<List<MenuData>> fetchMenuData(id) async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/menudata.php'),
-    body: {
-      "idObject": id,
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/menu/object/$id'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.
@@ -18,12 +15,9 @@ Future<List<MenuData>> fetchMenuData(id) async {
 
 Future<List<ExtendedMenuData>> fetchExtendedMenuData(idObject, id) async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/extendedmenudata.php'),
-    body: {
-      "idObject": idObject,
-      "id": id,
-    },
+  final response = await http.get(
+    Uri.parse(
+        'https://gdzieterazapp.pl/api/menu/object/$idObject/extended/$id'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.

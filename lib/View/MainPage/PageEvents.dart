@@ -79,7 +79,7 @@ class PhotoAndText extends StatelessWidget {
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30)),
                     child: Image.network(
-                      "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                      "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/events/background/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                       errorBuilder: (context, url, error) => const Icon(
                           Icons.image_not_supported_outlined,
                           size: 40),
@@ -218,7 +218,7 @@ class Photo extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: SizedBox.fromSize(
           child: Image.network(
-            "https://ajlrimlsmg.cfolks.pl/Events/MainPhoto/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+            "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/events/poster/${"${event.name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
             errorBuilder: (context, url, error) =>
                 const Icon(Icons.image_not_supported_outlined, size: 40),
             fit: BoxFit.cover,

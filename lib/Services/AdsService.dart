@@ -6,11 +6,8 @@ import '../Models/MiniGame/Ads.dart';
 
 Future<List<Ads>> fetchAds() async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/adspage.php'),
-    body: {
-      "type": returnType(),
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/sale/type/${returnType()}'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.

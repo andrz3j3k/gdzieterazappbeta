@@ -69,7 +69,7 @@ class MyEvents extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => PageEvents(
-                    id: (list[index].id),
+                    id: (list[index].id.toString()),
                   ),
                 ),
               );
@@ -88,7 +88,7 @@ class MyEvents extends StatelessWidget {
                 children: list.isNotEmpty
                     ? [
                         Image.network(
-                          "https://ajlrimlsmg.cfolks.pl/Events/Background/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
+                          "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/events/background/${"${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg"}",
                           errorBuilder: (context, url, error) => const Icon(
                               Icons.image_not_supported_outlined,
                               size: 40),

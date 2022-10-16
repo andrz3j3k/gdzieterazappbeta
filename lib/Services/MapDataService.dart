@@ -8,11 +8,8 @@ import 'AttractionService.dart';
 
 Future<List<MapData>> fetchMapaData() async {
   //pobranie strony WWW
-  final response = await http.post(
-    Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/mapdata.php'),
-    body: {
-      "type": returnType(),
-    },
+  final response = await http.get(
+    Uri.parse('https://gdzieterazapp.pl/api/map-data/${returnType()}'),
   );
 
   // Use the compute function to run parsePhotos in a separate isolate.

@@ -2,9 +2,8 @@ import 'dart:convert';
 
 //wykonywane najpierw
 class MainPageEvents {
-  final String id;
+  final int id;
   final String name;
-
   final String street;
   final String date;
   final String time;
@@ -19,7 +18,7 @@ class MainPageEvents {
 
   factory MainPageEvents.fromJson(Map<String, dynamic> json) {
     return MainPageEvents(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       street: json['street'] as String,
       date: json['date'] as String,

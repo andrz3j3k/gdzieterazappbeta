@@ -21,13 +21,13 @@ class OpeningHours {
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) {
     return OpeningHours(
-      pon: json['pon'] as String,
-      wt: json['wt'] as String,
-      sr: json['sr'] as String,
-      czw: json['czw'] as String,
-      pt: json['pt'] as String,
-      sob: json['sob'] as String,
-      nd: json['nd'] as String,
+      pon: json['monday'] as String,
+      wt: json['tusday'] as String,
+      sr: json['wednesday'] as String,
+      czw: json['thursday'] as String,
+      pt: json['friday'] as String,
+      sob: json['saturday'] as String,
+      nd: json['sunday'] as String,
     );
   }
 }

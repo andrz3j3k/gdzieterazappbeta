@@ -5,6 +5,8 @@ import 'package:travelon/View/CarouselView/ObjectAfterClick.dart';
 import 'package:travelon/Widget/NoConnectionInternet.dart';
 import 'package:travelon/Widget/ProgressIndicator.dart';
 
+import '../../Services/AttractionService.dart';
+
 class MiniGame extends StatefulWidget {
   const MiniGame({Key? key}) : super(key: key);
 
@@ -94,13 +96,13 @@ class MyAds extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ObjectAfterClick(
-                                id: (list[index].id),
+                                id: (list[index].id.toString()),
                               ),
                             ),
                           );
                         },
                         child: Image.network(
-                          "https://ajlrimlsmg.cfolks.pl/Objects/Ads/${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg",
+                          "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/ads/${list[index].name.toLowerCase().replaceAll(" ", "")}.jpeg",
                           errorBuilder: (context, url, error) => const Icon(
                               Icons.image_not_supported_outlined,
                               size: 40),

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 //wykonywane najpierw
 class Ads {
-  final String id;
+  final int id;
   final String name;
 
   const Ads({
@@ -12,7 +12,7 @@ class Ads {
 
   factory Ads.fromJson(Map<String, dynamic> json) {
     return Ads(
-      id: json['id'] as String,
+      id: json['object_id'] as int,
       name: json['name'] as String,
     );
   }

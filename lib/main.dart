@@ -130,11 +130,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Future<MainText> fetchtext() async {
     //pobranie strony WWW
-    final response = await http.post(
-      Uri.parse('https://ajlrimlsmg.cfolks.pl/Scripts/maindisplaytext.php'),
-      body: {
-        "id": "2",
-      },
+    final response = await http.get(
+      Uri.parse('https://gdzieterazapp.pl/api/settings/version'),
     );
 
     // Use the compute function to run parsePhotos in a separate isolate.

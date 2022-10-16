@@ -153,7 +153,7 @@ class ListElements extends StatelessWidget {
                                   width: 100,
                                   height: 100,
                                   child: Image.network(
-                                    "https://ajlrimlsmg.cfolks.pl/Objects/Logo/${list.elementAt(index).toLowerCase().replaceAll(" ", "")}.jpeg",
+                                    "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/logo/${list.elementAt(index).toLowerCase().replaceAll(" ", "")}.jpeg",
                                     errorBuilder: (context, url, error) =>
                                         const Icon(
                                             Icons.image_not_supported_outlined,
@@ -196,5 +196,5 @@ returnId(list, listPage) {
       value = i;
     }
   }
-  return listPage[value].idobject;
+  return listPage[value].idobject.toString();
 }

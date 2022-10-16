@@ -2,18 +2,18 @@ import 'dart:convert';
 
 //wykonywane najpierw
 class Regulations {
-  final String id;
-  final String tekst;
+  final int id;
+  final String text;
 
   const Regulations({
     required this.id,
-    required this.tekst,
+    required this.text,
   });
 
   factory Regulations.fromJson(Map<String, dynamic> json) {
     return Regulations(
-      id: json['id'] as String,
-      tekst: json['tekst'] as String,
+      id: json['id'] as int,
+      text: json['text'] as String,
     );
   }
 }

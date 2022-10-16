@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import '../../Services/AttractionService.dart';
 import '../../Style/ScaffoldStyle.dart';
 import '../../View/CarouselView/ObjectAfterClick.dart';
 
@@ -49,7 +50,7 @@ getMarker(context) {
                           fit: StackFit.expand,
                           children: [
                             Image.network(
-                              "https://ajlrimlsmg.cfolks.pl/Objects/Ads/${listLocation[i].name.toLowerCase().replaceAll(" ", "")}.jpeg",
+                              "https://gdzieterazapp.pl/wojewodztwa/podkarpackie/przemyśl/objects/${returnType().toLowerCase()}/background/${listLocation[i].name.toLowerCase().replaceAll(" ", "")}.jpeg",
                               errorBuilder: (context, url, error) => const Icon(
                                   Icons.image_not_supported_outlined,
                                   size: 40),
